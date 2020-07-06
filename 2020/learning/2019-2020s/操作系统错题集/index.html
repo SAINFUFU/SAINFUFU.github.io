@@ -1,0 +1,333 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="SAIN"><meta name="copyright" content="SAIN"><meta name="generator" content="Hexo 4.2.1"><meta name="theme" content="hexo-theme-yun"><title>操作系统错题集 | SAIN</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="none" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.8/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1906232_4pz18l23jnx.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link rel="shortcut icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"root":"/","title":"云游君的小站","version":"0.9.2","anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><meta name="description" content="操作系统错题集">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统错题集">
+<meta property="og:url" content="http://sainfufu.github.io/2020/learning/2019-2020s/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%94%99%E9%A2%98%E9%9B%86/index.html">
+<meta property="og:site_name" content="SAIN">
+<meta property="og:description" content="操作系统错题集">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://sainfufu.github.io/images/os1-1.png">
+<meta property="og:image" content="http://sainfufu.github.io/images/os6-1.png">
+<meta property="article:published_time" content="2020-05-06T07:18:00.000Z">
+<meta property="article:modified_time" content="2020-06-25T08:07:28.000Z">
+<meta property="article:author" content="SAIN">
+<meta property="article:tag" content="OS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sainfufu.github.io/images/os1-1.png"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="Table of Contents"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="Overview"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="SAIN"><img width="96" loading="lazy" src="/avatar.jpg" alt="SAIN"></a><div class="site-author-name"><a href="/about/">SAIN</a></div><a class="site-name" href="/about/site.html">SAIN</a><sub class="site-subtitle">记录怪异</sub><div class="site-desciption"></div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="Home"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-shouye"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="Archives"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archives_4px"></use></svg></span><span class="site-state-item-count">111</span></a></div><div class="site-state-item"><a href="/categories/" title="Categories"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-category"></use></svg></span><span class="site-state-item-count">7</span></a></div><div class="site-state-item"><a href="/tags/" title="Tags"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-06Tags"></use></svg></span><span class="site-state-item-count">35</span></a></div><a class="site-state-item hty-icon-button" href="/albums/" title="相册"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-tupianbizhi"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/categories/%E5%AD%A6%E4%B9%A0/" title="学习" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-xuexi"></use></svg></a><a class="links-item hty-icon-button" href="/categories/Eng/" title="英语笔记" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-english"></use></svg></a><a class="links-item hty-icon-button" href="/categories/CS/" title="CS" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-technology_computer-"></use></svg></a><a class="links-item hty-icon-button" href="/categories/CTF/" title="CTF" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hacker"></use></svg></a><a class="links-item hty-icon-button" href="/categories/%E6%9D%82%E6%80%9D/" title="杂思" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rijibendiary"></use></svg></a><a class="links-item hty-icon-button" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-dushu"></use></svg></a><a class="links-item hty-icon-button" href="/categories/%E8%A7%82%E5%BD%B1%E7%AC%94%E8%AE%B0/" title="观影笔记" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-dianying"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#进程管理"><span class="toc-number">1.</span> <span class="toc-text">进程管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#存储管理"><span class="toc-number">2.</span> <span class="toc-text">存储管理</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://sainfufu.github.io/2020/learning/2019-2020s/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%94%99%E9%A2%98%E9%9B%86/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="SAIN"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="SAIN"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">操作系统错题集</h1><div class="post-meta"><div class="post-time" style="display:inline-block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="Created: 2020-05-06 15:18:00" itemprop="dateCreated datePublished" datetime="2020-05-06T15:18:00+08:00">2020-05-06</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="Modified: 2020-06-25 16:07:28" itemprop="dateModified" datetime="2020-06-25T16:07:28+08:00">2020-06-25</time></div><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/%E5%AD%A6%E4%B9%A0/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">学习</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/OS/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">OS</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><!--more-->  
+<h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><ol>
+<li>进程被创建后即进入（ <strong>就绪</strong> ）排队。  </li>
+<li>一个作业处于运行状态，则所属该作业的进程可能处于（ 运行、就绪或等待 ）状态。<br>一个作业处于运行状态，只说明该作业已进入到内存中，并以进程形式存在于系统中，属该作业的进程可能处于运行、就绪或等待状态。  </li>
+<li>下列叙述中，正确的是：<font color="red">BDE</font><br>A、作业一旦被作业调度选中，即占有了CPU<br><font color="red">B、批处理系统对作业的控制意图是靠作业说明书来实现的，用户不能控制作业的执行</font><br>C、在各种作业调度算法中，短作业优先调度算法会使每个作业的等待时间最短<br><font color="red">D、作业一旦被作业调度选中，该作业即进入内存</font><br><font color="red">E、允许多个用户在各自的终端上同时交互地使用计算机的系统称为分时操作系统</font>    </li>
+</ol>
+<h2 id="存储管理"><a href="#存储管理" class="headerlink" title="存储管理"></a>存储管理</h2><ol>
+<li><p>某系统有1MB内存，使用伙伴系统实现内存管理，请求分别为50K、150K、90K、130K、70K、80K、120K、180K、60K，其中因为内部碎片而浪费的内存大小是：</br><font color="red">有一个64K的内存块未分配却不可用，所以<strong>外部碎片是64K</strong>。在剩下的1024K-64K=960K的分配空间中，只有50K+150K+90+130K+70K+80K=570K是被请求的，120k及以后的都没有被分配。所以有960K-570K=390K空间由于内部碎片而被浪费。</font><br><img src="/images/os1-1.png" alt="os" loading="lazy">  </p>
+</li>
+<li><p>段式虚拟存储器的最大容量是：<font color="red">由指令的地址结构和外存容量决定的</font>  </p>
+</li>
+<li><p>在段页式存贮管理系统中，若采用直接地址转换，为访问一内存数据，至少要访问主存的次数为<font color="red">3次<br/>第一次是查段表，得到该段的页表的起始地址，第二次是按得到的页表地址查页表，最后一次是按转换后的实际地址访问内存。</font>  </p>
+</li>
+<li><p>某系统有32位虚拟地址空间，且页大小是1024B。每个页表项长4字节，因为每个页表都必须包含在一页中，所以使用多级页表，共需要多少级页表？</br><font color="red">一张页表包含2^10/2^2即2^8个页表项，逻辑地址一共32位，页数一共2^22,每一级页表能处理22位中的8位，所以共需要3级因此级数=22/8+1=3</font>  </p>
+</li>
+<li><p>某一个段式虚拟存储器中，进程1、2的基址寄存器分别保存的是0、3，地址变换表如下所示，进程2的虚拟地址（1，15）的物理地址是(<font color="red">715</font>)。    </p>
+<table>
+<thead>
+<tr>
+<th>段号</th>
+<th>起始基址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>40</td>
+</tr>
+<tr>
+<td>1</td>
+<td>90</td>
+</tr>
+<tr>
+<td>2</td>
+<td>150</td>
+</tr>
+<tr>
+<td>3</td>
+<td>400</td>
+</tr>
+<tr>
+<td>4</td>
+<td>700</td>
+</tr>
+</tbody></table>
+<p><font color="red">段表的起始地址由段表基址寄存器给出。<br>基址寄存器为3，虚拟地址给定的段号为1，由此可计算物理地址的段号为3+1=4，查表得到第4段的起始基址为700，给定的段偏移量为15，因此物理地址为：700+15=715。</font><br><font color="navy">错误原因：不知道基址寄存器是干嘛的</font>  </p>
+</li>
+<li><p>有一个多道批处理系统，作业调度采用“短作业优先”调度算法，进程调度采用“优先数抢占式”调度算法，且优先数越小则优先级越高。如系统拥有一台打印机，采用静态方法进行分配，忽略系统调度开销。现有以下作业序列到达系统<br>（1）根据表格内容求出各个作业的周转时间和带权周转时间。<br>（2）说明各个作业运行结束的先后次序。  </p>
+<table>
+<thead>
+<tr>
+<th>作业名</th>
+<th>到达时间</th>
+<th>CPU运行时间</th>
+<th>打印机需求</th>
+<th>优先数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Job1</td>
+<td>14:00</td>
+<td>40</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Job2</td>
+<td>14:20</td>
+<td>30</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Job3</td>
+<td>14:30</td>
+<td>50</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Job4</td>
+<td>14:50</td>
+<td>20</td>
+<td>0</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Job5</td>
+<td>15:00</td>
+<td>10</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>答案:<br><img src="/images/os6-1.png" alt="os" loading="lazy">  </p>
+<div style="color:red">（1）周转时间分别为： 70,30,100,100,20<br>带权周转时间分别为：1.75，1，2,5,2<br>（2）结束的先后次序为job2，job1，job5，job3，job4   
+<div style="color:navy">解：1、静态分配：一旦分配，不能抢占，直到进程使用完毕释放结束;也就是说打印机资源不能被抢占。<br>2、作业调度：与内存大小有关，本题没有给定条件，所以只需考虑进程调度；<br>3、几个计算公式：<br>完成时间＝开始时间＋服务时间<br>周转时间＝完成时间－到达时间<br>带权周转时间＝周转时间/服务时间   
+</div></div><br>  
+
+<table>
+<thead>
+<tr>
+<th>作业名</th>
+<th>到达时间</th>
+<th>CPU运行时间</th>
+<th>打印机需求</th>
+<th>优先数</th>
+<th>开始时间</th>
+<th>结束时间</th>
+<th>周转时间</th>
+<th>平均周转时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Job1</td>
+<td>14:00</td>
+<td>40</td>
+<td>1</td>
+<td>4</td>
+<td>14:00</td>
+<td>15:10</td>
+<td>70</td>
+<td>1.75</td>
+</tr>
+<tr>
+<td>Job2</td>
+<td>14:20</td>
+<td>30</td>
+<td>0</td>
+<td>2</td>
+<td>14:20</td>
+<td>14:50</td>
+<td>30</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Job3</td>
+<td>14:30</td>
+<td>50</td>
+<td>1</td>
+<td>3</td>
+<td>15:20</td>
+<td>16:10</td>
+<td>100</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Job4</td>
+<td>14:50</td>
+<td>20</td>
+<td>0</td>
+<td>5</td>
+<td>16:10</td>
+<td>16:30</td>
+<td>100</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Job5</td>
+<td>15:00</td>
+<td>10</td>
+<td>1</td>
+<td>1</td>
+<td>15:10</td>
+<td>15:20</td>
+<td>20</td>
+<td>2</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>在一个请求分页系统中，整数占4B，页大小为256B，使用最近最少使用页面替换算法，每个进程分配3个页框。一个进程执行下列代码：  </p>
+<pre><code class="cpp">int [][]a=new int[200][200]  
+
+int i=0;  
+
+int j=0;  
+
+while (i++&lt;200) {  
+
+ j=0;  
+
+ while (j++&lt;200)  
+
+   a[i][j] =0;  
+
+}  </code></pre>
+<p>这段代码占用页0，由于每条指令都访问页0，所以页0总是换入。便利那个i和j都存储在联想寄存器中。<br>计算并回答：<br>（1）假设数组的所有元素都存储在连续内存区域中，那么，数组需要多少页？<br>（2）程序将产生多少个缺页？  </p>
+<div style="color:red">解：（1）数组有200×200=40 000个元素，每个元素需要4B存储空间，则总共需要4*40 000=160 000B，即占用625页。<br>（2）程序按数组元素存储顺序访问数组，所以，它先换入指令页1次。之后625个数据页每页都对应一次换入，故总共是626次换入。</div>  </li>
+<li><p>在一个采用段页式存储方式的系统中，有16位虚地址空间，每个进程有2个段，页的大小为2^12B。段页表的内容如下表所示(表中数字均为二进制数)，并且段长以页为单位。  </p>
+<table>
+<thead>
+<tr>
+<th>段号</th>
+<th>页表起始地址</th>
+<th>长度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>指向页表0的指针</td>
+<td>100</td>
+</tr>
+<tr>
+<td>1</td>
+<td>指向页表1的指针</td>
+<td>101</td>
+</tr>
+</tbody></table>
+<p>页表0  </p>
+<table>
+<thead>
+<tr>
+<th>页号</th>
+<th>页框</th>
+<th>存在位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>000</td>
+<td>001100</td>
+<td>1</td>
+</tr>
+<tr>
+<td>001</td>
+<td>011101</td>
+<td>1</td>
+</tr>
+<tr>
+<td>010</td>
+<td>100110</td>
+<td>0</td>
+</tr>
+<tr>
+<td>011</td>
+<td>001010</td>
+<td>1</td>
+</tr>
+<tr>
+<td>100</td>
+<td>111010</td>
+<td>1</td>
+</tr>
+<tr>
+<td>101</td>
+<td>110110</td>
+<td>0</td>
+</tr>
+<tr>
+<td>110</td>
+<td>101011</td>
+<td>0</td>
+</tr>
+<tr>
+<td>111</td>
+<td>001011</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p>页表1  </p>
+<table>
+<thead>
+<tr>
+<th>页号</th>
+<th>页框</th>
+<th>存在位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>000</td>
+<td>010100</td>
+<td>1</td>
+</tr>
+<tr>
+<td>001</td>
+<td>110101</td>
+<td>0</td>
+</tr>
+<tr>
+<td>010</td>
+<td>110100</td>
+<td>1</td>
+</tr>
+<tr>
+<td>011</td>
+<td>011001</td>
+<td>1</td>
+</tr>
+<tr>
+<td>100</td>
+<td>001001</td>
+<td>1</td>
+</tr>
+<tr>
+<td>101</td>
+<td>110011</td>
+<td>0</td>
+</tr>
+<tr>
+<td>110</td>
+<td>000101</td>
+<td>0</td>
+</tr>
+<tr>
+<td>111</td>
+<td>100010</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<div style="color:red">根据题意可知，虚地址的结构如下：1位段号+3位页号+12位页内偏移量 <br>  
+(1)把虚地址0x1457 = 00010100 01010111划分为0,001,0100 01010111，它应在段0页001中，且001≤100，该页在内存中，对应的物理地址为：011101010001010111（或十六进制：1D457，或十进制：119895）。<br>(2)把虚地址0x44FF =01000100 11111111划分为0,100,0100 11111111，它应在段0页100中，且100≤100，该页在内存中，对应的物理地址为：111010010011111111（或十六进制：3A4FF，或十进制：238847）。<br>(3)把虚地址0xB4C7=10110100 11000111划分为1,011,0100 11000111，它应在段1页001中，且001≤101，该页在内存中，对应的物理地址为：011001010011000111（或十六进制：194C7，或十进制：103623）。<br>(4)把虚地址0xE2C7=11100010 11000111划分为1，110，0010 11000111，它应在段1页110中，但110≥101，所以出现缺段故障。</div>  </li>
+</ol>
+</div></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2020/CS/hexo%E9%94%99%E8%AF%AF/" rel="prev" title="hexo错误"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">hexo错误</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2020/diary/2020-5/2020-5-6/" rel="next" title="2020-5-6"><span class="post-nav-text">2020-5-6</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> SAIN</span></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div><script defer src="/js/utils.js"></script><script defer src="/js/hexo-theme-yun.js"></script></body></html>

