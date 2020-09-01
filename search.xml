@@ -4,6 +4,94 @@
   
     
     <entry>
+      <title>CNN</title>
+      <link href="/2020/CNN/"/>
+      <url>/2020/CNN/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h2 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h2><p>卷积神经网络(Convolutional Neural Networks，CNN)，CNN可以有效的降低反馈神经网络(传统神经网络)的复杂性，常见的CNN结构有LeNet-5、AlexNet、ZFNet、VGGNet、GoogleNet、ResNet等等，其中在LVSVRC2015冠军ResNet是AlexNet的20多倍，是VGGNet的8倍；从这些结构来讲CNN发展的一个方向就是层次的增加，通过这种方式可以利用增加的非线性得出目标函数的近似结构，同时得出更好的特征表达，但是这种方式导致了网络整体复杂性的增加，使网络更加难以优化，很容易过拟合。</p><p>CNN的应用主要是在<strong>图像分类</strong>和<strong>物品识别</strong>等应用场景应用比较多</p><h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>保持了层级网络结构<br>不同层次使用不同的形式(运算)与功能</p><h2 id="主要层次"><a href="#主要层次" class="headerlink" title="主要层次"></a>主要层次</h2><h3 id="数据输入层：Input-Layer"><a href="#数据输入层：Input-Layer" class="headerlink" title="数据输入层：Input Layer"></a>数据输入层：Input Layer</h3><p>和神经网络/机器学习一样，需要对输入的数据需要进行预处理操作，需要进行预处理的主要<strong>原因</strong>是：</p><ol><li><strong>输入数据单位</strong>不一样，可能会导致神经网络收敛速度慢，训练时间长</li><li><strong>数据范围大</strong>的输入在模式分类中的作用可能偏大，而数据范围小的作用就有可能偏小</li><li>由于神经网络中存在的<strong>激活函数是有值域限制</strong>的，因此需要将网络训练的目标数据映射到激活函数的值域</li><li>S形激活函数在(0,1)区间以外区域很<strong>平缓</strong>，<strong>区分度太小</strong>。例如S形函数f(X)，f(100)与f(5)只相差0.0067</li></ol><p>常见3种数据预处理方式</p><ol><li>去均值<br>将输入数据的各个维度中心化到0</li><li>归一化<br>将输入数据的各个维度的幅度归一化到同样的范围</li><li>PCA/白化<br>用PCA降维（去掉特征与特征之间的相关性）<br>白化是在PCA的基础上，对转换后的数据每个特征轴上的幅度进行归一化</li></ol><h3 id="卷积计算层：CONV-Layer"><a href="#卷积计算层：CONV-Layer" class="headerlink" title="卷积计算层：CONV Layer"></a>卷积计算层：CONV Layer</h3><ol><li>局部关联：每个神经元看做一个filter</li><li>窗口(receptive field)滑动，filter对局部数据进行计算</li><li>相关概念<br>深度：depth<br>步长：stride<br>填充值：zero-padding</li></ol><p>局部感知： 在进行计算的时候，将图片划分为一个个的区域进行计算/考虑；<br>参数共享机制：假设每个神经元连接数据窗的权重是固定的<br>滑动窗口重叠：降低窗口与窗口之间的边缘不平滑的特性。<br>固定每个神经元的连接权重，可以将神经元看成一个模板；也就是每个神经元只关注一个特性<br>需要计算的权重个数会大大的减少<br>备注：一组固定的权重和不同窗口内数据做矩阵内积后求和的过程叫做卷积</p><h3 id="ReLU激励层：ReLU-Incentive-Layer"><a href="#ReLU激励层：ReLU-Incentive-Layer" class="headerlink" title="ReLU激励层：ReLU Incentive Layer"></a>ReLU激励层：ReLU Incentive Layer</h3><p>将卷积层的输出结果做一次非线性的映射， 也就是做一次“激活”<br>常用非线性映射函数<br>  Sigmoid(S形函数)<br>  Tanh(双曲正切,双S形函数)<br>  ReLU<br>  Leaky ReLU<br>  ELU<br>  Maxout</p><p>建议<br>CNN尽量不要使用sigmoid，如果要使用，建议只在全连接层使用<br>首先使用ReLU，因为迭代速度快，但是有可能效果不佳<br>如果使用ReLU失效的情况下，考虑使用Leaky ReLu或者Maxout，此时一般情况都可以解决啦<br>tanh激活函数在某些情况下有比较好的效果，但是应用场景比较少</p><h3 id="池化层：Pooling-Layer"><a href="#池化层：Pooling-Layer" class="headerlink" title="池化层：Pooling Layer"></a>池化层：Pooling Layer</h3><p>在连续的卷积层中间存在的就是池化层，主要功能是：通过逐步<strong>减小表征的空间尺寸</strong>来减小参数量和网络中的计算；池化层在每个特征图上独立操作。使用池化层可以压缩数据和参数的量，减小过拟合。</p><p>在池化层中，进行压缩减少特征数量的时候一般采用两种策略：</p><ol><li>Max Pooling：最大池化，一般采用该方式</li><li>Average Pooling：平均池化</li></ol><h3 id="全连接层：FC-Layer"><a href="#全连接层：FC-Layer" class="headerlink" title="全连接层：FC Layer"></a>全连接层：FC Layer</h3><p>类似传统神经网络中的结构，FC层中的神经元连接着之前层次的所有激活输出；换一句话来讲的话，就是两层之间所有神经元都有权重连接；通常情况下，在CNN中，FC层只会在尾部出现</p><p>一般的CNN结构依次为：</p><ol><li>INPUT</li><li>[[CONV -&gt; RELU] * N -&gt; POOL?]*M</li><li>[FC -&gt; RELU] * K</li><li>FC</li></ol><h3 id="Batch-Normalization-Layer"><a href="#Batch-Normalization-Layer" class="headerlink" title="Batch Normalization Layer"></a>Batch Normalization Layer</h3><p>Batch Normalization Layer(BN Layer)是期望我们的结果是服从高斯分布的，所以对神经元的输出进行一下修正，一般放到卷积层后，池化层前。<br>论文：Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift；<br>论文链接：<a href="https://arxiv.org/pdf/1502.03167v3.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1502.03167v3.pdf</a></p><p>如果输出的是N*D的结果，对D个维度每个维度求解均值和方差。<br>根据均值和方差做归一化。</p><p>Batch Normalization优点：<br>梯度传递(计算)更加顺畅，不容易导致神经元饱和（防止梯度消失(梯度弥散)/梯度爆炸）<br>学习率可以设置的大一点<br>对于初始值的依赖减少<br>Batch Normalization缺点：<br>如果网络层次比较深，加BN层的话，可能会导致模型训练速度很慢。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>暑期学习</title>
+      <link href="/2020/%E6%9A%91%E6%9C%9F%E5%AD%A6%E4%B9%A0/"/>
+      <url>/2020/%E6%9A%91%E6%9C%9F%E5%AD%A6%E4%B9%A0/</url>
+      
+        <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="2d54b24180e6422d50302ae1847309150fb6d5c8ec459026111338255e5a736c">e32c27e47419b87d293b9e8ce412adf803a06f3eaf1e5cbd30a8500e3a1f11fae8bfc6195d34c88f7f88ac14604ced81b94058cadb3231eb3ece2b2608bc400904c5f3cbb572eed28885ba39daf4882dac93f013dc4585cfc87a12c5555e78b64adf0d87d3eb354811f6b82c275a654e33c2f794e3dde5669dda9770cce8dda290463d445f86e651e547b8ab567c88614b89aaaf277d94f792f1337c7b2cfe3ab3e20ec57181b2debca44383788d0b5ecce170590f10758280da1cf34a704a1dde5db319a275bff853493eab74ff2cb18683b70357aa47e9762001508e8a52c9a839eec9d9ac7f5e88ca75741bb330041a6a5a3429f5560f16280cb6ebf0ab963360df811d82a970bdbd2023b964ab454503ee82faede85403bfef3323ed2c77765d600fcf91b13fdddf7736ba4740df239abec07f245b3ac131386da2c37722a790b99a2b36731e6c2de0db2bfecf464dc8ce1fafe9802df5a7ff0397712eadb9afc16209dd1533d60f75c914239d90396a8e1023102f9a08d90b18ada21a018d016ffa5807808aa762b22e86b6cb9ad201842d5c0d1120b107928754255ac0570c007233682e31abbb14a0abdfcc5a403306501f96dd31ea7668d82e758045179c2d9978ca493fcdf5419e28cfdb598ce6ba9316509febbd9bac7e50a8a2acde47be52280c07a3528102df732bf45a63747343ec55f48646cec767794784a1</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂思 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 杂思 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>《且听风吟》</title>
+      <link href="/2020/reading-note/%E3%80%8A%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F%E3%80%8B/"/>
+      <url>/2020/reading-note/%E3%80%8A%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F%E3%80%8B/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><ol><li>不存在十全十美的文章，如同不存在彻头彻尾的绝望。</li></ol><h3 id="7"><a href="#7" class="headerlink" title="7"></a>7</h3><ol><li>“文明就是传达。”他说，“假如不能表达什么，就等于并不存在，懂吗？就是零。</li></ol><h3 id="16"><a href="#16" class="headerlink" title="16"></a>16</h3><ol><li>较之贫瘠的真实我更爱华丽的虚伪</li></ol><h3 id="30"><a href="#30" class="headerlink" title="30"></a>30</h3><ol><li>“再也无须前思后想，一切岂非已然过往。”</li></ol><h3 id="31"><a href="#31" class="headerlink" title="31"></a>31</h3><ol><li>但没有一个家伙怀有超乎常人的自信，大家一个样，拥有什么的家伙生怕一旦失去，一无所有的家伙担心永远一无所有，大家一个样。所以，早些觉察到这一点的人应该力争使自己多少怀有自信，哪怕装模作样也好，对吧？什么自信之人，那样的人根本没有，有的不过是能够装出自信的人。”</li></ol><h3 id="32"><a href="#32" class="headerlink" title="32"></a>32</h3><ol><li>我们是在时间之中彷徨，从宇宙诞生直到死亡的时间里。所以我们无所谓生也无所谓死，只是风。</li></ol><h3 id="34"><a href="#34" class="headerlink" title="34"></a>34</h3><ol><li>说谎与沉默是现代人类社会中流行的两大罪过。我们实际上经常说谎，也往往沉默不语。</li></ol><h3 id="38"><a href="#38" class="headerlink" title="38"></a>38</h3><ol><li>“慷慨付出的，便是经常得到的。”</li><li>一切都将一去杳然，任何人都无法将其捕获。我们便是这样活着。</li></ol><h3 id="39"><a href="#39" class="headerlink" title="39"></a>39</h3><ol><li>如果有人问：幸福吗？我只能回答：或许。因为所谓理想到头来就是这么回事。</li></ol><h3 id="40"><a href="#40" class="headerlink" title="40"></a>40</h3><ol><li>“白昼之光，岂知夜色之深。”</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 读书笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 读书笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>notion用法</title>
+      <link href="/2020/notion%E7%94%A8%E6%B3%95/"/>
+      <url>/2020/notion%E7%94%A8%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>《仿生人会梦见电子羊吗？》 菲利普·迪克</title>
       <link href="/2020/reading-note/%E3%80%8A%E4%BB%BF%E7%94%9F%E4%BA%BA%E4%BC%9A%E6%A2%A6%E8%A7%81%E7%94%B5%E5%AD%90%E7%BE%8A%E5%90%97%EF%BC%9F%E3%80%8B%20%E8%8F%B2%E5%88%A9%E6%99%AE%C2%B7%E8%BF%AA%E5%85%8B/"/>
       <url>/2020/reading-note/%E3%80%8A%E4%BB%BF%E7%94%9F%E4%BA%BA%E4%BC%9A%E6%A2%A6%E8%A7%81%E7%94%B5%E5%AD%90%E7%BE%8A%E5%90%97%EF%BC%9F%E3%80%8B%20%E8%8F%B2%E5%88%A9%E6%99%AE%C2%B7%E8%BF%AA%E5%85%8B/</url>
@@ -58,7 +146,7 @@
       <link href="/2020/%E5%85%B3%E4%BA%8E%E4%BB%A5%E5%9B%BE%E6%90%9C%E5%9B%BE%E7%9A%84%E8%B5%84%E6%96%99/"/>
       <url>/2020/%E5%85%B3%E4%BA%8E%E4%BB%A5%E5%9B%BE%E6%90%9C%E5%9B%BE%E7%9A%84%E8%B5%84%E6%96%99/</url>
       
-        <content type="html"><![CDATA[<p>2020.7.12<br>•    查询当前以图搜图的原理及流程（弄清楚图像分类、图像检测、图像检索等等的区别，以及以图搜图涉及到哪些？）<br>•    然后针对基于深度学习的以图搜图或者说图像检索，找一个小数据集的代码demo 尝试把代码跑成功，能出来结果</p><p>以图搜图的技术已经较为成熟，可以根据实现步骤中的知识点进行学习，以一点为中心进行扩散学习。</p><a id="more"></a><h2 id="相关资料："><a href="#相关资料：" class="headerlink" title="相关资料："></a>相关资料：</h2><p>以图搜图技术演进和架构优化<br><a href="https://zhuanlan.zhihu.com/p/65306548" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/65306548</a></p><p>图像检索系列——利用深度学习实现以图搜图（文章末尾参考文章也可以进行查看）<br><a href="https://zhuanlan.zhihu.com/p/80886534" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/80886534</a></p><p>基于深度学习实现以图搜图功能<br><a href="https://blog.csdn.net/chenghaoy/article/details/84977406" target="_blank" rel="noopener">https://blog.csdn.net/chenghaoy/article/details/84977406</a></p><p>深度学习相关视频：<br>链接：<a href="https://pan.baidu.com/s/1fEuxbEnbCRgA2UPxFoZaiw" target="_blank" rel="noopener">https://pan.baidu.com/s/1fEuxbEnbCRgA2UPxFoZaiw</a><br>提取码：64ci</p><p>相关数据集：<br>链接：<a href="https://pan.baidu.com/s/1DCiFmZNJH-U_51asw04heA" target="_blank" rel="noopener">https://pan.baidu.com/s/1DCiFmZNJH-U_51asw04heA</a><br>提取码：884u</p><h2 id="7-13"><a href="#7-13" class="headerlink" title="7-13"></a>7-13</h2><h3 id="以图搜图原理"><a href="#以图搜图原理" class="headerlink" title="以图搜图原理"></a>以图搜图原理</h3><ol><li>检索图片库</li><li>特征提取<br>在实际中，我们使用图片的颜色分布、梯度变化统计量、纹理、BOW统计、底层/中层/高层语义特征等作为图片的特征</li><li>检索结构<br> 常见的，我们可以对数据集进行聚类，把数据分成一堆一堆的，比对时先选择相似的堆，然后在堆内部再进行细致的比对。而分堆的理念又可以通过树结构、Hash结构、倒排索引、图结构等等来刻画。</li></ol>]]></content>
+        <content type="html"><![CDATA[<p>2020.7.12<br>•    查询当前以图搜图的原理及流程（弄清楚图像分类、图像检测、图像检索等等的区别，以及以图搜图涉及到哪些？）<br>•    然后针对基于深度学习的以图搜图或者说图像检索，找一个小数据集的代码demo 尝试把代码跑成功，能出来结果</p><p>以图搜图的技术已经较为成熟，可以根据实现步骤中的知识点进行学习，以一点为中心进行扩散学习。</p><a id="more"></a><h2 id="相关资料："><a href="#相关资料：" class="headerlink" title="相关资料："></a>相关资料：</h2><p>以图搜图技术演进和架构优化<br><a href="https://zhuanlan.zhihu.com/p/65306548" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/65306548</a></p><p>图像检索系列——利用深度学习实现以图搜图（文章末尾参考文章也可以进行查看）<br><a href="https://zhuanlan.zhihu.com/p/80886534" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/80886534</a></p><p>基于深度学习实现以图搜图功能<br><a href="https://blog.csdn.net/chenghaoy/article/details/84977406" target="_blank" rel="noopener">https://blog.csdn.net/chenghaoy/article/details/84977406</a></p><p>深度学习相关视频：<br>链接：<a href="https://pan.baidu.com/s/1fEuxbEnbCRgA2UPxFoZaiw" target="_blank" rel="noopener">https://pan.baidu.com/s/1fEuxbEnbCRgA2UPxFoZaiw</a><br>提取码：64ci</p><p>相关数据集：<br>链接：<a href="https://pan.baidu.com/s/1DCiFmZNJH-U_51asw04heA" target="_blank" rel="noopener">https://pan.baidu.com/s/1DCiFmZNJH-U_51asw04heA</a><br>提取码：884u</p><h2 id="7-13"><a href="#7-13" class="headerlink" title="7-13"></a>7-13</h2><h3 id="以图搜图原理"><a href="#以图搜图原理" class="headerlink" title="以图搜图原理"></a>以图搜图原理</h3><ol><li>检索图片库</li><li>特征提取<br>在实际中，我们使用图片的颜色分布、梯度变化统计量、纹理、BOW统计、底层/中层/高层语义特征等作为图片的特征</li><li>检索结构<br> 常见的，我们可以对数据集进行聚类，把数据分成一堆一堆的，比对时先选择相似的堆，然后在堆内部再进行细致的比对。而分堆的理念又可以通过树结构、Hash结构、倒排索引、图结构等等来刻画。</li></ol><h3 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h3><p>简单的特征：图像的单通道、多通道的颜色直方图<br>进一步颜色矩特征，图像中任何的颜色分布都可以通过它的矩来表示。<br>另外需要强调的局部特征是SIFT特征，SURF特征，HOG特征等<br>将多个局部特征矢量聚合成一个统一维度的矢量表示的方法有：BOW、VLAD、Fisher Vector等等。<br>我们知道CNN网络具有很多不同程度对图像进行抽象的layer，较低的层得到的是图像的简单特征，而较高层得到的是图像的语义相关的特征，不同层的特征在检索层面精度有很大的区别</p><h3 id="优化方式"><a href="#优化方式" class="headerlink" title="优化方式"></a>优化方式</h3><ol><li>引入更多的监督信息；</li><li>不同程度、维度的attention（包括层、channel、类等等）；</li><li>Triplet loss及其各种变种；</li><li>不同的特征聚合方式；</li></ol><h3 id="检索引擎"><a href="#检索引擎" class="headerlink" title="检索引擎"></a>检索引擎</h3><p>早期我们通过层次化的聚类来对数据分组，通过K-D Tree对数据进行划分，通过Hash对空间进行划分，通过倒排索引加速检索的效率，通过PQ量化对更大规模的数据进行二次方的划分。</p><h2 id="7-15"><a href="#7-15" class="headerlink" title="7-15"></a>7-15</h2><p>深度学习：转换编程思维<br>Tensor N维数组<br>Flow 流</p>]]></content>
       
       
       <categories>
@@ -287,7 +375,7 @@
       <link href="/2020/%E7%AC%AC%E4%BA%8C%E5%B1%8A%E2%80%9C%E6%85%A7%E6%BA%90%E5%85%B1%E4%BA%AB%E2%80%9D%E5%85%A8%E5%9B%BD%E9%AB%98%E6%A0%A1%E5%BC%80%E6%94%BE%E6%95%B0%E6%8D%AE%E5%88%9B%E6%96%B0%E7%A0%94%E7%A9%B6%E5%A4%A7%E8%B5%9B/"/>
       <url>/2020/%E7%AC%AC%E4%BA%8C%E5%B1%8A%E2%80%9C%E6%85%A7%E6%BA%90%E5%85%B1%E4%BA%AB%E2%80%9D%E5%85%A8%E5%9B%BD%E9%AB%98%E6%A0%A1%E5%BC%80%E6%94%BE%E6%95%B0%E6%8D%AE%E5%88%9B%E6%96%B0%E7%A0%94%E7%A9%B6%E5%A4%A7%E8%B5%9B/</url>
       
-        <content type="html"><![CDATA[<!--more--><h2 id="书信集"><a href="#书信集" class="headerlink" title="书信集"></a>书信集</h2><p>理解时代的资料<br>研究方法：</p><ol><li>放在时代背景下解读（可以提示——主题）</li><li>具体环境（部队、农民……）</li><li>比较现今的时代，理解不同，理解今天的重要时代</li></ol><p>研究主题：</p><ol><li>分析细节（衣食住行）</li><li>情感、道德观、价值观，年轻人对国家、社会的认同</li><li>读后感动的地方</li></ol><h2 id="华东师范大学"><a href="#华东师范大学" class="headerlink" title="华东师范大学"></a>华东师范大学</h2><p>（1）上海高新技术企业数据集 json python自带的 自然语言处理<br>（2）上交所科创企业数据集<br>（3）百度贴吧自闭症用户回帖<br>意见领袖？<br>（4）美国新闻记者招聘信息数据集</p><h2 id="中国流动人口动态监测调查数据集"><a href="#中国流动人口动态监测调查数据集" class="headerlink" title="中国流动人口动态监测调查数据集"></a>中国流动人口动态监测调查数据集</h2><p>图示化工具<br>知识图谱<br>数据应用</p>]]></content>
+        <content type="html"><![CDATA[<!--more--><h2 id="书信集"><a href="#书信集" class="headerlink" title="书信集"></a>书信集</h2><p>理解时代的资料<br>研究方法：</p><ol><li>放在时代背景下解读（可以提示——主题）</li><li>具体环境（部队、农民……）</li><li>比较现今的时代，理解不同，理解今天的重要时代</li></ol><p>研究主题：</p><ol><li>分析细节（衣食住行）</li><li>情感、道德观、价值观，年轻人对国家、社会的认同</li><li>读后感动的地方</li></ol><h2 id="华东师范大学"><a href="#华东师范大学" class="headerlink" title="华东师范大学"></a>华东师范大学</h2><p>（1）上海高新技术企业数据集 json python自带的 自然语言处理<br>（2）上交所科创企业数据集<br>（3）百度贴吧自闭症用户回帖<br>意见领袖？<br>（4）美国新闻记者招聘信息数据集</p><h2 id="中国流动人口动态监测调查数据集"><a href="#中国流动人口动态监测调查数据集" class="headerlink" title="中国流动人口动态监测调查数据集"></a>中国流动人口动态监测调查数据集</h2><p>图示化工具<br>知识图谱<br>数据应用 数据</p>]]></content>
       
       
       <categories>
@@ -1154,31 +1242,6 @@
     
     
     <entry>
-      <title>record</title>
-      <link href="/2020/English/record/"/>
-      <url>/2020/English/record/</url>
-      
-        <content type="html"><![CDATA[<!--more--><p>好想做一次 E3<br>摩登家庭S1E4</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 学习 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 英语 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>好想做一次</title>
       <link href="/2020/English/%E5%A5%BD%E6%83%B3%E5%81%9A%E4%B8%80%E6%AC%A1/"/>
       <url>/2020/English/%E5%A5%BD%E6%83%B3%E5%81%9A%E4%B8%80%E6%AC%A1/</url>
@@ -1188,7 +1251,7 @@
       
       <categories>
           
-          <category> 学习 </category>
+          <category> Eng </category>
           
       </categories>
       
@@ -1215,7 +1278,7 @@
       
       <categories>
           
-          <category> 学习 </category>
+          <category> Eng </category>
           
       </categories>
       
@@ -1388,15 +1451,15 @@
     
     <entry>
       <title>Learning-English</title>
-      <link href="/2020/learning/Learning-English/"/>
-      <url>/2020/learning/Learning-English/</url>
+      <link href="/2020/English/Learning-English/"/>
+      <url>/2020/English/Learning-English/</url>
       
-        <content type="html"><![CDATA[<p>今天早上看了一些关于学习英语的视频，在此记录一下自己提取出来的精髓。  </p><a id="more"></a>  <h2 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h2><p>首先最重要的一点是，选择一个适合自己的阅读材料，比如一些报刊、杂志之类的。<br>接下来说一下阅读方法  </p><ol><li>通读文章（此时不查单词）  </li><li>精读文章（查阅单词、分析长难句）  </li><li>复读文章（重新代入上下文，进行知识点的记忆）  </li><li>速读文章（掌握阅读的连贯性和文章的中心）  </li></ol><h2 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h2><p>写作是综合能力的体现，因此要想提高写作水平，就得多学多练。  </p><ol><li>语法知识  </li><li>大量阅读材料（论据）  </li><li>批判性思维  </li><li>多练  </li></ol><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>语法书推荐<br>English Grammar in use<br>Advanced Grammar in use  </p>]]></content>
+        <content type="html"><![CDATA[<p>今天早上看了一些关于学习英语的视频，在此记录一下自己提取出来的精髓。  </p><a id="more"></a>  <h2 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h2><p>首先最重要的一点是，选择一个适合自己的阅读材料，比如一些报刊、杂志之类的。<br>接下来说一下阅读方法  </p><ol><li>通读文章（此时不查单词）  </li><li>精读文章（查阅单词、分析长难句）  </li><li>复读文章（重新代入上下文，进行知识点的记忆）  </li><li>速读文章（掌握阅读的连贯性和文章的中心）  </li></ol><h2 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h2><p>写作是综合能力的体现，因此要想提高写作水平，就得多学多练。  </p><ol><li>语法知识  </li><li>大量阅读材料（论据）  </li><li>批判性思维  </li><li>多练  </li></ol><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>语法书推荐<br>English Grammar in use<br>Advanced Grammar in use  </p><h2 id="综合"><a href="#综合" class="headerlink" title="综合"></a>综合</h2><p>看b站油管英文vlog</p>]]></content>
       
       
       <categories>
           
-          <category> 学习 </category>
+          <category> Eng </category>
           
       </categories>
       
