@@ -4,7 +4,57 @@
   
     
     <entry>
-      <title>CNN</title>
+      <title>开学准备</title>
+      <link href="/2020/%E5%BC%80%E5%AD%A6%E5%87%86%E5%A4%87/"/>
+      <url>/2020/%E5%BC%80%E5%AD%A6%E5%87%86%E5%A4%87/</url>
+      
+        <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="77b0add3e3646110fd36ec4210af31635b9eba2a0aa95fef28bb992053a5be7e">e32c27e47419b87d293b9e8ce412adf8cad43f65e21f1a7da564293e4eaff5d4bd2aaf5acf33fc1ee8bdf92439f58bb1681c307102e2b695963102ad990116a06bade6bd166741e118ccfb88885805a5fb12a1a671c36328ce1ce2179c490eec8c5313a45b49761b5c02d4d741497384e9869ade78a006520f9f317d35f63d57630d53fddc2e8d410533b32601ec6b20c82b02828f60e0485cef4f0cc01383b21e5ddc816a91c27d3572a6cf4e29f4fc210fe5e13f3b515cb5997395b9e0f88e782f02d9006db802f9dc32e396ab669358d97688aa2b4b8a24675e67f948f90c2fb7ac475badd8cfa0918e3c061d19365a85535f121f7c10ba73eb35c8213e5ea73187304cf0afb6e8a72162a13a3ef9ddb82b130ad16b53fb052ea1800d1245ce4d1159a1addc89cc3c3139ad63dd49edcf8e4a93e67b5a6d56011521479ed5</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂思 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 杂思 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>9-1任务</title>
+      <link href="/2020/9-1%E4%BB%BB%E5%8A%A1/"/>
+      <url>/2020/9-1%E4%BB%BB%E5%8A%A1/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><p>多视图几何三维重建实战系列之COLMAP<br><a href="https://yongqi.blog.csdn.net/article/details/108016486" target="_blank" rel="noopener">https://yongqi.blog.csdn.net/article/details/108016486</a><br>你看看这个软件你能否跑起来</p><p>跑起来后，和这个结合：<br><a href="https://www.cnblogs.com/YongQiVisionIMAX/p/13594246.html" target="_blank" rel="noopener">https://www.cnblogs.com/YongQiVisionIMAX/p/13594246.html</a></p><p>他说：流程回顾利用自己采集的数据进行深度估计的步骤为：采集数据 -&gt; 稀疏重建 -&gt; COLMAP文件导出 -&gt; 数据转换 -&gt; 输入MVSNet  -&gt; 输出深度图 -&gt; 深度融合，恢复点云。</p><p>这个是mvsnet的改进：<a href="https://zhuanlan.zhihu.com/p/59463409" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/59463409</a><br>里面有论文和代码可下载</p><p>他是拿这个r-mvsnet和colmap做对比的，看起来可以直接使用r-mvsnet，你可以先看最后一个链接</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CNN-卷积神经网络</title>
       <link href="/2020/CNN/"/>
       <url>/2020/CNN/</url>
       
