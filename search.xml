@@ -4,9 +4,401 @@
   
     
     <entry>
+      <title>在Vue中使用百度地图API画地图（可下钻到省）</title>
+      <link href="/2021/%E5%9C%A8Vue%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BEAPI%E7%94%BB%E5%9C%B0%E5%9B%BE%EF%BC%88%E5%8F%AF%E4%B8%8B%E9%92%BB%E5%88%B0%E7%9C%81%EF%BC%89/"/>
+      <url>/2021/%E5%9C%A8Vue%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BEAPI%E7%94%BB%E5%9C%B0%E5%9B%BE%EF%BC%88%E5%8F%AF%E4%B8%8B%E9%92%BB%E5%88%B0%E7%9C%81%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a>]]></content>
+      
+      
+      <categories>
+          
+          <category> CS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>md如何在VScode中直接粘贴照片</title>
+      <link href="/2021/md%E5%A6%82%E4%BD%95%E5%9C%A8VScode%E4%B8%AD%E7%9B%B4%E6%8E%A5%E7%B2%98%E8%B4%B4%E7%85%A7%E7%89%87/"/>
+      <url>/2021/md%E5%A6%82%E4%BD%95%E5%9C%A8VScode%E4%B8%AD%E7%9B%B4%E6%8E%A5%E7%B2%98%E8%B4%B4%E7%85%A7%E7%89%87/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>在Vue中使用ECharts画图</title>
+      <link href="/2021/CS/%E5%9C%A8Vue%E4%B8%AD%E4%BD%BF%E7%94%A8ECharts%E7%94%BB%E5%9B%BE/"/>
+      <url>/2021/CS/%E5%9C%A8Vue%E4%B8%AD%E4%BD%BF%E7%94%A8ECharts%E7%94%BB%E5%9B%BE/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h2 id="安装echarts插件"><a href="#安装echarts插件" class="headerlink" title="安装echarts插件"></a>安装echarts插件</h2><pre class="line-numbers language-sh"><code class="language-sh">npm install echarts --save# 或yarn add echarts --save<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><h2 id="在main-js中引入echarts"><a href="#在main-js中引入echarts" class="headerlink" title="在main.js中引入echarts"></a>在main.js中引入echarts</h2><pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> echarts <span class="token keyword">from</span> <span class="token string">'echarts'</span><span class="token comment" spellcheck="true">//注册为全局组件</span>Vue<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>$echarts <span class="token operator">=</span> echarts <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h2 id="在Vue中使用"><a href="#在Vue中使用" class="headerlink" title="在Vue中使用"></a>在Vue中使用</h2><h3 id="定义一个div"><a href="#定义一个div" class="headerlink" title="定义一个div"></a>定义一个div</h3><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myBar<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">height</span><span class="token punctuation">:</span><span class="token number">300</span>px<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="创建一个method"><a href="#创建一个method" class="headerlink" title="创建一个method"></a>创建一个method</h3><pre class="line-numbers language-js"><code class="language-js"><span class="token function">createBar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">// 基于准备好的dom，初始化echarts实例</span>    <span class="token keyword">var</span> myChart <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$echarts<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>myBar<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// 指定图表的配置项和数据</span>    <span class="token keyword">var</span> option <span class="token operator">=</span> <span class="token punctuation">{</span>        title<span class="token punctuation">:</span> <span class="token punctuation">{</span>            text<span class="token punctuation">:</span> <span class="token string">'ECharts 入门示例'</span>        <span class="token punctuation">}</span><span class="token punctuation">,</span>        tooltip<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>        legend<span class="token punctuation">:</span> <span class="token punctuation">{</span>            data<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">'销量'</span><span class="token punctuation">]</span>        <span class="token punctuation">}</span><span class="token punctuation">,</span>        xAxis<span class="token punctuation">:</span> <span class="token punctuation">{</span>            data<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"衬衫"</span><span class="token punctuation">,</span><span class="token string">"羊毛衫"</span><span class="token punctuation">,</span><span class="token string">"雪纺衫"</span><span class="token punctuation">,</span><span class="token string">"裤子"</span><span class="token punctuation">,</span><span class="token string">"高跟鞋"</span><span class="token punctuation">,</span><span class="token string">"袜子"</span><span class="token punctuation">]</span>        <span class="token punctuation">}</span><span class="token punctuation">,</span>        yAxis<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>        series<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>            name<span class="token punctuation">:</span> <span class="token string">'销量'</span><span class="token punctuation">,</span>            type<span class="token punctuation">:</span> <span class="token string">'bar'</span><span class="token punctuation">,</span>            data<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">36</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">]</span>        <span class="token punctuation">}</span><span class="token punctuation">]</span>    <span class="token punctuation">}</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// 使用刚指定的配置项和数据显示图表。</span>    myChart<span class="token punctuation">.</span><span class="token function">setOption</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="在mounted中调用方法"><a href="#在mounted中调用方法" class="headerlink" title="在mounted中调用方法"></a>在mounted中调用方法</h3><pre class="line-numbers language-js"><code class="language-js"><span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">createBar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h2 id="运行vue项目"><a href="#运行vue项目" class="headerlink" title="运行vue项目"></a>运行vue项目</h2><pre class="line-numbers language-sh"><code class="language-sh">npm run serve# 或yarn serve<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><h2 id="打开浏览器查看效果"><a href="#打开浏览器查看效果" class="headerlink" title="打开浏览器查看效果"></a>打开浏览器查看效果</h2><p><img src="/images/2021-02-20-09-52-28.png" alt="bar-example" loading="lazy"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Vue </tag>
+            
+            <tag> ECharts </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2021计算机应用能力大赛</title>
+      <link href="/2021/2021%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%94%E7%94%A8%E8%83%BD%E5%8A%9B%E5%A4%A7%E8%B5%9B/"/>
+      <url>/2021/2021%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%94%E7%94%A8%E8%83%BD%E5%8A%9B%E5%A4%A7%E8%B5%9B/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h2 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h2><ol><li>找数据（关于实验室事故的新闻很难找），没有合适的新闻来源数据库，网上的信息可靠性低，质量参差不齐</li></ol><h2 id="学习技能"><a href="#学习技能" class="headerlink" title="学习技能"></a>学习技能</h2><ol><li>less css预处理器</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> CS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机应用能力大赛 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2021美赛总结</title>
+      <link href="/2021/2021%E7%BE%8E%E8%B5%9B%E6%80%BB%E7%BB%93/"/>
+      <url>/2021/2021%E7%BE%8E%E8%B5%9B%E6%80%BB%E7%BB%93/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h2 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h2><ol><li>图片数据数量分布不合理，正标签14张，负标签3000+。训练过拟合</li><li>当时没有接触过DL，只用了两天速成，一天训练搭环境，找代码理解，</li></ol>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2021-2-16</title>
+      <link href="/2021/diary/2021/2021-02/2021-2-16/"/>
+      <url>/2021/diary/2021/2021-02/2021-2-16/</url>
+      
+        <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="6aa5350cdaf9339dec1cafd79e83b811811a3352a5c1648b6b309f7c6bb4796f">e32c27e47419b87d293b9e8ce412adf8612e5e53251fa32fe0c3b58d8c6c1e342b66fac15a5c43d938586b14f6cb1bf96f6f61d9927fef0e6627e64952f580f347853a2da6d5bdfc53651cd0b1ed984aa76a4b3c5815c38123b8ce7e474f49dae35fa0c742e72119c67e1803284e99f48471fc01627121b86bce237e0bbf08db5b1613a52e954e27848c3b741ae047cc86eee7a3f2dbd3aa8fb915dfa394d8f236bd7d611a1f2c6553f20ba98a9e43fc36bfcebac36acd5c5d007e6afeb9d39e0325be8d6648982dce13a4c2d047933f5be8d94c0cb12aa66fd91453ca0316a11651d50fa04f794ce3e60d56b3734074c057e35003255c1846df63c0a569b409c828b646484ca97b3a44ea85f953997b93bfbcef6abd26c3912342a4f9438b493f0b1c9289e0a6ccebd4c95f5719da6b1186b12c185f456d8d4de8a3622e517f49a0254488917f77883267e0a652af8f63e5e3b3071432d83fc8b698a4e3006ebcd5f2d9c70ac01e130edb529a02b89f48cd63bf81bcbed18bb969c3d4c6bce1d2a6bc297f8f6448cece332a31fe9fb0ca0d4e8a3c8b3f64c4c51fc19e2da735d91138da406f056589ea0877723b1592aa9b564d0f36872cd36c943777f565efa03e21a881e813e9c77acfbf8fc2fca7e5620150029b1b8a9b5b7d5a467fe0b984469d936d9d6da57b833f0466ecd8edd155c114ac4b089143ae29cb302d0b89ca8c1864110af48fb653903c41eab52a79008c09829838a32ebc312d4f787f11b0bcc75435222a77808cd01c34736cfb4ac4bd4ffdef692d89a5e49e648fdf2dda4f5ec40bec46edcd1907875aea617e4417dd4bf6238cbacb6645d59a52ca12510cbceb55e5b5f87a676de4f83d3a011776939d058c1430eb3c200dc0d6220f6f5b9f79916090d1537c5e89921e87458201d094ccee95d829b8a49ee281afe2b9b16bba87f979891391c42750523bc459886e3a2c3562828a10c24cd10bc177b2b0f263092190f01cf8e8a536084599577ec6ee6f5ae0415c0a71c11ad0ceef41ce6d4883968c08659c9f116303ffae2a069282ebac1bb059b31364072c00596f98711d47ad14e99f43f9d632a4f97fc9819cba1c52f251cf8c7b2685eaec32341162aec5e447719899bea64063611f183e06c47d81983438b537f46e76e19fdd727e48df689b8fca8d58c76f72bca18ccb2e59d1e586dbe3a35312f229f816d5c36d61b3867623229ecb31541f8d7c7fce0461f4c64c2127eb6ca67ad26c33b42a419f392301f0a9c087c5e3a82b6bd90ada054c58e980451de51fd6eb45e652efda2f604bb577c6a66b28411e58b83665fc6deb0493a360daa21b06a0c03360da7a3eb5f4b94de01aeb340513c6b22fe43d5f5be9b7929357a926d4546e5da8887c46fdf2cdda32d3ee96d164d7d6ea2ba4a5f22294871805c7ea583ccac06e2b548043ced0f234d822b6bbdd714d224a017c7bdbc189c80a54a00633cc62af4e99a112d6fb861f33ec1ddb48564198b29f558bb0ce2af74cae97cd0e4819a121a529d72564ea3aa8f6a90db382fae12333a296369ee20bf0408b73cb803391d203e6c012027215eb78115a0d48d144b36a42fb1ccff5a9cd79b809a550419dc21505cb2500bef07920e10b37a3e7fc096b2f25fa1ddb8688416a12a3a6326ef9f740586dbca8b5a11348ecd5e026b7a756c38027d8f1a25e307e7aa9c2c651a75d422f1449007033ceba8590b20cdea8d2dbe883d7209a0dba4906841d23ea471fa9213e58b69b0e6185608456765d8a626fa38f2f83e6e90fcbfb787a508849ff114ca84efbd8868b6b78ecc88d7318b63e04a15d88f043b2d3635b0a26bd69fdfb63fa03d4b24cd701cd1f619396e3f084e3ded69765e52e266f6a2e2a2403f847e21af2becf953b243baea7f8587d2dd0cf46d24499929f3a05301223c8290f95b9c21a5debbbe94059b6dbae88879e3e9d56837adf38961afce2cd68b898889cb49ae0ddb4d3d1e6821b1cc5034368670f17c91c89a26eb0cb59b0585d61249ac3309732ed432ff3399589ee026ae73d74b600b1b95b98ab74d8eb4d107c3acb8c6035461359e6c5cdcd502340f248243b9f8604ef4b41c6bc58e6f104934a53814b4f94dd3e75a826ebf479e478bd20de607e62c73a71be3b4948fa4c9fd493d1c3246df18c9b0f14e62fa90fad12c7a6edb6dbf6bdaf2102d9d87ee94c0f4c9bda67ae7472a693335d9234b0a9d67076aba6cbb5074669e788961c03d5595403b701ef4717c3af60f4135ac8a2948ce9e74b632d8d949a0a8d9ec8</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂思 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 杂思 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>计算机网络-考研</title>
+      <link href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%80%83%E7%A0%94/"/>
+      <url>/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%80%83%E7%A0%94/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h2 id="第一章-计算机网络体系结构"><a href="#第一章-计算机网络体系结构" class="headerlink" title="第一章 计算机网络体系结构"></a>第一章 计算机网络体系结构</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>网络包含计算机网络<br>计算机网络：是一个将分散的、具有独立功能的<strong>计算机系统</strong>，通过<strong>通信设备</strong>与<strong>线路</strong>连接起来，由功能完善的<strong>软件</strong>实现<strong>资源共享</strong>和<strong>信息传递</strong>。</p><p>计算机网络是<strong>互联</strong>的、<strong>自治</strong>的计算机集合<br>互联：互联互通 通信链路<br>自治：无主从关系</p><h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><ol><li><strong>数据通信</strong>（连通性）</li><li><strong>资源共享</strong><ol><li>硬件</li><li>软件</li><li>数据</li></ol></li><li>分布式处理：多台计算机各自承担同一工作</li><li>提高可靠性 死机的电脑由替代机</li><li>负载均衡</li></ol><h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><ol><li>组成部分<ol><li>硬件</li><li>软件</li><li>协议</li></ol></li><li>工作方式：<ol><li>边缘部分：用户直接使用 C/S方式 P2P方式</li><li>核心部分 为边缘部分服务</li></ol></li><li>功能组成：<ol><li>通信子网 实现数据通信</li><li>资源子网 实现资源共享、数据处理</li></ol></li></ol><p><img src="/images/2021-02-14-19-42-08.png" alt="通信子网与资源子网" loading="lazy"></p><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ol><li>按分布范围 广域网WAN、城域网MAN、局域网LAN、个人区域网PAN</li><li>按使用者份 公用网、专用网</li><li>按交换技术 电路交换、报文交换、分组交换</li><li>按拓扑结构分 总线型、星型、环型、网状型（常用于广域网）</li><li>按传输技术份 <ol><li>广播室网络 共享公共通信信道 </li><li>点对点网络 使用分组存储转发和路由选择机制</li></ol></li></ol><h3 id="标准化工作及相关组织"><a href="#标准化工作及相关组织" class="headerlink" title="标准化工作及相关组织"></a>标准化工作及相关组织</h3><p>标准分类：</p><ol><li>法定标准 由权威机构制定的正式的、合法的标准 OSI</li><li>事实标准 某些公司的产品在竞争中占据了主流 TCP/IP标准</li></ol><p>RFC（请求评论）：因特网标准的形式<br>RFC上升为因特网正式标准的四个阶段：</p><ol><li>因特网草案</li><li>建议标准 开始成为</li><li>草案标准x已经取消</li><li>因特网标准</li></ol><p>相关组织<br>ISO 国际标准化组织<br>ITU 国际电信联盟<br>IEEE 国际电气电子工程师协会<br>IETF Internet工程任务组</p><h3 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h3><h4 id="速率"><a href="#速率" class="headerlink" title="速率"></a>速率</h4><p>速率：数据率、数据传输率、比特率<br>比特：1/0 位<br>连接在计算机网络上的主机在数字信道上传输数据<strong>位数</strong>的速率<br>K/M/G/T</p><h4 id="带宽"><a href="#带宽" class="headerlink" title="带宽"></a>带宽</h4><p>（理想情况下）<br>网络的通信线路传送数据的能力，通常是指单位时间内从网络中的某一点到另一点所能通过的最高数据率。单位：比特每秒</p><h4 id="吞吐量"><a href="#吞吐量" class="headerlink" title="吞吐量"></a>吞吐量</h4><p>在单位时间内通过某个网络（信道、接口）的数据量 单位b/s<br>吞吐量受网络的带宽或网络的额定速率的限制</p><h4 id="时延"><a href="#时延" class="headerlink" title="时延"></a>时延</h4><p>至数据从网络的一端传送到另一端所需的时间 单位：s</p><ol><li>发送时延（传输时延） 从发送分组的第一个比特算起<br>= 数据长度/信道带宽（发送速率）</li><li>传播时延 取决于电磁波传播速度和链路长度<br>= 信道长度/电磁波在信道上的传播速率</li><li>排队时延 等待输出/输入链路可用（如安检等待时间）</li><li>处理时延 检错、找出口</li></ol><h4 id="时延带宽积"><a href="#时延带宽积" class="headerlink" title="时延带宽积"></a>时延带宽积</h4><p>= 传播时延*带宽<br>以比特为单位的链路长度 = 某段链路现在有多少比特<br><img src="/images/2021-02-14-20-12-00.png" alt="时延带宽积" loading="lazy"></p><h4 id="往返时延RTT"><a href="#往返时延RTT" class="headerlink" title="往返时延RTT"></a>往返时延RTT</h4><p>从发送方发送数据开始，到发送方收到接收方的确认，总共经历的时延。</p><p>RTT越大，在收到确认之前，可以发送的数据越多</p><p>RTT包括：</p><ol><li>往返传播时延 = 传播时延*2</li><li>末端处理时间</li></ol><h4 id="利用率"><a href="#利用率" class="headerlink" title="利用率"></a>利用率</h4><ol><li>信道利用率 = 有数据通过的时间/（有+无）数据通过时间</li><li>网络利用率 = 信道利用率加权平均值</li></ol><h3 id="分层结构"><a href="#分层结构" class="headerlink" title="分层结构"></a>分层结构</h3><p>为什么要分层？</p><p>发送文件前需要完成：</p><ol><li>发起通信的计算机必须将数据通信的通路激活</li><li>告诉网络如何识别目的主机</li><li>发起通信的计算机要查明目的主机是否开机，并且与网络连接正常</li><li>发起通信的计算机要弄清楚，对方计算机中文件管理程序是否已经做好准备工作</li><li>确保差错和意外可以解决</li></ol><p>基本原则：</p><ol><li>各层之间相互独立，每层只实现一种相对独立的功能</li><li>每层之间界面自然清晰，易于理解，相互交流尽可能少</li><li>结构上可分割开，每层都采用最合适的技术来实现。</li><li>保持下层对上层的独立性，上层单向使用下层提供的服务</li><li>整个分层结构应该能促进标准化工作</li></ol><p>分层结构：-&gt; 为了解决计算机网络复杂的大问题</p><ol><li>实体 同一层的实体叫对等实体</li><li>协议 为进行网络中的对等实体数据交换而建立的规则、标准或约定<ol><li>语法：规定传输数据的格式</li><li>语义：规定所要完成的功能</li><li>同步：规定各种操作的顺序</li></ol></li><li>接口：上层使用下层服务的入口</li><li>服务：下层为相邻上层提供的功能调用（垂直）</li></ol><p><img src="/images/2021-02-14-20-27-32.png" alt="" loading="lazy"><br><img src="/images/2021-02-14-20-30-15.png" alt="" loading="lazy"></p><h4 id="OSI参考模型（法定标准）"><a href="#OSI参考模型（法定标准）" class="headerlink" title="OSI参考模型（法定标准）"></a>OSI参考模型（法定标准）</h4><p>目的：支持异构网络系统的互联互通<br>理论成功，市场失败</p><p><img src="/images/2021-02-14-20-35-42.png" alt="" loading="lazy"></p><p>通信过程<br><img src="/images/2021-02-14-20-39-32.png" alt="" loading="lazy"><br><img src="/images/2021-02-14-20-41-32.png" alt="" loading="lazy"></p><h4 id="TCP-IP参考模型（事实标准）"><a href="#TCP-IP参考模型（事实标准）" class="headerlink" title="TCP/IP参考模型（事实标准）"></a>TCP/IP参考模型（事实标准）</h4>]]></content>
+      
+      
+      <categories>
+          
+          <category> CS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2021-2-14</title>
+      <link href="/2021/diary/2021/2021-02/2021-2-14/"/>
+      <url>/2021/diary/2021/2021-02/2021-2-14/</url>
+      
+        <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="6d05f8ac34349cb260e22079577797ddd63c889c296516943c052badc499c98a">e32c27e47419b87d293b9e8ce412adf80c8222941e54ebb9934903cd579c3f10d65bcb4dd254eb619954b26ed887e676e47dec292e660e40f0316e0d3f88d7791e71611c53c7bcbbfd2d4a3687a9825d1bdc2e7093351574ba45d509fbc51dd01e1c2d47a5dced205d1da4ed2c95f128850786e1ea8728b38b8962193e0729185bf2245df32586f35c58d470eb4136e6631f37b60eaa09547122497e93e3687e63b395f0f3d7dd725d68b0b71253437bd8e8a8dddc8353998bf2e879eced6a02b85fa585ecccaff38336208df03dd6bd260e15dc0b155ff544a355fbae096038b3ead04ba5683b8668fab6297cd667e9f6f98cfc62fe0396f5e1dff4de4a940493ab48ee254715dfc21568295ff936c9f8c5debaa2166e4f2276e81954f719e9a965f4ebe6922adac4e1ec92c983e986fd9e5750682ea8b0a5f3a141ed29c84e9dedf83c093bf0a148d020293d274857b90bbf0174a4c6072113dda6993d2604f350ca7918a2b269396ccf9819ceffd1bb0bfa1cd425fe4c4deed88413b6262b3bdfcd728e31f680c72b55a252f00a563e434ebf817ef1cc56e6757ac01be413dbc8e9324f50def469bc2ac81857cd1a6c5326faacbdc3b5f535d361f38c28aa4f135cfdd407332bf1dbd69e1ed5376c25fcf2ff83e5cfaba96fe639f5e20220ef31db0539793a69123e5e9031d9a079b4de912d15dac7ad861a2490090e71fe3468dc66ce5d1d809195da724d394c976844d2a48baf99e79faf1ebe2fb73cfb</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂思 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 杂思 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>计算机网络</title>
+      <link href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+      <url>/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a> <h2 id="第一章-计算机网络和因特网"><a href="#第一章-计算机网络和因特网" class="headerlink" title="第一章 计算机网络和因特网"></a>第一章 计算机网络和因特网</h2><h2 id="第二章-应用层"><a href="#第二章-应用层" class="headerlink" title="第二章 应用层"></a>第二章 应用层</h2><h2 id="第三章-运输层"><a href="#第三章-运输层" class="headerlink" title="第三章 运输层"></a>第三章 运输层</h2><h2 id="第四章-网络层"><a href="#第四章-网络层" class="headerlink" title="第四章 网络层"></a>第四章 网络层</h2><h2 id="第五章-链路层：链路、接入网和局域网"><a href="#第五章-链路层：链路、接入网和局域网" class="headerlink" title="第五章 链路层：链路、接入网和局域网"></a>第五章 链路层：链路、接入网和局域网</h2><h2 id="第六章-无线链路和移动网络"><a href="#第六章-无线链路和移动网络" class="headerlink" title="第六章 无线链路和移动网络"></a>第六章 无线链路和移动网络</h2><h2 id="第七章-多媒体网络"><a href="#第七章-多媒体网络" class="headerlink" title="第七章 多媒体网络"></a>第七章 多媒体网络</h2><h2 id="第八章-计算机网络中的安全"><a href="#第八章-计算机网络中的安全" class="headerlink" title="第八章 计算机网络中的安全"></a>第八章 计算机网络中的安全</h2><h2 id="第九章-网络管理"><a href="#第九章-网络管理" class="headerlink" title="第九章 网络管理"></a>第九章 网络管理</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> CS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2021-2-12</title>
+      <link href="/2021/diary/2021/2021-02/2021-2-12/"/>
+      <url>/2021/diary/2021/2021-02/2021-2-12/</url>
+      
+        <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="98d50382609a5d11029ac16bec0afaf2e35236dde5bd055a243b96c45587bdb2">e32c27e47419b87d293b9e8ce412adf800442154878e1cae5256b43cb49edd636837b9a27f457a611e1f5b6c0902bc4394703e25201d7fa308017110523755201028575dbb075a3bd083c62585d26acfdbe395d1c43886b69c643336d16c2063c2a15d2cadd643baf9d77f2a9412bd96ad953ddaee903a30630a12b7d2955457647eaf56d78cd1139e8a1d791449bafaf241ce8072042c6409e821fb70a6c7f57e66351acaff103876f905d4a98e63c995fc6f5abeb61dfa93696192f4b50f7ba6501e9d17d120f401d8faa93a1ec719ca8160abe6109054e67acafb519d93ef15986d5f1ad930f6e2298fb0923db909a117c8294630674d58f78ed8a93763f68bbb126977b82fd56807208cfd7d21852961cd0eb9de53f5120bbd8193cd0cfa28bea58f375b4a8148afaf7010254446347d4f4e34cdd48e8e9e6a0df03b8e949dbbbaa7cd130dab89e5a3b60c529220cb3b406f2d254b0104071bf398f18ae957e4bd487ab97429390ebae8d93a00443b47e7ef97e2ad179c1b1cb5967c56430115657435a4f6ef9bd7a1f4c69c477b4b39770203837e4b73ed754d55fce043f865e66970703b92165c14a990eb8608390acd59b7c7b82f45676e003147ab51ffef41b02240f4f8a21136b1abbb4025f08d52a4b0c8d45b1fe996e4b82ec21dd8e55e0cf17579ef7fb3fb0ec4ff494bc5fb70d1c81c8dda1aa4ce68a765d1f9c7905159a891e40db562086e201e728399b588582a6da542ec5b56a9f7e7d7ea07e77e567f6163966c39658f25b25cd17ef4d8913521c454ec104e05758890b19f4f756e877ea7681881fd1ba9a682759aec2699943cb373f79e6c6ab931f23b8e7fa8a23a49ed6c6f95c8f9c1a6931037acc99e26ec0848d90a67535fe3bfc761ab59d640d977956742e2074e865d2cd2dc80560c8ab28a6b3cae4e1c0e7261bceded387236808a94873739897cb68285af67bcdb0f921a5de5ec54f326b1394328f7253f6933afef982d1f7f2fd0d7f3d565f421d7fd71e491318e03d1058cb62ef9ba29a4518139dc6169fc0aebd1239cd57edc9dfdce6b8d3583f8abf8894752b155fc4af4b5fd6b6dc8796aa25fb1f0b8a59d05af382598b3bce9f35f324086b0c93a40c9f8b678e891974bb712e9becfc11d29aa81b859cdd219b727ea02c16a8c75b51b2cb00335dd7d3e63a9fd5829d1a8908011eef6a4e5838aaf2a0f9c583dce4a797e3c2dfcb427725521afe9d4eb1a2188d10b8f876f73158a09d4c8c1c56d4babfdbbae53a0e4709ac01b118301122aff0db52a45f7fd83683da09dbdd70950d57d4a52ea35f6bdefd83bbc3fcf237ebb2e568dd6f98792a8f68a35335a8235c6d34e40d82c0910507151299e3001f36003cd81f10b70fd358ac6242f5edf92409fd84a2c679b4704b119c1ce0b44499a7abeac6cf93b1919544b132ed1582da4602e12fc9bf119974f317471eac1a1e0d65e9457c57d9e72f4131e95733abc8ea7afa2a47e6d2c0b15dceb5a34068f3c810562052e1e14030dc6e7783ef805385aa28b1225dfc82494e9234d6b1061c5fd269ea945df20f5cc3d16ca8572f840c4b10c82c2f2ff593b12cc3c6a1e360bffbe1912844fe5c39396784bcacef05ed756c52944f1eb426158e53c5ec43b1a73c2a93f957ccce6e874d3a478acd7d575eebd5d04c37f59c0af556cf90ede6ae0a65fe06f94a38839b9801c28b109eff31e43e10cb7bf71df4575b4ecd67c4f0d57527bcd51dd793d9977d45dbcd7c39829d91aa5c3000bc8de49937a2d4d66006ca2dc3ad87caec9a857e2c5150524c37b4bf9e83ea71798be499cdb1f2858835893da16ce03d1e31b97b9ef55624fec0f6505b2afc6b383e432dc51199b2bc101fd06cd20b5eb0526c4a94cbf56cb571eb998612f6fd38a4e6cac012ba8ec3e49a0b026b85a32b743087a152ec56a3247d223122b06537e1e1f1cc5a4c9f8d76a4c3770fb39255897806eda8e1360d505490a4ac18037ee84d34a45f483282a0b3069208879988989faefe43216860dd0effeb2e4a28ecb71959740365a821a2403d94e435fadada6c27989912aff820b90e85f7d8e5a4345f13a762f7b8d5560ed4bc2213e1b3aac60c6c846631ffcfc7a8309e7575236c7bbabbe0e721a93476789a3a05083c20acc23724d09d41a32790a18e06a7f29a2a73346fcf0ee9b9c8058ac460ef0b5ebfd11dfba6dc2b5768a1fe208dacb7c35a641f5df6d4ee820ebb28bee8f7412f300631f1602680712922e554fcb5ba28e4164bac5678ac59a9940adf26da54e0300942c84053d359c5d4a016f2291fe6b0ad2c9aedc21a9294270ba4272e73f2773c893a572381472172463e02684a475f31d396b6258c28f546dbbc38ea1165d414b8e1c7848e48a641ee4d7b6a14074ce9f53e742579a320d9d89f27a18966e947fc5b11ffc443216ac9051b597b840f944d0c8c0e393b08bc3e89511f18da20974ff0df87a6d7efba0947d5a2049abb30c7b766a9fa0692c676cbe189c27f2fd09de08368e4927b3c19e13d2ced7eead81f4caefcfdea0fbc244bf50d21a297912faf15a937cf27411318d4d5837e42b6e01f2ad00c7936a7f5872d33cab0cc610eaf8c1dfa0968ae75e593a1c96bbdcb520608adec01d90e1796660c1e33a478fd171fa348c48c7d24d694f2285e0fdab6bc2fe8542e620a9c32dfed604de8e051f50afd2aad0d84665b7942a4e</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂思 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 杂思 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>保研准备</title>
+      <link href="/2021/%E4%BF%9D%E7%A0%94%E5%87%86%E5%A4%87/"/>
+      <url>/2021/%E4%BF%9D%E7%A0%94%E5%87%86%E5%A4%87/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><p>清华 北大 浙大 华科 上交 国防科大 电子科大 哈工大 东南大学 中科大</p><h2 id="材料"><a href="#材料" class="headerlink" title="材料"></a>材料</h2><ol><li>前5学期成绩单</li><li>前5学期成绩排名证明（及时盖章）</li><li>专家推荐信（2-3封）</li><li>个人陈述（400、600、800、1000、1200、2000）</li><li>个人简历（丰富）</li><li>英语水平证明</li><li>各类证书复印件、科研水平的其他材料</li><li>自我介绍ppt</li></ol><h2 id="需要做的事情"><a href="#需要做的事情" class="headerlink" title="需要做的事情"></a>需要做的事情</h2><ol><li>盖章和打印好个人成绩单、成绩排名证明、英语水平证明、各类证书复印件 存电子档</li><li>写好专家推荐信</li><li>写好个人简历、个人陈述、自我介绍ppt</li><li><h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2>5、6月份</li></ol><h3 id="选择学校"><a href="#选择学校" class="headerlink" title="选择学校"></a>选择学校</h3><ol><li>搜索哪些学校专业比较好</li><li>挑4、5个</li></ol><p>1.浙江大学：现任校长吴朝晖院士和前任校长潘云鹤院士均来自计算机学院，其所领衔创建的计算机图形学、智能CAD在国内无其右者，而且浙大开放式的校风，吸纳贤才的远见，使其越来越受到人们的认可。浙大建有计算机辅助设计与图形学国家重点实验室。优势领域还有CAD/CIMS、虚拟现实、网络与多媒体、产品创新设计、智能信息与人机交互技术等。</p><p>　　分析：在新一轮学科评估工作中，计算机科学与技术被评为“A+”行列。</p><p>学院设有计算机科学与技术一级学科博士点、博士后流动站，计算机应用技术、计算机软件与理论、计算机系统结构3个二级学科博士点和硕士点以及设计艺术学硕士点。学院下设人工智能研究所、计算机软件研究所、计算机系统研究所、现代工业设计研究所等4个研究所和包括计算机辅助设计与图形学国家重点实验室在内的10多个实验室。</p><p>2.上海交通大学：近年来在走上坡路，软件方向的发展很快，模式识别与智能控制也是国家重点学科。优势领域包括系统软件、网络信息获取与处理、并行与分布理论、数据库等。</p><p>　　分析：上交的软件学院为教育部示范性软件学院，与产业界联系紧密，微软、IBM、惠普、SAP等知名企业签定了共建上海交通大学软件学院学生实习基地的合作协议，通过选择有相当实力、管理良好的企业作为实践基地，提高学生规范开发软件的能力和水平。身处上海的良好地缘优势也让这所学校成为学生眼中的第一选择。</p><h3 id="自身条件"><a href="#自身条件" class="headerlink" title="自身条件"></a>自身条件</h3><p>成绩<br>竞赛<br>科研<br>  专利<br>  软著！<br>英语</p><h3 id="联系导师"><a href="#联系导师" class="headerlink" title="联系导师"></a>联系导师</h3><p>学校：学院：师资力量-&gt;找老师<br>看眼缘、发展方向、选一个联系<br>找论文看看</p><p>邮件格式：</p><ol><li>介绍自己情况，学校、专业，排名、绩点</li><li>说获奖 学术类奖项</li><li>说科研 科研</li><li>英语水平（谦虚的夸）</li><li>说对老师研究方向的了解</li><li>约见面</li></ol><p>一周不回换下一个</p><h3 id="夏令营"><a href="#夏令营" class="headerlink" title="夏令营"></a>夏令营</h3><p>面试问的问题能回答<br>多在简历中写点项目</p><h3 id="九推"><a href="#九推" class="headerlink" title="九推"></a>九推</h3><ol><li>穿着正式</li><li>多打印简历</li></ol><h4 id="笔试"><a href="#笔试" class="headerlink" title="笔试"></a>笔试</h4><h4 id="面试"><a href="#面试" class="headerlink" title="面试"></a>面试</h4><p>英文自我介绍：</p><ol><li>介绍自己 学校专业</li><li>学习成绩、爱好</li><li>科研</li></ol><h2 id="个人陈述"><a href="#个人陈述" class="headerlink" title="个人陈述"></a>个人陈述</h2><p>一般来说，个人陈述应当包含以下内容：</p><p>①引言：自我简介，表达自己读研的意愿</p><p>②申请者的学术或专业兴趣及背景。在这一点可以主要突出以下几点：</p><p>学业成绩（经管类专业专业比较看重英语、数理、计算机及专业课成绩）</p><p>科研经历（重点说明自己在科研项目担任的角色、主要的任务、最终的成果以及论文的主要创新点）</p><p>学科竞赛（注明比赛名称、担任角色和主要工作，这一块经管类专业比较看重全国大学生数学建模竞赛）</p><p>社会实践（介绍自己其他的经历，如实习、志愿服务等，这里最好说明申请者参加这些社会事件的动因和收获）</p><p>计划研究的方向、研究生阶段的规划及未来的职业目标：明确说明自己的研究方向及意愿，并以此为目标分阶段列出研究生阶段的规划，最后可以说明申请者未来的职业目标。</p><p>撰写步骤</p><p>想要写出一篇具有个性化的个人陈述，在笔者看来应该分成如下四个步骤：</p><p>①反思过去经历，发现个人特性。所谓反思，就是回顾自己的整个大学学习生涯，自己有哪些与众不同之处。反思的目的就是要找出自己身上的闪光点——比如说有什么特殊的兴趣或者是独特的经历、自己有哪些比较独特的个性等等。</p><p>在一篇个人陈述中，一定要写出自己的个性和特色来，只有这样，你才会在众多的申请材料中脱颖而出，吸引招生老师的眼球。</p><p>②明确现在定位，组织个人材料。所谓定位，具体在一篇个人陈述里，就是申请者如何在经过第一阶段的反思之后结合自身特点确定自己研究生的攻读学校、专业及其录取的要求和标准，从而区分、组织和取舍自己的特质、经历和成就，并确定自我陈述中想要彰显的独特而鲜明的个人形象。</p><p>定位对于成功地进行个人陈述写作也是至关重要的。定位应该准确鲜明，切忌定位不清。比如一位想要攻读直博的申请者，就没有必要在个人陈述给招生老师留下社团达人的形象，而是应该塑造一个孜孜以求、不断创新的形象。</p><p>③确立文章主题，形成文章初稿。在明确定位的基础上即可确立文章和主题，并把上述所有筛选、编排好的材料归纳一个叙述性的结构中，草拟出一篇具有说服力能突出申请者的特质和形象的短文来。</p><p>④不断修改个人陈述。在这里我想要提醒读者的是，个人陈述只有经过不断修改才能更好的表现出申请者真正想要表达的主题，进而更好地向招生老师展现申请者独特的形象。</p><p>总之，一篇很好的个人陈述就是在限定的字数内，把申请者的过去的经历、现在的决定和未来的目标串成一条自洽的逻辑，从而将申请者立体地展现在招生老师面前。尤其需要注意的是，个人陈述一定要写出自己的特色，而不是简单地以为罗列自己的情况。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> mass </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mass </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2020-12-25</title>
+      <link href="/2020/diary/2020/2020-12/2020-12-25/"/>
+      <url>/2020/diary/2020/2020-12/2020-12-25/</url>
+      
+        <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="04fde63e3a29d5b51792f99fc9a7c65a4d9a579ee993effb7d63bb8297b24ff0">e32c27e47419b87d293b9e8ce412adf8ffc8162ba8dd9ce139598eef9339507556b6bb1c3999aec15089f878657f079e8061a561862b957bf248eb90ca365b1294e77b5dafe74f9221b2fdbf292543ec1368bdb78ea9c6efe25e2618287141d8bc4ebb0a036e8e43e72ff29ed851ba1b531df5f08cdee18bc65f8ae649d2720d3766ca016d4ab30596be55e22d295701a83f1c0c74a828aa99b4f0978a83e867c64ce15e1013fafe86bb5bffd73494658e9ebf1257f45e04521ca64de9dfac292ec4e38e31b054aff03290e07b8b2a26f281af288f206b0eb364d62ab1cb90164b79bf7171c6c8c64643875586be7d1a4c73a76e367d922afebbfd2cbcf118834f8e7a1bac5e7b6ddae2f597940b6391b2e559a71aa2db28de047a5f459f8f9aa253b03566e16db758ec71a489167da4374c2968f0ec26a1075d50b9ea4d99622415d481773aada868e09da26a65fd596ec8c6dae3675c2f4e8cd42870667e1a9a604ba4b2d50aae413651218dbeca31afdc9aa3f387df67fce5233f756db0941ddc21737f5466bb335d43a3407624870ed908907257bda47206bfc384171ba2d723a4c7cb0cf9a3fffbe9535d19ce1f7c2bddd65184d0f7540e143e373fcd28f641c6a71bf704645fb1b5d7a69eec203f3762dc959006b3e741ecf6806b5bc720ec3fcc0de54e2da5a7f0e373a9ae9ca3c3d6036c8b174c983e0d05264774c9e4e74aca560b665ddbe76e7305267cd0c9df365a92f159e3edecbda1bdd34140d7f5258d5e681aea15ec7ec4906a9dddc074a907edfce7b652e446d776520de2fa9d7e1d9495bf26cda902f32e091238ebe3df5f881e65e5bd11eaa157efafadf1f3191941abef19bffdc5698fe6a1276d4a01732bba7d387d2408e82b60902e16d8d27a33d1580e5e26a904181e4e29981e5f4a5958168eda35dc9ff72ff1d8b2063f6603bcd77b1cdafb2369da4a47b2f44ed4e1ea0dc9d5886fac6cc99428e5be21775344fa2cea334d66248cb15f5cfdf415ba1bd43f72ac5afc25658c205af5a4fc27201e19457d3a11896ec243d705c1049478eac16e965c31827e4afdfb9f80fd9ddce5a8ef6684dcf8414e4ff3f119f34606f7dce9545bb6456e9278c4e1f4a8049f9ae86d57002fc8deb074</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂思 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 杂思 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2020-12-24</title>
+      <link href="/2020/diary/2020/2020-12/2020-12-24/"/>
+      <url>/2020/diary/2020/2020-12/2020-12-24/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><p>昨天真的是太难过了。<br>前天晚上睡觉前，喝了一杯感冒药，然后就去睡觉了，一点半的时候被喉咙痒醒，在那咳嗽。<br>所幸上了个厕所后，接着睡，没问题了。<br>昨天一觉醒来，感觉自己的感冒仍然严重，感冒药就是个骗子，要不是害怕它继续折磨我，我才不喝呢！！！</p><p>突然想到，真的过了三年了，每年都要给我出个幺蛾子。<br>从高三那年起，每年都要感冒一次，高三2018年那次耗尽了我所有的快乐和耐心，导致我现在对自己得感冒心有余悸，我真的好害怕好害怕，曾经发生过的事，再发生一次。</p><p>2019年那次是在暑假，当时还硬撑着来学校上ctf的培训，我tm真的nb，不得不佩服我自己，在压迫自己的道路上越走越远。回来的时候做高铁，真的好难过，嗓子疼到吃不下东西。真的喝水都很疼，很难过。还让前任接了我。绝了！要不是因为让他接了我，我跟他早断了，让他有了很多念想，以后请别这样做了。再难受也自己扛着，谢谢。别寻求别人的帮助，万一他们错意了就不好了。害</p><p>今年这次，本来以为会平平安安地过完2020年的，都到了12月底了，为什么啊，为什么还要来啊。<br>这次我会好好的加油的！一定要打败你！<br>就算为你哭了好几次，我也很坚强的！我会让你再也不来找我的。我会去好好锻炼身体，会去多喝热水，会去补充vc，我一定一定会早点摆脱你的！<br>哼！！！！！<br>只要我想做，没有什么完不成。<br>你就早点放弃投降吧</p><p>不过今天早上醒来的时候确实感觉自己还可以了。<br>就是室友晚上开的门也太大了，把我冷死了，希望病情不会因为这个加重。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>springboot</title>
+      <link href="/2020/springboot/"/>
+      <url>/2020/springboot/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="springboot-部署Input-length-1-或者-Input-length-2"><a href="#springboot-部署Input-length-1-或者-Input-length-2" class="headerlink" title="springboot 部署Input length = 1 或者 Input length = 2"></a>springboot 部署Input length = 1 或者 Input length = 2</h3><p>因为编码的问题<br>在idea中打开settings–Editor-File Econdings,设置propertity为UTF-8</p><h2 id="org-apache-ibatis-binding-BindingException-Invalid-bound-statement-not-found-com-print-print-mapper-UserMapper-selectUserByName"><a href="#org-apache-ibatis-binding-BindingException-Invalid-bound-statement-not-found-com-print-print-mapper-UserMapper-selectUserByName" class="headerlink" title="org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.print.print.mapper.UserMapper.selectUserByName"></a>org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.print.print.mapper.UserMapper.selectUserByName</h2><p>mapper没有映射成功<br>因为我dao中的mapper创建成了class ，因为是interface</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> JAVA </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JAVA </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>蓝桥杯知识点</title>
+      <link href="/2020/%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
+      <url>/2020/%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%9F%A5%E8%AF%86%E7%82%B9/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ol><li>int 32位 $2*10^{10}$</li><li>ctype.h isalpha isdigit toupper</li></ol><h2 id="代码重点"><a href="#代码重点" class="headerlink" title="代码重点"></a>代码重点</h2><ol><li>输入输出重定向<pre><code>freopen(&quot;input&quot;,&quot;r&quot;,stdin);freopen(&quot;output&quot;,&quot;w&quot;,stdout);</code></pre></li><li>输入一整行（包括空格）<pre><code>getline(cin,line);</code></pre></li><li>查找x<pre class="line-numbers language-c++"><code class="language-c++">p = lower_bound(a,a+n,x)-a;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li></ol><h2 id="c-stl"><a href="#c-stl" class="headerlink" title="c++ stl"></a>c++ stl</h2><h3 id="algorithm"><a href="#algorithm" class="headerlink" title="algorithm"></a>algorithm</h3><p>lower_bound(a,a+n,x) 查找大于或等于x的第一个位置<br>unique()删除有序数组中的重复元素。</p><h3 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h3><p>clear()<br>resize()<br>push_back()<br>pop_back()<br>empty()</p><h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p>每个元素只出现一次</p><pre class="line-numbers language-cpp"><code class="language-cpp">set<span class="token operator">&lt;</span>string<span class="token operator">></span> dict<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><pre class="line-numbers language-cpp"><code class="language-cpp">map<span class="token operator">&lt;</span>string<span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span> mp<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><h3 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h3><h3 id="queue"><a href="#queue" class="headerlink" title="queue"></a>queue</h3><p>//升序队列，小顶堆<br>priority_queue &lt;int,vector<int>,greater<int> &gt; q;<br>//降序队列，大顶堆<br>priority_queue &lt;int,vector<int>,less<int> &gt;q;</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ACM </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ACM </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>AI/实验资料</title>
+      <link href="/2020/AI/%E5%AE%9E%E9%AA%8C%E8%B5%84%E6%96%99/"/>
+      <url>/2020/AI/%E5%AE%9E%E9%AA%8C%E8%B5%84%E6%96%99/</url>
+      
+        <content type="html"><![CDATA[<p>代码链接 <a href="https://github.com/YoYo000/MVSNet" target="_blank" rel="noopener">https://github.com/YoYo000/MVSNet</a><br>数据链接 <a href="https://pan.baidu.com/share/init?surl=Wb9E6BWCJu4wZfwxm_t4TQ#list/path=%2F" target="_blank" rel="noopener">https://pan.baidu.com/share/init?surl=Wb9E6BWCJu4wZfwxm_t4TQ#list/path=%2F</a> (code: s2v2)</p><p>博客<br>多视图几何三维重建实战系列之MVSNet<br><a href="https://yongqi.blog.csdn.net/article/details/108353956" target="_blank" rel="noopener">https://yongqi.blog.csdn.net/article/details/108353956</a></p><p>安装fusibile时步骤：</p><pre><code>git clone https://github.com/YoYo000/fusibilecd fusibilemkdir buildcd buildcmake ..make </code></pre><p>python colmap2mvsnet.py –dense_folder ./data/dense_folder –max_d 192 –interval_scale 1.06</p><p>python test.py –dense_folder ./data/scan3/  –regularization ‘3DCNNs’ –max_w 544 –max_h 416 –max_d 192 –interval_scale 1.06</p><p>python depthfusion.py –dense_folder ./data/scan3/ –fusibile_exe_path ./fusibile/build/fusibile –prob_threshold 0.3</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CS/安装st</title>
+      <link href="/2020/CS/%E5%AE%89%E8%A3%85st/"/>
+      <url>/2020/CS/%E5%AE%89%E8%A3%85st/</url>
+      
+        <content type="html"><![CDATA[<p>安装st</p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code>git clone https://git.suckless.org/stsudo apt install libx11-dev libxft-dev</code></pre><p><code>vim config.mk</code><br>修改第10、11行<br>X11INC = /usr/include/X11<br>X11LIB = /usr/include/X11</p><p><code>sudo make clean install</code></p><pre><code>rm config.def.h</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ubuntu配置python2-tf环境</title>
+      <link href="/2020/CS/ubuntu%E9%85%8D%E7%BD%AEpython2-tf%E7%8E%AF%E5%A2%83/"/>
+      <url>/2020/CS/ubuntu%E9%85%8D%E7%BD%AEpython2-tf%E7%8E%AF%E5%A2%83/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><p>首先tensorflow在Windows系统中不支持python2，所以要用ubuntu</p><h2 id="安装python"><a href="#安装python" class="headerlink" title="安装python"></a>安装python</h2><pre><code>sudo apt install libssl-dev./configure --prefix=/usr/local/python2.7  --enable-shared --enable-unicode=ucs4sudo makesudo make installsudo cp /usr/local/python2.7/lib/libpython2.7.so.1.0 /usr/local/libcd /usr/local/libsudo ln -s libpython2.7.so.1.0 libpython2.7.sosudo /sbin/ldconfig -vsudo /sbin/ldconfigln -s /usr/local/python2.7/bin/python2.7 /usr/bin/python</code></pre><h2 id="安装pip"><a href="#安装pip" class="headerlink" title="安装pip"></a>安装pip</h2><pre><code>curl https://bootstrap.pypa.io/get-pip.py --output get-pip.pysudo python get-pip.pyexport PATH=$PATH:/usr/local/python2.7/binsudo ln -s /usr/local/python2.7/bin/pip /usr/bin/pip</code></pre><h2 id="安装tensorflow"><a href="#安装tensorflow" class="headerlink" title="安装tensorflow"></a>安装tensorflow</h2><pre><code>sudo pip install -U virtualenvvirtualenv --system-site-packages -p python2.7 ./venvsource ./venv/bin/activate</code></pre><p>只有opencv-python 3.2.0这个版本才支持py2</p><pre><code>pip install tensorflow-gpu==1.5pip install nvidia-ml-py==375.53pip install opencv-python==3.2.0.8sudo pip install tensorflow-gpu==1.5sudo pip install nvidia-ml-py==375.53sudo pip install opencv-python==3.2.0.8</code></pre><h2 id="安装驱动-cuda-cudnn"><a href="#安装驱动-cuda-cudnn" class="headerlink" title="安装驱动+cuda+cudnn"></a>安装驱动+cuda+cudnn</h2><ol><li>之前安装 nvidia 驱动的版本号，可通过下面方法查到：<code>ls /usr/src | grep nvidia</code></li><li><code>sudo sh cuda_9.0.176_384.81_linux.run --override</code>   </li><li>配置环境变量，运行如下命令打开profile文件<br><code>sudo gedit  /etc/profile</code><br>打开文件后在文件末尾添加路径，也就是安装目录，命令如下：<pre><code>export  PATH=/usr/local/cuda-9.0/bin:$PATHexport  LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64$LD_LIBRARY_PATH</code></pre>保存，然后重启电脑<br><code>sudo reboot</code>  </li><li>验证驱动版本<code>cat /proc/driver/nvidia/version</code>  </li><li>验证CUDA Toolkit<br> <code>nvcc -V       会输出CUDA的版本信息</code>  </li><li>验证安装效果：<br><code>python -c &quot;import tensorflow as tf;print(tf.reduce_sum(tf.random.normal([1000, 1000])))&quot;</code></li><li>安装cudnn<pre><code> sudo cp cuda/include/cudnn.h /usr/local/cuda/include/ sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64/ sudo chmod a+r /usr/local/cuda/include/cudnn.h sudo chmod a+r /usr/local/cuda/lib64/libcudnn* sudo rm /usr/local/cuda-9.0/lib64/libcudnn.so.7 sudo ln -s /usr/local/cuda-9.0/lib64/libcudnn.so.7.0.5 /usr/local/cuda-9.0/lib64/libcudnn.so.7</code></pre></li><li>验证<code>cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2</code><br><a href="https://www.jianshu.com/p/7d153a484f72" target="_blank" rel="noopener">https://www.jianshu.com/p/7d153a484f72</a></li></ol><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><code>sudo apt-get install python-tk</code><br>安装open-cv<br>安装meshlab</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>开学准备</title>
-      <link href="/2020/%E5%BC%80%E5%AD%A6%E5%87%86%E5%A4%87/"/>
-      <url>/2020/%E5%BC%80%E5%AD%A6%E5%87%86%E5%A4%87/</url>
+      <link href="/2020/diary/%E5%BC%80%E5%AD%A6%E5%87%86%E5%A4%87/"/>
+      <url>/2020/diary/%E5%BC%80%E5%AD%A6%E5%87%86%E5%A4%87/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="77b0add3e3646110fd36ec4210af31635b9eba2a0aa95fef28bb992053a5be7e">e32c27e47419b87d293b9e8ce412adf8cad43f65e21f1a7da564293e4eaff5d4bd2aaf5acf33fc1ee8bdf92439f58bb1681c307102e2b695963102ad990116a06bade6bd166741e118ccfb88885805a5fb12a1a671c36328ce1ce2179c490eec8c5313a45b49761b5c02d4d741497384e9869ade78a006520f9f317d35f63d57630d53fddc2e8d410533b32601ec6b20c82b02828f60e0485cef4f0cc01383b21e5ddc816a91c27d3572a6cf4e29f4fc210fe5e13f3b515cb5997395b9e0f88e782f02d9006db802f9dc32e396ab669358d97688aa2b4b8a24675e67f948f90c2fb7ac475badd8cfa0918e3c061d19365a85535f121f7c10ba73eb35c8213e5ea73187304cf0afb6e8a72162a13a3ef9ddb82b130ad16b53fb052ea1800d1245ce4d1159a1addc89cc3c3139ad63dd49edcf8e4a93e67b5a6d56011521479ed5</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -30,10 +422,10 @@
     
     <entry>
       <title>9-1任务</title>
-      <link href="/2020/9-1%E4%BB%BB%E5%8A%A1/"/>
-      <url>/2020/9-1%E4%BB%BB%E5%8A%A1/</url>
+      <link href="/2020/AI/9-1%E4%BB%BB%E5%8A%A1/"/>
+      <url>/2020/AI/9-1%E4%BB%BB%E5%8A%A1/</url>
       
-        <content type="html"><![CDATA[<a id="more"></a><p>多视图几何三维重建实战系列之COLMAP<br><a href="https://yongqi.blog.csdn.net/article/details/108016486" target="_blank" rel="noopener">https://yongqi.blog.csdn.net/article/details/108016486</a><br>你看看这个软件你能否跑起来</p><p>跑起来后，和这个结合：<br><a href="https://www.cnblogs.com/YongQiVisionIMAX/p/13594246.html" target="_blank" rel="noopener">https://www.cnblogs.com/YongQiVisionIMAX/p/13594246.html</a></p><p>他说：流程回顾利用自己采集的数据进行深度估计的步骤为：采集数据 -&gt; 稀疏重建 -&gt; COLMAP文件导出 -&gt; 数据转换 -&gt; 输入MVSNet  -&gt; 输出深度图 -&gt; 深度融合，恢复点云。</p><p>这个是mvsnet的改进：<a href="https://zhuanlan.zhihu.com/p/59463409" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/59463409</a><br>里面有论文和代码可下载</p><p>他是拿这个r-mvsnet和colmap做对比的，看起来可以直接使用r-mvsnet，你可以先看最后一个链接</p>]]></content>
+        <content type="html"><![CDATA[<a id="more"></a><p>多视图几何三维重建实战系列之COLMAP<br><a href="https://yongqi.blog.csdn.net/article/details/108016486" target="_blank" rel="noopener">https://yongqi.blog.csdn.net/article/details/108016486</a><br>你看看这个软件你能否跑起来</p><p>跑起来后，和这个结合：<br><a href="https://yongqi.blog.csdn.net/article/details/108353956" target="_blank" rel="noopener">https://yongqi.blog.csdn.net/article/details/108353956</a></p><p>他说：流程回顾利用自己采集的数据进行深度估计的步骤为：采集数据 -&gt; 稀疏重建 -&gt; COLMAP文件导出 -&gt; 数据转换 -&gt; 输入MVSNet  -&gt; 输出深度图 -&gt; 深度融合，恢复点云。</p><p>这个是mvsnet的改进：<a href="https://zhuanlan.zhihu.com/p/59463409" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/59463409</a><br>里面有论文和代码可下载</p><p>他是拿这个r-mvsnet和colmap做对比的，看起来可以直接使用r-mvsnet，你可以先看最后一个链接</p><h2 id="test"><a href="#test" class="headerlink" title="test"></a>test</h2><p>python test.py –dense_folder ./data/scan10/  –regularization ‘3DCNNs’ –max_w 1152 –max_h 864 –max_d 192 –interval_scale 1.06<br>python test.py –dense_folder ./data/scan10/  –regularization ‘3DCNNs’ –max_w 576 –max_h 448 –max_d 192 –interval_scale 1.06<br>python test.py –dense_folder ./data/scan0/  –regularization ‘3DCNNs’ –max_w 544 –max_h 416 –max_d 192 –interval_scale 1.06</p><h2 id="visualize"><a href="#visualize" class="headerlink" title="visualize"></a>visualize</h2><p>python visualize.py ./data/scan10/depths_mvsnet/00000000_init.pfm<br>python visualize.py ./data/scan10/depths_mvsnet/00000000_prob.pfm</p><h2 id="fusibile-depthfusion"><a href="#fusibile-depthfusion" class="headerlink" title="fusibile+depthfusion"></a>fusibile+depthfusion</h2><p>opencv<br>cd ~/opencv<br>mkdir build<br>cd build</p><p>cmake -D CMAKE_BUILD_TYPE=Release -D<br>CMAKE_INSTALL_PREFIX=/usr/local -D<br>OPENCV_GENERATE_PKGCONFIG=ON -D<br>PYTHON2_EXECUTABLE=/usr/bin/python -D<br>PYTHON_INCLUDE_DIR=/usr/local/python2.7/include/python2.7 -D<br>PYTHON_LIBRARY=/usr/local/python2.7/lib/libpython2.7.so -D<br>PYTHON2_NUMPY_INCLUDE_DIRS=/home/sain/.local/lib/python2.7/site-packages/numpy/ <br>..<br>make -j7<br>sudo make install</p><p>查看库的地方<br><a href="https://www.cnblogs.com/kanuore/p/7587434.html" target="_blank" rel="noopener">https://www.cnblogs.com/kanuore/p/7587434.html</a></p><p>sudo make uninstall<br>cd ../<br>sudo rm -r build<br>cd ../<br>sudo rm -r opencv4 /usr/include/opencv4  /usr/share/opencv4 /usr/local/include/opencv4 /usr/local/share/opencv4 /usr/share/java/opencv4 /usr/share/licenses/opencv4 /usr/local/lib/cmake/opencv4 /usr/lib/x86_64-linux-gnu/cmake/opencv4  /usr/local/share/licenses/opencv4</p><h2 id="fusibile"><a href="#fusibile" class="headerlink" title="fusibile"></a>fusibile</h2><p>git clone <a href="https://github.com/YoYo000/fusibile" target="_blank" rel="noopener">https://github.com/YoYo000/fusibile</a><br>cd fusibile<br>mkdir build<br>cd build<br>cmake ..<br>make </p><p>python depthfusion.py –dense_folder ./data/scan0/ –fusibile_exe_path ./fusibile/build/fusibile –prob_threshold 0.3</p><p><a href="https://blog.csdn.net/weixin_43013761/article/details/102852990" target="_blank" rel="noopener">https://blog.csdn.net/weixin_43013761/article/details/102852990</a></p>]]></content>
       
       
       <categories>
@@ -55,8 +447,8 @@
     
     <entry>
       <title>CNN-卷积神经网络</title>
-      <link href="/2020/CNN/"/>
-      <url>/2020/CNN/</url>
+      <link href="/2020/AI/CNN/"/>
+      <url>/2020/AI/CNN/</url>
       
         <content type="html"><![CDATA[<a id="more"></a><h2 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h2><p>卷积神经网络(Convolutional Neural Networks，CNN)，CNN可以有效的降低反馈神经网络(传统神经网络)的复杂性，常见的CNN结构有LeNet-5、AlexNet、ZFNet、VGGNet、GoogleNet、ResNet等等，其中在LVSVRC2015冠军ResNet是AlexNet的20多倍，是VGGNet的8倍；从这些结构来讲CNN发展的一个方向就是层次的增加，通过这种方式可以利用增加的非线性得出目标函数的近似结构，同时得出更好的特征表达，但是这种方式导致了网络整体复杂性的增加，使网络更加难以优化，很容易过拟合。</p><p>CNN的应用主要是在<strong>图像分类</strong>和<strong>物品识别</strong>等应用场景应用比较多</p><h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>保持了层级网络结构<br>不同层次使用不同的形式(运算)与功能</p><h2 id="主要层次"><a href="#主要层次" class="headerlink" title="主要层次"></a>主要层次</h2><h3 id="数据输入层：Input-Layer"><a href="#数据输入层：Input-Layer" class="headerlink" title="数据输入层：Input Layer"></a>数据输入层：Input Layer</h3><p>和神经网络/机器学习一样，需要对输入的数据需要进行预处理操作，需要进行预处理的主要<strong>原因</strong>是：</p><ol><li><strong>输入数据单位</strong>不一样，可能会导致神经网络收敛速度慢，训练时间长</li><li><strong>数据范围大</strong>的输入在模式分类中的作用可能偏大，而数据范围小的作用就有可能偏小</li><li>由于神经网络中存在的<strong>激活函数是有值域限制</strong>的，因此需要将网络训练的目标数据映射到激活函数的值域</li><li>S形激活函数在(0,1)区间以外区域很<strong>平缓</strong>，<strong>区分度太小</strong>。例如S形函数f(X)，f(100)与f(5)只相差0.0067</li></ol><p>常见3种数据预处理方式</p><ol><li>去均值<br>将输入数据的各个维度中心化到0</li><li>归一化<br>将输入数据的各个维度的幅度归一化到同样的范围</li><li>PCA/白化<br>用PCA降维（去掉特征与特征之间的相关性）<br>白化是在PCA的基础上，对转换后的数据每个特征轴上的幅度进行归一化</li></ol><h3 id="卷积计算层：CONV-Layer"><a href="#卷积计算层：CONV-Layer" class="headerlink" title="卷积计算层：CONV Layer"></a>卷积计算层：CONV Layer</h3><ol><li>局部关联：每个神经元看做一个filter</li><li>窗口(receptive field)滑动，filter对局部数据进行计算</li><li>相关概念<br>深度：depth<br>步长：stride<br>填充值：zero-padding</li></ol><p>局部感知： 在进行计算的时候，将图片划分为一个个的区域进行计算/考虑；<br>参数共享机制：假设每个神经元连接数据窗的权重是固定的<br>滑动窗口重叠：降低窗口与窗口之间的边缘不平滑的特性。<br>固定每个神经元的连接权重，可以将神经元看成一个模板；也就是每个神经元只关注一个特性<br>需要计算的权重个数会大大的减少<br>备注：一组固定的权重和不同窗口内数据做矩阵内积后求和的过程叫做卷积</p><h3 id="ReLU激励层：ReLU-Incentive-Layer"><a href="#ReLU激励层：ReLU-Incentive-Layer" class="headerlink" title="ReLU激励层：ReLU Incentive Layer"></a>ReLU激励层：ReLU Incentive Layer</h3><p>将卷积层的输出结果做一次非线性的映射， 也就是做一次“激活”<br>常用非线性映射函数<br>  Sigmoid(S形函数)<br>  Tanh(双曲正切,双S形函数)<br>  ReLU<br>  Leaky ReLU<br>  ELU<br>  Maxout</p><p>建议<br>CNN尽量不要使用sigmoid，如果要使用，建议只在全连接层使用<br>首先使用ReLU，因为迭代速度快，但是有可能效果不佳<br>如果使用ReLU失效的情况下，考虑使用Leaky ReLu或者Maxout，此时一般情况都可以解决啦<br>tanh激活函数在某些情况下有比较好的效果，但是应用场景比较少</p><h3 id="池化层：Pooling-Layer"><a href="#池化层：Pooling-Layer" class="headerlink" title="池化层：Pooling Layer"></a>池化层：Pooling Layer</h3><p>在连续的卷积层中间存在的就是池化层，主要功能是：通过逐步<strong>减小表征的空间尺寸</strong>来减小参数量和网络中的计算；池化层在每个特征图上独立操作。使用池化层可以压缩数据和参数的量，减小过拟合。</p><p>在池化层中，进行压缩减少特征数量的时候一般采用两种策略：</p><ol><li>Max Pooling：最大池化，一般采用该方式</li><li>Average Pooling：平均池化</li></ol><h3 id="全连接层：FC-Layer"><a href="#全连接层：FC-Layer" class="headerlink" title="全连接层：FC Layer"></a>全连接层：FC Layer</h3><p>类似传统神经网络中的结构，FC层中的神经元连接着之前层次的所有激活输出；换一句话来讲的话，就是两层之间所有神经元都有权重连接；通常情况下，在CNN中，FC层只会在尾部出现</p><p>一般的CNN结构依次为：</p><ol><li>INPUT</li><li>[[CONV -&gt; RELU] * N -&gt; POOL?]*M</li><li>[FC -&gt; RELU] * K</li><li>FC</li></ol><h3 id="Batch-Normalization-Layer"><a href="#Batch-Normalization-Layer" class="headerlink" title="Batch Normalization Layer"></a>Batch Normalization Layer</h3><p>Batch Normalization Layer(BN Layer)是期望我们的结果是服从高斯分布的，所以对神经元的输出进行一下修正，一般放到卷积层后，池化层前。<br>论文：Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift；<br>论文链接：<a href="https://arxiv.org/pdf/1502.03167v3.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1502.03167v3.pdf</a></p><p>如果输出的是N*D的结果，对D个维度每个维度求解均值和方差。<br>根据均值和方差做归一化。</p><p>Batch Normalization优点：<br>梯度传递(计算)更加顺畅，不容易导致神经元饱和（防止梯度消失(梯度弥散)/梯度爆炸）<br>学习率可以设置的大一点<br>对于初始值的依赖减少<br>Batch Normalization缺点：<br>如果网络层次比较深，加BN层的话，可能会导致模型训练速度很慢。</p>]]></content>
       
@@ -80,8 +472,8 @@
     
     <entry>
       <title>暑期学习</title>
-      <link href="/2020/%E6%9A%91%E6%9C%9F%E5%AD%A6%E4%B9%A0/"/>
-      <url>/2020/%E6%9A%91%E6%9C%9F%E5%AD%A6%E4%B9%A0/</url>
+      <link href="/2020/learning/%E6%9A%91%E6%9C%9F%E5%AD%A6%E4%B9%A0/"/>
+      <url>/2020/learning/%E6%9A%91%E6%9C%9F%E5%AD%A6%E4%B9%A0/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="2d54b24180e6422d50302ae1847309150fb6d5c8ec459026111338255e5a736c">e32c27e47419b87d293b9e8ce412adf803a06f3eaf1e5cbd30a8500e3a1f11fae8bfc6195d34c88f7f88ac14604ced81b94058cadb3231eb3ece2b2608bc400904c5f3cbb572eed28885ba39daf4882dac93f013dc4585cfc87a12c5555e78b64adf0d87d3eb354811f6b82c275a654e33c2f794e3dde5669dda9770cce8dda290463d445f86e651e547b8ab567c88614b89aaaf277d94f792f1337c7b2cfe3ab3e20ec57181b2debca44383788d0b5ecce170590f10758280da1cf34a704a1dde5db319a275bff853493eab74ff2cb18683b70357aa47e9762001508e8a52c9a839eec9d9ac7f5e88ca75741bb330041a6a5a3429f5560f16280cb6ebf0ab963360df811d82a970bdbd2023b964ab454503ee82faede85403bfef3323ed2c77765d600fcf91b13fdddf7736ba4740df239abec07f245b3ac131386da2c37722a790b99a2b36731e6c2de0db2bfecf464dc8ce1fafe9802df5a7ff0397712eadb9afc16209dd1533d60f75c914239d90396a8e1023102f9a08d90b18ada21a018d016ffa5807808aa762b22e86b6cb9ad201842d5c0d1120b107928754255ac0570c007233682e31abbb14a0abdfcc5a403306501f96dd31ea7668d82e758045179c2d9978ca493fcdf5419e28cfdb598ce6ba9316509febbd9bac7e50a8a2acde47be52280c07a3528102df732bf45a63747343ec55f48646cec767794784a1</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -130,8 +522,8 @@
     
     <entry>
       <title>notion用法</title>
-      <link href="/2020/notion%E7%94%A8%E6%B3%95/"/>
-      <url>/2020/notion%E7%94%A8%E6%B3%95/</url>
+      <link href="/2020/learning/notion%E7%94%A8%E6%B3%95/"/>
+      <url>/2020/learning/notion%E7%94%A8%E6%B3%95/</url>
       
         <content type="html"><![CDATA[<a id="more"></a>]]></content>
       
@@ -168,8 +560,8 @@
     
     <entry>
       <title>天依生日会</title>
-      <link href="/2020/diary/2020-7/%E5%A4%A9%E4%BE%9D%E7%94%9F%E6%97%A5%E4%BC%9A/"/>
-      <url>/2020/diary/2020-7/%E5%A4%A9%E4%BE%9D%E7%94%9F%E6%97%A5%E4%BC%9A/</url>
+      <link href="/2020/diary/2020/2020-7/%E5%A4%A9%E4%BE%9D%E7%94%9F%E6%97%A5%E4%BC%9A/"/>
+      <url>/2020/diary/2020/2020-7/%E5%A4%A9%E4%BE%9D%E7%94%9F%E6%97%A5%E4%BC%9A/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="f8e2b23c62b279742411b22617c9152585dc711d7ccb9624686a8989b5428b14">e32c27e47419b87d293b9e8ce412adf8bdccf4dceaa1fa3c5111fdcd0df3a3d96b8b7ebe3567d46c57d220b2f677fa6a418441c552602691a4f32a1738da8deb2da495992ce86deb78be9021fcf50ce03b8d37da675ad32a661d98c41dab914fe9dc85904c7676891039ad70dc019523fa341131ca93079945e11ce5945226b466d6f50bc268c25de029e5d686fadd4adc02a058a3ea571f6773866eae027b0e91bb492bae765c8b333b6d89448960c69f2909eec759267ea06b8ed1b5e0995afad20f67e6aa7940876e31b608d180a1b7e536c30bc1814f448b08695389bfee5d7ab576da7d5dccfcebd6452d8039d51b04a0898278cff4d42dd13eb141f4d3</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -193,8 +585,8 @@
     
     <entry>
       <title>关于以图搜图的资料</title>
-      <link href="/2020/%E5%85%B3%E4%BA%8E%E4%BB%A5%E5%9B%BE%E6%90%9C%E5%9B%BE%E7%9A%84%E8%B5%84%E6%96%99/"/>
-      <url>/2020/%E5%85%B3%E4%BA%8E%E4%BB%A5%E5%9B%BE%E6%90%9C%E5%9B%BE%E7%9A%84%E8%B5%84%E6%96%99/</url>
+      <link href="/2020/AI/%E5%85%B3%E4%BA%8E%E4%BB%A5%E5%9B%BE%E6%90%9C%E5%9B%BE%E7%9A%84%E8%B5%84%E6%96%99/"/>
+      <url>/2020/AI/%E5%85%B3%E4%BA%8E%E4%BB%A5%E5%9B%BE%E6%90%9C%E5%9B%BE%E7%9A%84%E8%B5%84%E6%96%99/</url>
       
         <content type="html"><![CDATA[<p>2020.7.12<br>•    查询当前以图搜图的原理及流程（弄清楚图像分类、图像检测、图像检索等等的区别，以及以图搜图涉及到哪些？）<br>•    然后针对基于深度学习的以图搜图或者说图像检索，找一个小数据集的代码demo 尝试把代码跑成功，能出来结果</p><p>以图搜图的技术已经较为成熟，可以根据实现步骤中的知识点进行学习，以一点为中心进行扩散学习。</p><a id="more"></a><h2 id="相关资料："><a href="#相关资料：" class="headerlink" title="相关资料："></a>相关资料：</h2><p>以图搜图技术演进和架构优化<br><a href="https://zhuanlan.zhihu.com/p/65306548" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/65306548</a></p><p>图像检索系列——利用深度学习实现以图搜图（文章末尾参考文章也可以进行查看）<br><a href="https://zhuanlan.zhihu.com/p/80886534" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/80886534</a></p><p>基于深度学习实现以图搜图功能<br><a href="https://blog.csdn.net/chenghaoy/article/details/84977406" target="_blank" rel="noopener">https://blog.csdn.net/chenghaoy/article/details/84977406</a></p><p>深度学习相关视频：<br>链接：<a href="https://pan.baidu.com/s/1fEuxbEnbCRgA2UPxFoZaiw" target="_blank" rel="noopener">https://pan.baidu.com/s/1fEuxbEnbCRgA2UPxFoZaiw</a><br>提取码：64ci</p><p>相关数据集：<br>链接：<a href="https://pan.baidu.com/s/1DCiFmZNJH-U_51asw04heA" target="_blank" rel="noopener">https://pan.baidu.com/s/1DCiFmZNJH-U_51asw04heA</a><br>提取码：884u</p><h2 id="7-13"><a href="#7-13" class="headerlink" title="7-13"></a>7-13</h2><h3 id="以图搜图原理"><a href="#以图搜图原理" class="headerlink" title="以图搜图原理"></a>以图搜图原理</h3><ol><li>检索图片库</li><li>特征提取<br>在实际中，我们使用图片的颜色分布、梯度变化统计量、纹理、BOW统计、底层/中层/高层语义特征等作为图片的特征</li><li>检索结构<br> 常见的，我们可以对数据集进行聚类，把数据分成一堆一堆的，比对时先选择相似的堆，然后在堆内部再进行细致的比对。而分堆的理念又可以通过树结构、Hash结构、倒排索引、图结构等等来刻画。</li></ol><h3 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h3><p>简单的特征：图像的单通道、多通道的颜色直方图<br>进一步颜色矩特征，图像中任何的颜色分布都可以通过它的矩来表示。<br>另外需要强调的局部特征是SIFT特征，SURF特征，HOG特征等<br>将多个局部特征矢量聚合成一个统一维度的矢量表示的方法有：BOW、VLAD、Fisher Vector等等。<br>我们知道CNN网络具有很多不同程度对图像进行抽象的layer，较低的层得到的是图像的简单特征，而较高层得到的是图像的语义相关的特征，不同层的特征在检索层面精度有很大的区别</p><h3 id="优化方式"><a href="#优化方式" class="headerlink" title="优化方式"></a>优化方式</h3><ol><li>引入更多的监督信息；</li><li>不同程度、维度的attention（包括层、channel、类等等）；</li><li>Triplet loss及其各种变种；</li><li>不同的特征聚合方式；</li></ol><h3 id="检索引擎"><a href="#检索引擎" class="headerlink" title="检索引擎"></a>检索引擎</h3><p>早期我们通过层次化的聚类来对数据分组，通过K-D Tree对数据进行划分，通过Hash对空间进行划分，通过倒排索引加速检索的效率，通过PQ量化对更大规模的数据进行二次方的划分。</p><h2 id="7-15"><a href="#7-15" class="headerlink" title="7-15"></a>7-15</h2><p>深度学习：转换编程思维<br>Tensor N维数组<br>Flow 流</p>]]></content>
       
@@ -218,8 +610,8 @@
     
     <entry>
       <title>2020-7-11</title>
-      <link href="/2020/diary/2020-7/%E5%A4%A9%E4%BE%9D%E5%85%B8%E8%97%8F%E5%8D%A1/"/>
-      <url>/2020/diary/2020-7/%E5%A4%A9%E4%BE%9D%E5%85%B8%E8%97%8F%E5%8D%A1/</url>
+      <link href="/2020/diary/2020/2020-7/%E5%A4%A9%E4%BE%9D%E5%85%B8%E8%97%8F%E5%8D%A1/"/>
+      <url>/2020/diary/2020/2020-7/%E5%A4%A9%E4%BE%9D%E5%85%B8%E8%97%8F%E5%8D%A1/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="37a29237089a8bac16798946ce72c00668d87ca9c319a1c29bf52a694d730699">908a9d66769e22ea45d6fa32cf72de2ab78b8ba05211a3d0188e5dcbb7ba06152a13e436a241e89749d3d0460c14d9989d1d556a6f28e404a26063233ec0f4bff27902f74213b931403a199e837576e9fe4d7cc49573e7476e681e83c89053a76ae1ea2f8c7a2cc969b3b65f86f19b7a3ca406c420e4b40351f5aea5e3f1cab6c551e5dbb10271c95d8e4bfa28126b6708b19ae9416762006062b576968bdbc9875dfbf9b9920bd7090b467e2d4c9dddc5745ee357de2431065e7b690365eb65b015b50da59e7fbe94ed0522fa40c6209865339a555dab3fbf48ec20bfa1a25b79007edfea29454ca65d7a525bab67fcc1325ffcbc6905491b8b079fedd6cfbb66f423351d6fa65599910a520868ca8d6b5bab9acd9832857ee1f62d964e785846d6bc19485c086eeb4286895fe0dfbfa73282f669735876c0ac6b7cc3b1193b76f8464a3e59119fd0d2c4561bf0e990e7e4bd9412d5b94115df1acabe0032cfc8de9b93ec62916609ecd965e15e1cb33557c153eb5e7647e483e4447585c4d1aa959ba60fe33b577402eed659ca8048e635bf9d1ca77e0ec3186869daae751990e16097d87695e3ed0adc7ae075765aa37b1ee0a36d48ecb0f5899c80fccccd0fef5ba0dc469454e204bc7400929c5f76fc769f9ff5aa549f16e0b75095acaec92bde80747470cf3d34444724e65ce358e360e63171d7a10ace9991e20a07bea581d7e0dbfcd6144ca8c246d4992dea</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -268,8 +660,8 @@
     
     <entry>
       <title>nodejs与python传值</title>
-      <link href="/2020/nodejs%E4%B8%8Epython%E4%BC%A0%E5%80%BC/"/>
-      <url>/2020/nodejs%E4%B8%8Epython%E4%BC%A0%E5%80%BC/</url>
+      <link href="/2020/WEB/nodejs%E4%B8%8Epython%E4%BC%A0%E5%80%BC/"/>
+      <url>/2020/WEB/nodejs%E4%B8%8Epython%E4%BC%A0%E5%80%BC/</url>
       
         <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在使用electron+vue+python进行传输数据时，出现中文乱码的情况<br>utf-8-&gt;gbk<br>查找资料后发现，网上大部分都采用iconv-lite进行编码的转换<br>但进行传输时可能造成了一部分的数据损失，导致我并不能用这个方法实现</p><a id="more"></a><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>我在python端采用urlencode，将中文字符转化成ulr编码</p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> sys<span class="token keyword">from</span> urllib<span class="token punctuation">.</span>parse <span class="token keyword">import</span> quote<span class="token punctuation">,</span>unquotetext <span class="token operator">=</span> <span class="token string">'你好'</span>text <span class="token operator">=</span> quote<span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token keyword">print</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span>sys<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>在electron的render.js中</p><pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">let</span> <span class="token punctuation">{</span>PythonShell<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'python-shell'</span><span class="token punctuation">)</span><span class="token keyword">var</span> urlencode <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'urlencode'</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">// console.log(process.argv)</span><span class="token keyword">let</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>    mode<span class="token punctuation">:</span> <span class="token string">'text'</span><span class="token punctuation">,</span>    pythonPath<span class="token punctuation">:</span> <span class="token string">'python'</span><span class="token punctuation">,</span>    pythonOptions<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'-u'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// get print results in real-time</span>    scriptPath<span class="token punctuation">:</span> <span class="token string">'./'</span><span class="token punctuation">,</span>    <span class="token comment" spellcheck="true">// args: ['value1', 'value2', 'value3']</span><span class="token punctuation">}</span><span class="token punctuation">;</span>PythonShell<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token string">'hello.py'</span><span class="token punctuation">,</span> options <span class="token punctuation">,</span>  <span class="token keyword">function</span>  <span class="token punctuation">(</span>err<span class="token punctuation">,</span> results<span class="token punctuation">)</span>  <span class="token punctuation">{</span>    <span class="token keyword">var</span> out <span class="token operator">=</span> results<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>    out <span class="token operator">=</span> urlencode<span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>out<span class="token punctuation">,</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>    <span class="token keyword">if</span>  <span class="token punctuation">(</span>err<span class="token punctuation">)</span>  <span class="token punctuation">{</span>        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token keyword">throw</span> err<span class="token punctuation">;</span>    <span class="token punctuation">}</span>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'hello.py finished.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'results'</span><span class="token punctuation">,</span> out<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
       
@@ -321,36 +713,11 @@
     
     
     <entry>
-      <title>数据分析</title>
-      <link href="/2020/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-      <url>/2020/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</url>
-      
-        <content type="html"><![CDATA[<h2 id="课程"><a href="#课程" class="headerlink" title="课程"></a>课程</h2><p><a href="https://www.bilibili.com/video/BV1MJ411h7st?from=search&seid=3773709565464429049" target="_blank" rel="noopener">链接</a><br><a href="https://www.bilibili.com/video/BV1tx411U7bA?p=10" target="_blank" rel="noopener">链接2</a></p><h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="数据分析思维"><a href="#数据分析思维" class="headerlink" title="数据分析思维"></a>数据分析思维</h3><p>使用思维导图</p><h4 id="结构化"><a href="#结构化" class="headerlink" title="结构化"></a>结构化</h4><p><img src="/images/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-1.png" alt="结构化" loading="lazy"><br>捋顺思路</p><h4 id="公式化"><a href="#公式化" class="headerlink" title="公式化"></a>公式化</h4><p>数据化</p><h4 id="业务化"><a href="#业务化" class="headerlink" title="业务化"></a>业务化</h4><p>落地，贴合业务</p><h3 id="思维技巧"><a href="#思维技巧" class="headerlink" title="思维技巧"></a>思维技巧</h3><ol><li>象限法</li><li>多维法</li><li>假设法<br> 没有数据</li><li>指数法<br> 对数据进行加工</li><li>二八法</li><li>对比法</li><li>漏斗法</li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> CS </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 数据分析 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>vue</title>
       <link href="/2020/CS/vue/"/>
       <url>/2020/CS/vue/</url>
       
-        <content type="html"><![CDATA[<!--more--><h2 id="插值表达式"><a href="#插值表达式" class="headerlink" title="插值表达式"></a>插值表达式</h2><blockquote><p>this.msg 可以获取Vue实例中的data元素</p></blockquote><h2 id="常用关键字"><a href="#常用关键字" class="headerlink" title="常用关键字"></a>常用关键字</h2><ol><li>v-model</li><li>v-on:click 或@click</li><li>v-bind  绑定标签里的值 如 v-bind:href=”msg”</li><li>v-once</li><li>v-html</li><li>v-text</li></ol><h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2>]]></content>
+        <content type="html"><![CDATA[<!--more--><h2 id="插值表达式"><a href="#插值表达式" class="headerlink" title="插值表达式"></a>插值表达式</h2><blockquote><p>this.msg 可以获取Vue实例中的data元素</p></blockquote><h2 id="常用关键字"><a href="#常用关键字" class="headerlink" title="常用关键字"></a>常用关键字</h2><ol><li>v-model 双向绑定</li><li>v-on:click 或@click</li><li>v-bind  绑定标签里的值 如 v-bind:href=”msg”<br>v-bind:title=”message”  鼠标悬停几秒钟查看此处动态绑定的提示信息！</li><li>v-once</li><li>v-html</li><li>v-text</li><li>v-if v-if=”seen” 条件</li><li>v-for 循环 v-for=”todo in todos”</li></ol><h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>axios跨域问题<br>通过vue-cli中的配置进行转接解决<br><a href="https://cli.vuejs.org/zh/config/#devserver-proxy" target="_blank" rel="noopener">https://cli.vuejs.org/zh/config/#devserver-proxy</a></p>]]></content>
       
       
       <categories>
@@ -422,8 +789,8 @@
     
     <entry>
       <title>第二届“慧源共享”全国高校开放数据创新研究大赛</title>
-      <link href="/2020/%E7%AC%AC%E4%BA%8C%E5%B1%8A%E2%80%9C%E6%85%A7%E6%BA%90%E5%85%B1%E4%BA%AB%E2%80%9D%E5%85%A8%E5%9B%BD%E9%AB%98%E6%A0%A1%E5%BC%80%E6%94%BE%E6%95%B0%E6%8D%AE%E5%88%9B%E6%96%B0%E7%A0%94%E7%A9%B6%E5%A4%A7%E8%B5%9B/"/>
-      <url>/2020/%E7%AC%AC%E4%BA%8C%E5%B1%8A%E2%80%9C%E6%85%A7%E6%BA%90%E5%85%B1%E4%BA%AB%E2%80%9D%E5%85%A8%E5%9B%BD%E9%AB%98%E6%A0%A1%E5%BC%80%E6%94%BE%E6%95%B0%E6%8D%AE%E5%88%9B%E6%96%B0%E7%A0%94%E7%A9%B6%E5%A4%A7%E8%B5%9B/</url>
+      <link href="/2020/CS/%E7%AC%AC%E4%BA%8C%E5%B1%8A%E2%80%9C%E6%85%A7%E6%BA%90%E5%85%B1%E4%BA%AB%E2%80%9D%E5%85%A8%E5%9B%BD%E9%AB%98%E6%A0%A1%E5%BC%80%E6%94%BE%E6%95%B0%E6%8D%AE%E5%88%9B%E6%96%B0%E7%A0%94%E7%A9%B6%E5%A4%A7%E8%B5%9B/"/>
+      <url>/2020/CS/%E7%AC%AC%E4%BA%8C%E5%B1%8A%E2%80%9C%E6%85%A7%E6%BA%90%E5%85%B1%E4%BA%AB%E2%80%9D%E5%85%A8%E5%9B%BD%E9%AB%98%E6%A0%A1%E5%BC%80%E6%94%BE%E6%95%B0%E6%8D%AE%E5%88%9B%E6%96%B0%E7%A0%94%E7%A9%B6%E5%A4%A7%E8%B5%9B/</url>
       
         <content type="html"><![CDATA[<!--more--><h2 id="书信集"><a href="#书信集" class="headerlink" title="书信集"></a>书信集</h2><p>理解时代的资料<br>研究方法：</p><ol><li>放在时代背景下解读（可以提示——主题）</li><li>具体环境（部队、农民……）</li><li>比较现今的时代，理解不同，理解今天的重要时代</li></ol><p>研究主题：</p><ol><li>分析细节（衣食住行）</li><li>情感、道德观、价值观，年轻人对国家、社会的认同</li><li>读后感动的地方</li></ol><h2 id="华东师范大学"><a href="#华东师范大学" class="headerlink" title="华东师范大学"></a>华东师范大学</h2><p>（1）上海高新技术企业数据集 json python自带的 自然语言处理<br>（2）上交所科创企业数据集<br>（3）百度贴吧自闭症用户回帖<br>意见领袖？<br>（4）美国新闻记者招聘信息数据集</p><h2 id="中国流动人口动态监测调查数据集"><a href="#中国流动人口动态监测调查数据集" class="headerlink" title="中国流动人口动态监测调查数据集"></a>中国流动人口动态监测调查数据集</h2><p>图示化工具<br>知识图谱<br>数据应用 数据</p>]]></content>
       
@@ -522,8 +889,8 @@
     
     <entry>
       <title>2020-6-26</title>
-      <link href="/2020/diary/2020-6/%E8%80%83%E5%AE%8C%E8%AF%95%E4%BA%86/"/>
-      <url>/2020/diary/2020-6/%E8%80%83%E5%AE%8C%E8%AF%95%E4%BA%86/</url>
+      <link href="/2020/diary/2020/2020-6/%E8%80%83%E5%AE%8C%E8%AF%95%E4%BA%86/"/>
+      <url>/2020/diary/2020/2020-6/%E8%80%83%E5%AE%8C%E8%AF%95%E4%BA%86/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="ab75800b4cef852e8495b5d792217bf0113652f9bceabb19e926667cd1a33c16">e32c27e47419b87d293b9e8ce412adf8b2f12e1129906282b54d496ca6e46f59b87954bebc0aa8b9814c36d177e15bafb8199b9e32b1833d7d4133ef5638a8f92c0a1b5fa76eb469971632e097748bbe6c9b56550164a5ee56cac496937ef255099308b1b0dc8aba12cd40421e53f4db382d0d41126e21c8651353eeded544cde4f6aa888bf351aa8fc98c516f3780f2b7d3161a403373229b030f7db0af208ce1e4c1a7a694c53a7d4428b4bd9a0ff54e74858d460c3e448cf041d65a94f6d1f3c6ab66e459d750b23976d51da08c95b42c7738c0b61002e30b9bb65214def7f37b13b5b8b605026785102977369fe1db2cd6715f6dc56221a7961e932b4537290abc0c6c44ceb1f4868415fa83e334b51468f5564534e23b5db3b4949e803eade0e8053b2a79a0b59c325e5e24e2176b6c8d32e4284dda09d529b54149da5b0cd70104559726c3012ae530cf95582d365b7c1da156d7b625368ffae9c0763be874a730fa0f00dd2dfb80015b0a7f260ce6152b537cf35a90be710dd415e7ab8e08dad0b3352a6e0d664b306e711d75ffaa82de2d06dc035c86679bf86d40ec41a6d26452137d09504a56b745bbe0338687c32e9fda53177d8c3c7b4aa366f2bfcf903d5886468c79688b8d556637a6ec34881792948fdd06a6443906e4e9beda953ae21bda740251aebb47e44c54ba6ab3d59bb92000927d9660ddd83c5dacb15bbabdf699460da4632e850c7aec79874246271b872e37467fb9e3df784d044d5b6fb8f6f0153769e098a9421340a92017389c990f8d84453a194a2d2d0b2691ae032e25672d95041accac0b20291abd79211518c170f415f4f5525d67aa5106c3d0e00e38d5961e836b7b0d22f450f1b4e6eafe76d2c5d434127839c7117edb237594d2de8222bb8956a1153bace4058a29c176d814faa8ad1b7cac47fd22845ffb693716e3f32f08773e19cffac0f24901cf4c443ee51a373df0fb9701c8c5b62b583aba8282dcf1abfa05ad77f49f94a6b026461d8411aa3c0825ee46356f7195083179703b0448abe9c61b4eec7781e7a63df94cc02888bb29ef7ff10f6b631a32ecc6d8a25f5931137b81f1409afa14a085e135f74b7107de08d248b8bb7a7a61bb6ad2bbdedb818af3af57cfaf706f720b63fae99789d0ec79d16282fd1171c11a4ffe4b7079b3cc3c0fa68195c5ee2d07c4d1479f7a5dcabf7f124941e18422b970be12f86faa48cba3e7fc5404b4f0e32764717ee568b219de2bc48e2d36e2e893bb6027e957e0afc05da50f0ba13a19af283e2a491194aeb9a47dfb6be2a6272f800d0fe1c76e0527555d924d4f18f31d61a7319c983f338cefd67c031578975170b9c24bd04dfdac6201bf20c56c90f512b1ac57bf5261c8974e783bc3e6f5193c092042dc268eb80b09cd638791314b743b97c766bebe09d9285cc66c67e6de69bfb99b924c71f3f99a4be0bbffac2b4361e9aaf367cf6493ecf877bcb221fe7d39c196f3d616696820a8ad26ab1220eeba69f482ca741cfad58eab12766f8b74a9e206688f33508af7cc208c30e93435f23ffae42b816f0e3045cad23ca301a35fb6de3f28303bdee03e8a6bd502f5059140daf38b2e12cd9088fa1f9b8b2284bcb090e58a1ea7641aa2dec89499f9456b3eb31b6b72711fd43e5a611dfe08df267129c04621d170aedc676649edf8cfd6f604d515a52f6a82341c772c51e5799819b1f0259040bfa88acf1c2137b0435e9d624fdc9e3a0f76a472e430210a1f934e33a449cec1a8d7d1efb127babfded758d3d8bccaf63f097c70b04be7694da28a3631a8fe62ca7df33f64f5c2f1145824cdea0f3c904c91894949a261c71dfc9facff54c42002355722d041206c9a18690ec5a3267b8ee49fda73b65922bcede7c2fa6de81fd83e5c2907be822aae49aaa66eacbc8e3aa0d648519bad5fa0c7585cb97c1b5b37723420f442771442992ccd4b023d0c4b8f</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -672,8 +1039,8 @@
     
     <entry>
       <title>2020-5-20</title>
-      <link href="/2020/diary/2020-5/2020-5-20/"/>
-      <url>/2020/diary/2020-5/2020-5-20/</url>
+      <link href="/2020/diary/2020/2020-5/2020-5-20/"/>
+      <url>/2020/diary/2020/2020-5/2020-5-20/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="c3d42d578793f50ad0431ae8ef932b0daa030ffefc2b0e64266d17c02fbc19c4">e32c27e47419b87d293b9e8ce412adf825bcb5f27fd0393e184a9f5b2ae1defd6ea39867474c47592638fe3d7757aed7ae4094d2c56eb031be4cd70b776a558564749a421c49843661fb4f12faac94f5fb0519ebd93e48a34fb1cb10ebf49e7abe0940037285c3587f9df3945ff49ed84f4b2a25928c21b040b795d5c1cecf7e508597b52bddfb1dd18f668d90419fa200e732e392ff95fb7886c43a7d9f1e1ff4246cf981d3cc789e61885257824ba8756d6e929cd776d1a593408899026c84e523d513a45dff979bf527f2e94ffac2bb3d1fce233bbf97e2158107dae48c6d10a1c3d906c614fb4cf51bc3af96a2d5206c0ffd4bea27ad57ffe8cdfe9f9d5cee92b6b924a3505443e0124a49214c183547e701a9f8c66c912b5981ce6e7da211473dbf856ce9b6d36ff5a31c87f9fd5b655a461cf7d8d60f91ec8ac444c14e73c92c5cf4a89067c75c83451dcf93b5bfeea846bca479e445041b58b4d36323e073be2d53b00ee8dcad0bb39b794c83d1b00a90afdcebabc5995e06e26db64d33556d20875fced3c50ed56beea5e1e5</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -872,8 +1239,8 @@
     
     <entry>
       <title>2020-5-14</title>
-      <link href="/2020/diary/2020-5/2020-5-14/"/>
-      <url>/2020/diary/2020-5/2020-5-14/</url>
+      <link href="/2020/diary/2020/2020-5/2020-5-14/"/>
+      <url>/2020/diary/2020/2020-5/2020-5-14/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="42bc627fc5455eb01ba76f1a319b7da6b36a125646b53eb4f1195c220e4fdeb5">e32c27e47419b87d293b9e8ce412adf872abdec871a86781bedb7be890ae0d6f482b0fd25ca0218c872a67470ba46c9f0ca9c1fe449ec92d53bc6c22fd6c11a4e5664785f975ea762adc81c67945ed0ca178617802e77a35fd84a7aefb66b676639fde9d81e634309d56b6ba893e9fda8c04d5f99ea5b5e6cccdd943e0480cc5f457a3480a8ffd657ed5b4f03de1043223332d9c2f60d50257eef1e30a427df13f6a63fc87c0dcc11adee270d07c01222cc880697b4caf79e5e08ad36b8544af7b372513ac92d60a82d0c5ab67262eda57e750bfefc35fec4e58b21678de8e89314066f66f00308b4c44547d8d6a029e9be006a618518b9486d8a37eba48e66326279bb9114e6538c5034a674fe0d3d59679b5cf8039b9755b7f53cf870676fd1d37b87d14727202f7c1c43e25827ea4ad531e824024633d9955b2791567f3012304e496883eac5b49661051293a5fcb4854df16a8db8e7bc4d9a155e7beab035d0a89f6faa7bb90ae1cb0defe76a9e97c5bc104b3d502601b6cf9855e8fb396d4ec8a0c7413db3f4fce5bf7d6470c1a9149bb8d18ac75e4b86d8052d6a7e85be14b21df57712c3e0851825784dc79e1cb7bddffa6e1366ead4bdb4cfe24c7d88cc77093cdb49f0d9b36f4e775ad91c8cf18d3afdca6a5d41baa6e822c824d1869e60229c8355b0a6f9d8c432961e3e03605e2378c9f35890b4e5c0e866af21d3727c8acc36c8bbe6af44ace9d617ee5cd209b100de198264eb5f46ee280c54cc79a5306ea09d2c0eb9497c9394a32a74887fefd018a4a00b8fedd85ef8f6941a4a7e3d2410fad6ec988d6327b7e62f5dad247c0823f78198f7d38e5e72d92012da360a5b26609edc0c66f1c60418173dc21b91ae1aecaa397844d8ef54019efd841e36378642ea7c7003168d5ae6635cbca72f1795299db9eac44561b13cb41d13afdf08cbd8a464ef61dd87b7cd927c372f2016ae18f2e49e402361bc1759d80905f118dc4b9c0ede5fb6c2992161557b3489bad0372dbd397b438cb1d382ea80f5e63c206db1d2a0d18a0437ffb679a1bd31a1862c4ad84ce05a4d09d6c12f9c3ecc3dd6cfd9bdc6cea81d47cb4448a8de20502cc21d47b39524710366dce9e2f490932d82f088ae7e7cf80139ef917df2de6a0084c59fc14b7295756867907789ec0733384e8be015ccfe2a4d502f2f552a57f0864b5283522426c611e73474aa3d964b764ca187398b41617573a185724c11d4655cb196aa1751d1610e70dd81819f63d3ff11b9a9e138aac7620d6c25e5640257f4697bb3210cd113cfd5750c530ef74fdd79678b9ae083b1145c7682303f16fc2d1e14cb58925fd0a25a250d0da66c978722ec6d4e2450f5a2dbe0d5911927a55b20815fe0989b77368b3a1087bf6aeda670f8874fe5f33d053ada6530d22d7ddcd592e1092fafe6d14243ca8f87a79b26af03838398ec826415468d5329a9b0c626e833ebb4a01bd7dabdac7447b31690b9c1723dcd84988e00bb0f716283ef77bb95afa7fa01340c3</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -1041,8 +1408,8 @@
     
     <entry>
       <title>2020-5-12</title>
-      <link href="/2020/diary/2020-5/2020-5-12/"/>
-      <url>/2020/diary/2020-5/2020-5-12/</url>
+      <link href="/2020/diary/2020/2020-5/2020-5-12/"/>
+      <url>/2020/diary/2020/2020-5/2020-5-12/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="11ff039c089ce7bad2b532f7e2df09fb134ab96e78afb014008cbb3e7ed74c68">a2c307c51c957bc8cd6d67e4f581ae7f3fba0ad99d1703e6dc7af7e61fd1cf199cff7e3e31001d46642b10ce0e9b9a627d5da48216659ecd3e7b2c0d0c45b75a7774dd6ee5a556be9f1b457f1d9b0130f6bf702fc21e98bc9fd57d3318806906a2319308cdcc322f1391177b25392f79225f3a59e7654fefc45ee6d677fb756b41da50bdd3604f94a8448a7b286da9b5e7750bd7f086db0e27061cd2353cb96331cb5cfbe1478d448991228ee487e0c00b1309729d2157247761c27c9bc2f60ac84d02441dac353ef7daa439f511de709d7046d4c48e8aa04c64b259116ce3cdc7d191f973fcc5013815f6f08099f4df79812238da360a3999fe53de795fdd28acc1377591d4d88722d9e49f0271f8ad3a3fe0dc49f180e69278517ff2eefdae</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -1118,8 +1485,8 @@
     
     <entry>
       <title>2020-5-9</title>
-      <link href="/2020/diary/2020-5/2020-5-9/"/>
-      <url>/2020/diary/2020-5/2020-5-9/</url>
+      <link href="/2020/diary/2020/2020-5/2020-5-9/"/>
+      <url>/2020/diary/2020/2020-5/2020-5-9/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="911e343a3bbb099db6cdd0ddb85c063dc966df81f8817df4f835f8a88b7b0d1d">e32c27e47419b87d293b9e8ce412adf8a62cf3f2f4a0d794ee9106f21c71bf9962c810a9e5d413731ee3389f714a8885813ca9333679ad3d8d40e6ca8801e9591882e2ab14a9307f6791a5ff07caa7ba42464a530e372fac70e4409d115ed9ee5f4f5d3a599aa611fcf0fc6b8c1453dd15802bd15963da30ccd18d117683f1c4f554de12b4ace47af7c707c005e01cd9a731301ea255752b12027474d9b3d965192fdddbb9e5b893a77eaee1d86a9ba75ef9c57f4a89eb36cd360abff0b8be7f6ff997bb74de8b3fde0a1efc5f4abcacf35708e822e7141b6c57d07199ce846ee8bf2b30945197a4d936d80bf97f6a65e9d334868ea2ce88d7ef4c1317a82f03bb549d5a81bec3c9387983fdbaefd031579b19c3165a2c2bfe39412fb93f454adeb2dd6dfb13700e63028cae0c694d0c176fd6fa0aa0a4fdae6e0d2b2ee0fc0d57f25a7cf41938095ce0e563e0fa66a36fe63bd33e0396d0b8f29935a4ab2cba</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -1268,8 +1635,8 @@
     
     <entry>
       <title>2020-5-6</title>
-      <link href="/2020/diary/2020-5/2020-5-6/"/>
-      <url>/2020/diary/2020-5/2020-5-6/</url>
+      <link href="/2020/diary/2020/2020-5/2020-5-6/"/>
+      <url>/2020/diary/2020/2020-5/2020-5-6/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="89b8feac7f9d2a2b8834ff6654255ade63d4da9ac5d986befbf59801a29860f2">e32c27e47419b87d293b9e8ce412adf8a88206147a5c4a365bbc03504941a61e809495e8a3b764e360bc6d0936b5de5b350fe647126be2d6be56852d5c195337e28991ec0b459a9303c07b0176654959dcc35ee895cabac9d76473f1cbdfdfb1ee750b590d3a038011b410644dec0d1a23083d6a52401a975d2b8d4c6d87e25d90e5cc5499ad462e1afefc0d53ec9dfe523013a43b5884abf0e2c03cbc3afb9fbb464f6a0426b6cebcea13d4841441a68a8c4c9616767552bebe68371993e06d8c8f2c33548e6309e756f896a1dd6b0638a3632b4c501e836baa94140d2d5ad10348840d3e4fef07c04f796491d5d52202a60a4f49af26c7b1e69f7d7d14dc49351d010e4baecf103fb35148c4eb6fcbe97f2b72be2c2aa9111d281c88c27c5fbfe47c8471773615c4cfc8dba2bacf84</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -1397,8 +1764,8 @@
     
     <entry>
       <title>2020-5-4</title>
-      <link href="/2020/diary/2020-5/2020-5-4/"/>
-      <url>/2020/diary/2020-5/2020-5-4/</url>
+      <link href="/2020/diary/2020/2020-5/2020-5-4/"/>
+      <url>/2020/diary/2020/2020-5/2020-5-4/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="21b6e363712f2648e0f46a410d7504b753ef2b708613c99ebb65edf350ef13dd">e32c27e47419b87d293b9e8ce412adf8d74b2f2577633cdca9b3c5a044e77a82096d626010c8f4c13fb7f41ace3790308ac5d62a0940504db81f63b77aa15cf61d5e703ffbbfc5a753634984ea5c0abc8c63558ec57f9f6318b8744c87598bda5db7eeb88662fa54717c657941f3b6e65f260276389c5b1a4e23f1de19214fdb312faa2300908d1ce8a237c086baace283e1e0f2a0ee3d5b990a6d1b39cfde091bf9c8781255fa898c6c326d9cb270a02fec97a8d5566b07a827ec05151a23ff9de6c89055816f74780dfaa4de53e30088a94c48babe0b27fed75a16a993fdb5bbc9978f2433de9653499b601227bd322a97cb64ad98fe96ae687b0da66666830371a0f67ebc7250776b8efb7d7ab1da12280d89a57ddcc4c856b17f011451c58f7612d9af0c13e032fe366bcf3885ee640c191bfe9289d6354babf991b94950a4ed85f0ee1daf5e9e53feec9d61b0af252e5aa86ef46ec644a12b041f49c1882ac107aa6a9f9273c133166601992dc3a620df582790ae63b8c2e58189e7b11155cd3fb8a793ff72cd62a73572eac2af9e49591a78dfe05966b2017ff94be121eec125cb1010b5fb8a2fccaf82fd38a7c133116f1a227f938d1f6238a850f6fa18477b2a69103097e123e2440dad8d6996d2f1a342886e66111b2a5e87f7d81b23d713500c6498809d552a85e03759d32d087e1e42ea7f7e9d79b6efc85e5907f1c6c7e648350e4b0f27436cd5124054a345d93f989053d3f6b1763de91ea03199fef0b9ba3f9041a544d84e5d38283c90ef5f98455da2ad7561a91b07248a2bb2f6d7648743643088ba7808fbc87347fffb3a87a9d857b3699791599e74c7c9d7b0e90cf63ddcc7279e8e26975b757072c3653fafee06754cbf7df42c43077c992559d023923df8c0e7e926d77b986c9456567fbd4b10561d5465739f01df4d5c412c8a06d615f2a9355acba3b9b134c3ab97e049cda2c588c8a7e91caadf0e899543b9b40d3cd4f55f0161d817929e766c75f2533f5fe4df9b6f3b9ed2f5a7b65829cd1b5e75c6ee6ab9c925e872af8aa4e349849c09d420df2192b2f72483f3a52a87259b64513869c8f55ef90972d71853c4f1a901819a55eea0471462fb4fde5418327e55b3ec3e16810038d87c940716ce16f798e04fa2565e4a25069c4d7dcdb24d0f13fc70636fdf9c437699a2c1ebbcd37fa22cac3ae13db8434c5e70034fa1ea3f8b023b4eccde6ac156e640ccbade048874eb69514b4ec342f50b0cd8e133713579ef7ce89a3321f270193888c688ad4db00f913d2d4c20b5346ebc054fba6675375416b5fd428b6c32d1e97efe787abf04ccd08e096ca4a04bbee7ce23992cef6ae80c0f408ce239d9863970f9f5b8fbc730f0f7b005941291220c059227e6259e2e31b5a1d47d8c73c68184bc37cc230936106e5437a3a32ea8507cfb154ff46150e017025141dc3b2c1b3e485e3bd50e22a517c4cd585048005d2c1010127556f6d96f3c4252fb7253ef390d51a03f062c3f7880c3c2c340bb85f6e066d7c42b7837da752a1eff3f2c4709a799309415d2f581f2bf3176a13dffce02d10259babee1ae9ce20555ada92fa4ecd41aa067d1ba0ec82b073bd68c2b01f7c96caed43980c0a21d7d6675b463a1fd193b84c3528c5a343d7bd59f7a5deb3e9d6fb10b3c576cc50ff802b57867de4fcf60a27970b161ae5cf1d8fb5ee1cc450de2f669e13ae4d541192ef14890c2768928e64c768d6737861390a686c15df7c4597c989a9db17dbd49edcf1981c4a90faa1d555b759ffdbe1a0303521842927c1936e7575e1bf66fa214713229853a7804b742fc5031f0f5e51c149ffb0e1887a36a24bc33f376a15ca905be3e3e00298d7be1dffd9ee4a7e071816377781b1dd21752848bdf720c0d536e8bf0813f1392f43574da08461d4f33cae780667051bb3679bc97e15271752052e44969c00a47563eb944a8b9b75e0a7f668d1a633815b02a2fc9d14cc6c491e45ceba38c95c564770f27058aca317e333e8c35ef043230e444710aae776fc148334204a8be3446d343bb3b77fdbcd0a4af6c299f96bc2dea1b97981c8f6759513f</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -1474,8 +1841,8 @@
     
     <entry>
       <title>2020-5-2</title>
-      <link href="/2020/diary/2020-5/2020-5-2/"/>
-      <url>/2020/diary/2020-5/2020-5-2/</url>
+      <link href="/2020/diary/2020/2020-5/2020-5-2/"/>
+      <url>/2020/diary/2020/2020-5/2020-5-2/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="3d9be9dea19fb03594bce70f9ef1eb147a0c153079f6a7e3418e4cf38bf7c9e2">e32c27e47419b87d293b9e8ce412adf8d74b2f2577633cdca9b3c5a044e77a82096d626010c8f4c13fb7f41ace3790308ac5d62a0940504db81f63b77aa15cf61d5e703ffbbfc5a753634984ea5c0abc8c63558ec57f9f6318b8744c87598bda1e87bf21de0dd95ded3aed9486e56af0c340d1d14dcc8b547e32bfb04c058e0d47602a38143d0d65e04c9afbdc89030f37376f7b0e4308e70d9dc37f9b5e6bce5d36ec4902fdff2c3ca90a214649d17a1929f32d13b5a085b312e57385892c1dfcf4c88d4f2868af0ac53fb1f4d2e022fa72c8eded556d5877d13521f9f7066abfc8a4b516a0070e05c2156214573b1cac2cf1d16c60e93804c4c81d38ee4b7da6b37b0215e7c9ee5f87e018b48f4c36bd0c306b928bfe527f547f2803732b8faf87bfba7266826c7cc61ed25bf9666c345ab6dbe2e42c0545cb4eb3b93ea577bf4b5bccaf6754e5cc6186f944de6ebe8e404074a1c0bed5e64a27aac34644519913e44ea868730b271d4e7994d4305c586c626b98606e64399614c63f2ef3962b1b0153b12fb1c35a50b54a9f7745c2ef2098972c0e25403ef73b82b9c503f12313f4fffe61ea4fabd97251f9f3d51431be4f884b5187dedd3c6aa28a25a2841e17e6382d0a307604028c8f009831f4c6f177c876c26a10d29ea7deea5ff058fa2fa3b6e9b9048a5adde6e2ffe87805acf4bbfdf6d9d1811451aef32cb0f4567e503a2c4273530c6626d11761d243d432d89bf434d03a471713d14af53367a6cbf382288e6551fe65fe57d0829c61cc</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -1551,8 +1918,8 @@
     
     <entry>
       <title>2020-5-1</title>
-      <link href="/2020/diary/2020-5/2020-5-1/"/>
-      <url>/2020/diary/2020-5/2020-5-1/</url>
+      <link href="/2020/diary/2020/2020-5/2020-5-1/"/>
+      <url>/2020/diary/2020/2020-5/2020-5-1/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="497e8bb8493424d0acc801c82764a3cbdf3658ced59275f0dc0b0ffa2e93307a">e32c27e47419b87d293b9e8ce412adf8d74b2f2577633cdca9b3c5a044e77a82096d626010c8f4c13fb7f41ace3790308ac5d62a0940504db81f63b77aa15cf61d5e703ffbbfc5a753634984ea5c0abc8c63558ec57f9f6318b8744c87598bda13331f87c63444363ac4e69e33fe048e9f158411f624b5ad00c21d38a8aa0023e3042130f95830206c317ca61ae8eeb70ed9c0a586176bdde2021aaa63950b066ea10d236da063394b0b415b1eac472f8cf684679583e24f58938273ffbe8969e6f746457eced19b6a351bde19b66efc0473f59f1bef27239ac6d29e3afcef769902e2f2c95b88f57909f44337df6a33f5a4cdbc27e1404168c1dc4f04c530571c2c6ec13e3c205ca4bcd3728ae7aca09d018e2e26df5fd12d07e0b27b39de9e504e2136be6f8972476f998cbdd80df4d53ff1e084136900d3201a93895bf7acf92a142997ead1c2207d3698ff04cd29ccea0db669584c3a5b92029081770fd67798b44a3c29fe3e159eb5746b8f6e4bacd4dca921b39ea84edcd94f5004a29595564e2a2d8640328ba629013aa38e6971246c407b5f544ec7b022c7ec9f325aef7b349e942b3b891270953851fd323854676924167908e099aecc6c30d56d3e6f89cf9565ab21248b287c2bef59f8c20b8ae79668c25270259bef1aaf50b606625adbaf6f7635899644221b7969424f904db2745de87419fe1a795fb4c078f009ef1a3b863fe8424774d83db55d317e1be8bf58b315e51bd0051731ce94c2bd94f572f6f94bed5a2a24d8b55c157052d76b1accbbec3795afee0ccac5a355874152d7d1f460b74e00766b481e407db92743695dba206ad530259c4f56dba2bb3fb6dd0a4a1b9cf198293f9c8aa3fabde0f7e74da03bb5bf340edc191cbea994a1a7484e7c01ecc42433e602b28954a32ba395728aba432747399b3cb0089744674be87d14857dc0c88a9e09508777cd</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -1601,8 +1968,8 @@
     
     <entry>
       <title>2020-4-26</title>
-      <link href="/2020/diary/2020-4/2020-4-26/"/>
-      <url>/2020/diary/2020-4/2020-4-26/</url>
+      <link href="/2020/diary/2020/2020-4/2020-4-26/"/>
+      <url>/2020/diary/2020/2020-4/2020-4-26/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="79db4435881e66cced3b027cafe2c259b28bc9edacde614541fdf1021ae50f00">e32c27e47419b87d293b9e8ce412adf8e1e5f2595d32940c6dea9f0ba1a493becabf3d7ec3583ecb4b1b02414756c210f4e3e8f8bcb10a314c44701a8db130a75d31e36fedda51542bf44df5220b720864a459b91e872b60493e747abf3290df63f09b37b3965ff72530a272fcd88a67f2f24589d9d833f8835e85e27183c4dce944aa82040e95edbe8a3f94d0ac8d0ee3ad05efc231deca2f35e2d8c2a276b4cbd6abdc5ef78962329165e8f8b907c2453829dd026280e9b1e75322ae25579a748b3d580b2caa40747953cbaf23dfa6d47df73a47d901ed9f6f56190b677b1391508ef460a78d8da09bfcf53f019b56</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -2027,8 +2394,8 @@
     
     <entry>
       <title>2020-4-25</title>
-      <link href="/2020/diary/2020-4/2020-4-25/"/>
-      <url>/2020/diary/2020-4/2020-4-25/</url>
+      <link href="/2020/diary/2020/2020-4/2020-4-25/"/>
+      <url>/2020/diary/2020/2020-4/2020-4-25/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="a4aeb6f1713f4f83516db739ca9077b6d06434d7df46941cdf6cd831579c7e80">cb4551c676471b747c15969945acfbad274cc311cb7f7f29508d0a9d35cfb139f189fd286e1efc64bb18f16a62d049f7e3c2771a640aaf0d347c4383a1dd1d7537e1f952ecafdbc54d99cf7589d0c9431346b7d847751a122e0fdcc42102fdc5154425a9a20ab47cdef47669c3ee025be70f89bfdd0afd56e5e859688d4223d2cc8bf29edbb5f2deb59d70d93d48d644e5b924bbf210c263ea16afc70de976c34d4d578abaa4f6a2ed8bcee06e3eb1f5e1b632691decd68a93975b70b757ff182d024288e4b2e0c0e3fcde902ab2c770b8a17bb52c6079fc3fd15daff1a7afb637126b25b6dc697d6295c43a4c993225293b79bea47c6efdacf54dc3ba0878de09e5ecd073dc67390c135d854517714345307f90de4229947ae1a1b796b4b977da6b736db5ed71e07136e493f12a5e668d124f136dd1fd12f971ce40efc5f71973698f0e16cb2edfabfca047d6387c1f67976707ca40d574850aeb5c38ab28f90b8980f628fa69fce44978a8bdb98dc8478a10c56f9327d32c3348bd5acf15f0cf157c52dd6560bef021e10aafa9a59f0bef6289e6feeb0a0c7605128c2d77df5cce23bb00f5eea6109024c5c46595ab0e4132feceb137b75ba9f98596b0a1ed569584c5ad26f064d95fbc542a78372a90dbcf5c2a7968b46077a12e0191c768dae585120cb7911a068f311ba630f4cc04502a9b3923f8831f4ed4192a2fc6a97d7c6678a051c4b08baf7d882b53976683b176fdba81ee0d536126ae417795e667448725f88c83c4cc4fa5483f085f257346ca1661e6c34b0ef444ae229382fe80fe66edd4ec11d8e4f5f8d10820d22a34d39abbd055baad837c4473110b684ca9cc4214ed998faf9d1f710a93b2c221be1d8b8072cc5586bd0c032e3c8e60e6dcdac18beb41d4a91edcc56b8a94cef6abb777115667c1616ca8d1e84051d839d12c58e13a5d88772f15a36555cac74b1b6b353e5fa86effdcd3765bf854297941155dddc7fa440df42d93ccc25ab48dae9cba13896329a1dcb27727d88489d37f75a942320c79d89dba912bde55966a36a846457c43356171fbfadc4fc47bfa74151ee050961b90d591ca9cec319ac075e0b5873a425fc02d600dd599357c3325cfc4e1902fffbdc9e6b56cce04b2aeb515b6fce578364cddd73cbc5db95d852922420d171d46e158ab47e9ca68003df72757290b1c0335ed8797d717793a6d50ee2c7df99f730bbe12eca69f8ef193c62c3524f3e16c37bf6cf8a77a8ac7e61dd9e8017f69287de036f6ca2f6d42107a7f8338ee5c51039dd8fa90bb28892976eb7ed9f9d63b343aee0ab0d4df416ddadfabd68f270739778b05615c0601545290df3c77afa186e7edebc64fedc6746c1448fb4c552a3c6c3005db63b9b796f9d5dff27e875cfcd1854522619ba20bd866e976af0004e49cf669c08f29188548ecf0d6e0038baddc72e634230442bfcabb4dcbf0df5c16be216991a97e647d83bf943a30bc805230142a2870d873f246487ae99a62c14528e866e249d85b6d456507cc9d4ed7daffa8b341514ab32c17087f2744514d908844133e31ce65c30bfd51aef00daaca22351440a2415287</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -2105,7 +2472,7 @@
       <link href="/2020/learning/%E6%8E%A8%E5%85%8D%E8%A6%81%E6%B1%82/"/>
       <url>/2020/learning/%E6%8E%A8%E5%85%8D%E8%A6%81%E6%B1%82/</url>
       
-        <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="e40b2e2e9ff1eda7c1f37c3e22ab6bd07e5853984277628408e672f4cddcb92e">9f4551d8c3771008c05fd314bc0fc327b0bbfd4438a90d67b540dfa5ab88d6fc67113fe482b1f44e44c56c425913e1c488f030f155c761edabedf737d6e010f3ea9b8d1305b6c06030b40f0e2e0e4bc68ffbdb6cab4e085e7b4eb25ec0be008d7823173d8374ea6e73a33202a98ffe91e6b189f68fae2d13e4d6f1344305bc26cd68b85af0784494d06a0a2388fc119f38b1f285afded5c1a3db6b512f34d36f825b67ac73b845d82ea78fb4602acea3368c6a6a83b085a2ae755c7cb50b850ae419460ec9a75ccfd9c766a6ce0c2cca4046a84124d8b4c9dc19888343f5be9addc720e03478f20894ff9b86f92de1326d122db805ab72c0f5428c706680116405c9c314d2c99125d4a1e1cd3a0eb8b6825982cfef2a4448ee6252ef9408a2be001cd614d766305328480644fa9b954f695e8f788ee7a95756d8edffd6a716f455263d5c487ea1c6869c8b8c45956aeeb2bcd4211eb1b0fdd22c309fd84d5f6cc498990989c8eee8e63914ab6fb599b70fba6ecf75778a1416e65be52e6a987aea7d2730a85c0c36f1ce49986361ccb7733a70f5f66a84d31043cf7edb7fbe410f9c883172a78a1725d7fd53ae9241459420ce3c30271e7538edc90b4d1ac8ff33eb927f80e761b22e16d4f6fcf8e90be90ec000d8456a2ae575cf86eff721144426d4baea948ca0c0e4ab6ff0b65a22c1a6784fb07f72bf5054aa7ea6f0c4eca2b81d28dcd8bc1f4bc6bd37fd08722d95d4c22bacf18a8bf97e4c372eb026dba8d18ba4be85ec48e5158aade5176dc7beeb7f2feaf87618fe76706a0682bcf3cef422fad14a2cf5fd48c08521d789546565ce999863db1c21754272be4041929b7c7801ff389a93f72d4c570e44b4d5134523a5138157ad42054ff0f4e2452cdf34803a69e6062237f99e034fad079d84e4ed70efd855156c3d3b5c39a07000965d555f3f262da114ae6b72e461e6fc23857b29d7c778558982958c6b57de55fe9080852b5cb3a79247e3afdaa5e78b5c91d16c8837c51a486939e8664a67946ee981d89ecc08aff170106f64f8ef4462b1a3e7a7430ce805772038842ce5bc29141972d58ac7316a5b947787bbaa06f69d4b3d4df70540d75e8bb68915551590b405be464616f36b16fb6f91e42c0dfaaa4c9aeb9f0c6e7d564e4fe5ca14638765bb31705ed5bbbb3b07db34e94de2a814d6b63f11217801da329313d17d4a8a13a8df84f09968d67711c5a18ab1989236f9cd647a02eca958d9997125ace8ea77ccb70d393f26ab4dabef5b32784d4db5327aa1e972c3ced202730b0272023ecb415c71ca851b858e8d756fcfa37e503792744585806da54259332cb1cab2276165e59842864d96a993d575e10bd306e919f2f11ecb5aa739224b996a4b62db7ae39f19e24efe47e0efe16511fc37dc3a25c2ead670ac0d89be7d48551e4ca8b42a6945ceb1fdcd68e36c576c272802941cabb11d0247bad5bb8a837cddcae29d2234d4a1bc8809310e31ebe1298db83b5d3c3945b48cc2085a396889776ade54794b38ee2a6f03f34db8b6bdc2d26d9a7a03b927f2b9dffb4ebf51a90c11d543b2c39b5d590a20a07efca7b0e67165ae2b880c2eb40be97497fa5645d58c7cbde5e6152de4e168a19a8ae2c937606c498bcaa22dcf316f6fb21380d02d4db75ae8444a2699010251690dfbbba61bc249fa8e8866a7a524e71c5785afc24ff7a7fc4cf5293ea31a4aa8bf7c66c507000e97bd42c1f826cc58e4bc046156ec40d8d8bbeba067e06f22b124358d3ec570939d1a10393a7ea9fccb314370e2581833e57e99f93f1a2417e6a70ee9faa04b9f5e39aaace2947c70dd9c2e47262502eab7daa5b7b954ad57ce77d9671623a38153b7ecf8c552e7724991173bff10c37e8d71261b71bb148073a34e74192ff7110df5c83d4df625e37313d08767884df9430abb810d87d7bb9a07bbb70d3fa3003500ec37323af634cf955920fdf64457d41cab6c84cb2fe0aa9d59f926d32385eaae846cb811b84a268249113b54d5798f0e6fd43c7c72170416bef9f671104a25cf16cef52b5ad4dabfa5bea3d24f336747f16b3d2af56b77222c124645b2ce6678f0838bed3b52736f6a29d17df44d2880229ce4b648580628a7993b3351e6b8d937c5a590d5102ebdc7ca7b2cf43500e5881fb77af9e403d73341ccb83dc0871e12716537a578619fa41d09237964d7548eaf1d4975748fb055ddd482c4a9e9c5084b207b2d40a5d1e17c7a285e35114e94e7ebc818540c81cf3431d55f8f009be2f0efa95afa88df21594f91378da82695d9d07b47ea73d36bf3a26ee59277d48560e5dcb55aa47ba9a9d1e01657eef3d25a2f70761af5697e3dfaf2ce75f351cd2bec6898dd06c596b5bc28b92372eca4626d01619ffe32b20f5bedcb91d6269c6c2b4b5ac214a91836d1fce58c779792e44f123219c87009c0bcc9f61132f615a0ae257b76fe7272f4652ccefba1c4da0d0ca0db035ffae3c803ba7cb2ffb2d24619cd42e1f934edbc93ce46ae8b81f207b7a91a950f7e75969a29e8b6416aff3dfcfed0ebe40abcae92816f808f861da0899c76a8693440cb3d92e45be2b44fe49a0f52638502a2734f4045ac2e457228e29d90c98ef83f02de31454663ad4ba51d2f6da7f83e4b04636e8f87fe87c65380709200071ce0ee3537f930b8b8f7e0b96c16818488bb240bccfa7122ba33031f1de45f7936d2d42a86b2bd1ec32f57e023e75583378823c25b6d0932e5450627fd8d5945a03ecb588c33a0075096e65b6e134d967e0b9345b6566df1bebe410c2fd53cd29d996b77447d28ffb0ffec659836fd045c27b44fa9ba386d04e3fe897c388af2b5cc4a967909eabe07aaeaf43cdfeeaffbccdce172b719987db365b36eb26b116ac2336ec6a9d627c3845c62bfdb71212e2fddf4d5048144690211965975cac301d0d8006b3358fdcec48df82bbe3d8386e6853c61b273490520b7a8bd28a06301b35520bf6cdc47ef40c1a73390659673cf76ee1557b59021274025aa0b24b4f310c14786fa174f1ffea8610bc4484e81cbbc3003f5adb7e758051c7baf1139d9bb71db1a99e38fd3e3b77ea7032f36894edba69f</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+        <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="b08700dd7b048258553938479922c7ac536d02ee4c5c227a5d0a48a13eab30dd">194d77dbd849fee832386e58a8d873f38c27b4bc3557e54cf016a5db9d58c588d177664e6ce26044b3fef1df81a1f0163493eff346b92a511f69f3d67d80f0b4f06fc5ed987c8e61bf331972725893613366499414338984ecd6a409717c4c46969e1c6ffff4ff17a662c88db127fedead354bfcd6598ec5bdb31ef01dcb7f5712f4829a37c3f43f16719658374c5117fe0d7774ea36c4834ce11b83487f56a693bdf7ce55a8504bfaa1734c767cf37223794eba74b9b21ecd91c0bb0e8aeeeae7eae3a769dcabdaa5f81487f819a4be268496011c5820aeb2b151acc2041c81a19082b5746c42da93595143f0c239986b7653252392aebdbf0bb2dbd5973c83e8903784c6d65dcbad3c85b39e5f48cf975a1d38a47a9894e2e9e875efb4c31c9f3f9b2f79c3a60920a67a5e6eea7ee4fc4245d5e42507ef39dbffafc1fbf7884489d4b0062d8428ebecbf1a5cc0a18dc48f67ac12397c549541f55c2dee20a203cb8e06f8e81e7702f70fc8695e545e6c06d0a65ccde237d82f5d98780f0cef739b226029fb0f961482d90d3a521054df6afb3cbd27791508555852459f621fc1202de0f4952bb814530837059629cec53d0da6a7916ca20827b1edb829b567146aaa8ad452a8cea856fca446f573e4ad1d6bbcd66bd4a5fa7ba730c68c6beec8a1fb6a16e1378026d3e3d7d66cc74c1e088c8f95fe46347e2f2541d3b2c8c4dea8237d3b305cd8d5c1cfe2bc7d88216db5049e1e3b5161b083f3a6ff90592393309c795e365902415e16147c0c9ba7acc3dce4564853f96b3b43d04b756f1b8208b226e1741b142fea740199456992a109758badb5d148cb703755bcc5b7ec9ca96eecc2730b78a1a74899d59a1872022ac2420816388c4c115372b1044bb86b0c9df6c27a0a8ca5673e9127cb0d85be275775e52ad8e40cc11adfd8a4e66b8a3ddce475c3a8978a32a5b73c3acaebb638f695840ace446ea65d4fde208d7153905f31dfe60c568bca3a74abae29c710f30785810b9cb1fc1f9fdba81aa6bac603b1cd9c836a3004ec784ab8f77fcf04d138ad1b123a54dedb756db620fff193bc71c979cc103fabf4db6b3d7d9bfc717cbdf00c4fa312b4adfc091ea243b17834d28f10ee38ab640d5e54efb0245b07c553dd1f3328a04b91895d6633db9033f0d93b07dc6e82e22e4bfd830919b671e235e9c5c260968548fc1e0744b6ec61dc6f1cb72bf8279d736f4e24df574413d2ece41c41df7314e980f1d052021417b2d964702b2a24c68331ace81fe0328149da34e836d0c2c2734385261e8c85e6bdf65c2eccbdcfa643f89019e29cdb3b74f5e7c2d33ce073f37d22a34497e73deda20d152bc5e5480c9db087e34710b6d484ee90be6ce7a9820eac8afc5efd499e48b496da7d084c21f982ab37b713f1c70e2bfa4ad99c08299e50b37bf879560df2d034fd2e6e7674f80599f744b6fa60d392ff724f51fa0bcf015fef242060b3b4d5b0e1790dd8c34bb2d667fcb0b5caddc64e134a9a426c4d5748f3ca0f1bdef2b8b5055db5dda44e0e9f52fbc1bbad0a9703ed8a93467fb1d0a47e72252b209da3788fcb67e29a6559a1336f8c270d722e185f3e27f421859338383e1ecb6998e106357457599ea5b2f64b06acb34c73fd0623a0f37c0041fa3ae3ddab77e6a0e2cd6baeae68e2824d98301890f7413a5faca4ac8f218b759b05a0aaade019314bde8d2b591613169e4ed57960374987befd127b065fb54bb7876311987cb874a7c157c445c7ecdb38eec3d34cfb8f309f8d24cd6f118c0c1c2afa9ddf4ec8d394a000acf300986f5897d72508080b3f0087412c46a17592245e9ff9dcf99ec9eb30c93a235173001b540d900645cd6e5113176bd87dbb10ac8fbf4b039c1effd11911e7ab3da3e097014bc25c8e9b23110ea4ae63d48d2ade501eec29c4ca810917f79365892c8717657f7722773ffaee5f36a770a7e862ab0b7718ca90ab8ac69d7085519d2a9fd39091a0c873030ea7a7c7f7c52bff43ff2ad70bc6fd1ab61fb6430b489a0002a6e65246feb089e182653e21d3912f0bb6a83c7a8824f2a992f4182f6c95e9a4c95628bcb0c43392ce560592d2cc22d885ca765447fdb5a80e95faee04163f7bc15c5b5668da455b8dea9d2a48ea2129b85cd1228c55f99a1a903833227d534232f5cf58862447ea65d5c40e4a1199d0603154ba9ef5c76e9eb858d331e7110de0f8345fb7327514bb151c37763006e4fd393c051f85c0f10fce5cc8a91e9ec58aa9d491ea723691653685d290369666b20682e0686fa7206e603464b43cd2ee7c81ee6ae5ff9e3a02b6853465190572aca6ed5aaec19cbe1d84df4f57fd02dee8885612d7b7cb036db514c950ec4aa80f891df084082f35a97ba9b47fe66ae13c160e01d3da8d5a225755bddf6de43ed6d10e0a81d9042688a28366d23acbdc16929f1889ffe3d3657372a82bef765513a4d4f4e85df5e46e4c7899a106cd7797bbdfdf0dfc35e4d6c361705fcacae8b1a1ef6f27417fa1c05ef8a453dc6c2bece8b948a7028fd734800c6da5c12e82f9b43c3a0c2c09055123bac187d7f42303821ae9d6d7b699541086acfc174db3d0f05aec7c11f0aafa4a51f03acdc97a941662fd340a693aa968615d09143b9c0f1c9b538e997ce37a31a4f58d8f891c819c16b2964c9bcd2df30e6b617d6934d830e472d0438f929ddd81118aad10a4b9fc02a67de02fdb8b95de7e2036d59bb5a7e3eed49d1f10017d7721bc808023d32bc2e22d7070a99de5cf00d79fec6d634175aa7bf24d95011353200f3cb8fc74eacb3bd5cf1fd7b6047290bfad5c5f825cafa5c049107e31f0a79c6a64844c32cd78f38df87ddcab670c306c0ba175656fc944af68471d80fc21b348d103ba774f51f0c12113d1baa37e68a9156f0235066a2f96ff2988480eda02ba21462310ff41680436fecdcf81d648ea2acb4702c062f9590bd463bbd5159d938630fed3133738dd89d61b04350d2a6cb2311145b415969f50154718ba9ec17b39d0b4e2d87a87bc8db9dfe5ab0611407959993ee7876702c57f3d8c9a4370e07a235f4de4cad27e6b6a154d91e1fc9bd4edb775fdb5c2d4bdbb1a1158557d8c9dc02cf7e02d1ad24b467332dabd6f0c1cb552c6238a020d4232e21bf2e913dcce66b633f7b6e8f4d130d059218972f7ef98a06d1bc9da75e29bd63455e83d948cb926e0f9eabff9a6bb7110b6b0d2d0b35d91d34eba1e375f3523b3e518eb0adfaddc995fb34ec4</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
       
       <categories>
@@ -2127,8 +2494,8 @@
     
     <entry>
       <title>2020-4-23</title>
-      <link href="/2020/diary/2020-4/2020-4-23/"/>
-      <url>/2020/diary/2020-4/2020-4-23/</url>
+      <link href="/2020/diary/2020/2020-4/2020-4-23/"/>
+      <url>/2020/diary/2020/2020-4/2020-4-23/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="4a6ac276c31c5aa9f9511facc75ac1d9e60c43dcf5504d6e39e0ce4a76d1b95b">e32c27e47419b87d293b9e8ce412adf84cdbdb8bb07d6caa7a92ea6f119080142f73b161cb7b54e53123f39e6b6ae83a2d09e64f60521bf2e03436e25efdc7b65d4f24b9c03dff003f41da7d14359df633eb0a0910bd8b7e6f05d284be5e7610dc3ac5783d92ab60281c7805e49898bf330f5dd1b8badc9a43fdfad399f852ba31fa7a4c1ddb0483e732ea75baa7eef708156786d56dd2ae4d838aa00256027f09c87779edcad1f3b103e2a3605387f77645bdf3f13d52b8de449c6e21d0a54d1dcaec19e908a87dcfdd0d173c8951ab7d8c40e9cc6ddcf6eb52cd0a96453f7721e6107cb22696ab36f17b6b80dfbbfca2671228424e4bb9065e6785459285feef7695e880c96049e4577216c7a461d241ef9a946b6bf6858a2a7cc6d427edc49e2e7278175927d5173bbefcf06b4c71df21068763322b625f15083efcbec9887e913e39c6b861c7549d2cda169599590b97adc73dd58e26e571df23898ae4fc3ce2e1746e3abef8de648cd0e5b5bbf01b42eaa7420e14e6dc6013801391ed42c34e0376060386898819aee399beb62e47c8d79b4446d019e5794c5ae665f3eaddc0d569080d7cb9d785b6bce52175471e81a24d6aa6451769b3d7b2281d092fdcfe51bafed878179f5806c863c797985c295256d907300327a3cc76479858f0365a86cbe7ebe7f022716542029975d030803fde35f5b813f89db446090d9400687c10da61735692da5e1591e448fb09fe46c0c0e7ee57cf87f65e549d9b9a8b8b7c4ff10694fc4e6b9a6265dbdc20fcd31303b03b492765f08e3ca74549983df494b0a15e5773d8d965803ec2ab9a099bd90fc44a508568a333928f4d1fafb72f5949bea2ee1a852e5a8a4a89052b48e1f53fc3e7676235710e0b8c4a427bcef2102d10cb80f752101ae90ba6675b3de05db68adc66b9b29baa8ba85985dfaa119521a11cd1b1f3162343d4585881d9f28c32969a11cbd4d79444d1338889fb76f54acb5d83f6abc22ea236dad816646358c72bfef422e5254f31d171577147ca7d99891481fa12fede2b175872ddf69fb4fb7f1d215a2413065210e12d02ec22d5b85d4c39b183b0a3a5ef09f48da2d30b2c4af8d896748e936f18bfe22bf9c6a9bc4698e9670b63618125b513e31092da49c0fd36ce38e98810801150f015e0498ac96b97af704a7d561cec4a5efd5557cf8b9ac29997165d9823b1ac7b141a4d72dc8b73a6116c2debf5406c01857e3c4cfd643510604d9d12e4467fcd8d6a799327a5f78b3285dca55b11f376bbc5f9fa2d13504279a2a61f8d512ba812826cd307c2fedae51dc4b1f37a45235f261ac86430a8cc92bc829114863f30623e6da7e87fb913500c759c95b46ec734c6f3389f73feaf8a66ca1695bbf78f9e78691fa3f22a587f6fb4b27769b0a5cbc00e9ddc9f9ab094f53d41544e8e4dfb2e5125fc218936287c8d374c22d17057f0648ef2826e33cb8276f10cc82f6e222524e8742146911256682a5265675682d754fcb74ccaf81b4675e357360676b71eb6d43067c7b778635f157f8a04d3330988b60532711015f755572301b5f18987ca7228d8c074cc95c80a74f75383c14b19f746995fcfb531d3bcce6779797d4f281355cd12fca74c1bfa03d68410b25599eeeaa082d05b087ccac5b49fa9ae5d4c2774a26a3641b906eb081c8e081d</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -2152,8 +2519,8 @@
     
     <entry>
       <title>2020-4-22</title>
-      <link href="/2020/diary/2020-4/2020-4-22/"/>
-      <url>/2020/diary/2020-4/2020-4-22/</url>
+      <link href="/2020/diary/2020/2020-4/2020-4-22/"/>
+      <url>/2020/diary/2020/2020-4/2020-4-22/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="9cdd797ae1579e2ccbd4d5921e0daa3a4c05649ac8060cfc3199dd86e8d3ebd3">e32c27e47419b87d293b9e8ce412adf84cdbdb8bb07d6caa7a92ea6f11908014009c17ae053a54804792e0b71371aee719fece2aa021d88d35123be88d7761a0de2c9af6241a282fffec4face6111abfeac5f04eb8ecbbc487fd2338fda1a95e311fbbd046c15963cda2114e9d79ca31c84eb01ca6c65d708f2b5bad61735e40598a0d3595a622711e83d08d79ac0cf509af3ce63ac2d6eed1e65c213670d6ba4d96aedbdd79a96351b509fe8b6151347057411a9d1f2621d0687d3be039f25a0a5c0a442de6e0cc1a0629873db6c4849ca57be5cd2099c1a7ee2421c303cf87d29b41cf955e0fdade31b30158a46a451d9deb283d3c4a4978850de447d5daa4bf12172c2a1a5dc5e64a30621a165ff79cc92aae6a037b3cff04a851d918849d5fbdd5c8fa0a7d916ba271d642bfebf04e15ed59216869191ed5f060c7407bde6470cb0ed0672773f92e7e327b32543bbb4912b5dd329de449b545ed5392567278866f4a077bb6ffb0774e5433a097faabdad4db6b9b42fc2aac9ba2c8a6a2e7133e513b06f508db79d3956885b494f4915a19291a5aeb0a63bf595689888c192abd585f99cad41a8fdf8ced78a8916131e149a2096d011b647ac5c862a6b12d12e24e6101c5c985b9335e179e5f2045d17b208f7a9cdf886b35bd32674c95226c4a13fc17954f7c6dac513fe2cce1165d30f2280d03536fb0fceeaad7ca697282b2085b9e6824a5ce79b449218fd2e44c1a4374a4803d672f611db43622542aae94e04b0672efcf8dad84a79030fcbaeefeeebf703d22fa0af3b6ac34b196c177456faeb34d738a4dc7c42b46659002167227ee35588ed59bba924d88b922adc81a46aa6aaee7f7c45e8e4ce954a6e60ce346b8a30b9eb15699a904610e0408eb05c25f2fc81032702f7a1361e5b725933bb58ea3f538349192e39adf6a508673fd8756684369634e41b76240cbb9cc58730f93d60f5d11d9a6db5464187775f554eab5d1a7fdba93f44863966cf415870db93bde01a758bd43bf73f2feaa77d06470fff3652c66ac33210d517219e1f1cf5fcf4f5f23e89237c2c61c6ddcc2c75f71c8e94d0ee2b486206365e4dc5fcd9a25566387c3df1c62fad0dcb14a61f9c666e61f0230bf072df043d64286e3577b3f012b54a24b8327a2e91b21747d3b916f94db6c7f7d8aa471cb5eca05db5051cda9e1167be8333c8e8ede5981e877faf765d75d24a958b5fea73953905ba99917d28d7b532f915143428f23085a23c73d12360695adf377b192bfce5e2a21459cbb0f6aaf4f42d91a6d094903399cad095e5d610027d6b15cdfec611b65460cdb29d70310f272b48885068c61cb71f4c07f055bd8d91ef24f286318cbf8adcb2d7e398c80538137f4324dc6d37fd0056788c6a0ad561d3158e252b1c1030eb268e7c7279990002f0c257c555273ef2dadb9bb111978a426edfca18f3c522e99b6904ad5eb5cf1cd5448f1734426498695118adb3a810530eb0cbdada8c4baf6df982298d4b9b058af177520552d426be7481a4952787e97a0098824186cfcaae8d66c506bba65862c535985e62f82d8ec1a54e6289929d6f588f9fbe19a62d9e5502b941c5eea8ae9879a15ddbe8785b892d4b6831bb20f9d8bf4f3a626e89b3f520819d53f1918a9a42a5cf9cd10cba0b124ea1665bc6423d8470ea2ce2370a3687545aeebcb8b6c14474d44ef5d2821156262dea60c7810899767baea14bf38b1544228c61bec9f17ff5aef82370f3a640a4f17277fb52a14f814a13482be083cea592885779264e7e04ff876ade964bf119a39f8e72608ff1c959487363939e77046c1039194f0efdcff357a44f6c0f079364ec06dbb6256c823d715c92046eb804dd6af0e2881d3ae162ff3d460654ec4d865b82fbbcd151ecd328c242aeaa8e5b43b0a5a022ddc11fcce07b316a5c598bf0e646773c5b9b8da8d894a664036b1dda165f0568e5f2fcab048c48c6a8a4c3dd0ffe214abcb664e1b085c15655dbcf3da3e895c288f7a903fc39664ec1a6715af85f1673f5a345d1efa19cbbbcaf38a774c6686869861e7514912009e18c7f8ec47908510217b25bebd6f953c3fb1177be51860325b3def1bbbc5ed578c9e40ca03cab88369ff55c7bd582ccb1f4985de3935dcb06070ed42ffe270c0147962a51a0b9568b423c423cda80e9cd6ef17ec9c25f530d3c8951fa08e23e07c662869016036e85e3819ec17619eac9a82e3b9f81c2a175395394be6ab260d508b2a4844360ed99b4f8ba529c1544594e9956cb26c68186b1868fb3430258abfd492f0614cf2fcf961ef49ffa27061c5d26a1f4fd701a406f7aaba85cfcc0144b801979f5e8227076f4597b4607bdc1f5e604860a3af4060d34a66e2ea7a7a26ed438d77b279b7d2029353472e04eaaa7d6d172baa1a9a45d7777727</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -2202,8 +2569,8 @@
     
     <entry>
       <title>2020-4-21</title>
-      <link href="/2020/diary/2020-4/2020-4-21/"/>
-      <url>/2020/diary/2020-4/2020-4-21/</url>
+      <link href="/2020/diary/2020/2020-4/2020-4-21/"/>
+      <url>/2020/diary/2020/2020-4/2020-4-21/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="7526216619393ccecc9966f7d3bc3ab998001f1bcb19c87c2bf810c56926c045">e32c27e47419b87d293b9e8ce412adf84cdbdb8bb07d6caa7a92ea6f1190801407af2415e4957cdc0e08126bc7ae547af4ada76f3ab79761aeae72c21364b4ace50718f376c84ed1ec259d9f4db3eeb5bdcb6a6e13bdf608625e32845c8b6ce8be64806b4bf36e334b2f5cd149972a294c254a5478922410d1a20e53b7751d09f29da622413e880ca4e81f77ba03bdcbffc8a9f1199b59e1c07fe7477a3932fcca022eb0e3c06e8b34542a8f1d330632bb7fab1f8ab9cbadf480ab4e92aa24e51fb10060fca923376e1cf957f55a00f4c27ac2b0ad0d07741c58a09b896908e4b4d17ba44ee041fe73dd92d10fe07fd204614e030f0dd1ec18bcdb2a85573073034c63971e2775cb7c0953a15b60a35f2a459d37a9a7185d61f7485d13e1d21ba9813e49570ee6316a528f223ed6407a55928271972e236c255f9f75375862c0253576eb268abfdf9164cec0bb0ec271432087f53455a4f6899343eeef6fc93dfdd94986624ff4131148b0c94fb155157f99c4b6978d86240f20a3cb62e5ef13a44fbbfa760480f7dedefe55fccbc7e9d3d4e05927584ceed46944c0a9e09cd518c189d00945888ccea699a6b4bfff4934f81a76bde1da86b708762f8fc9579b64e8030a20df539a877e40016c6f04cfe7868e30d641963ec643f1a8087f43899b8ae9d165d5b3d59f2675bac534f07ac4f091c0a6ead26fa05b8ca97202f3e57ee8c372ee85fa4fe55f68ff95581c5d6dd4c7ff12f9b04d6a883c7a7665c027b8bc3e5dbc3d624ddbe9501fa83808d6587aa01ba90339254ab76c4e0bcc86e4c541db3e640e11cd41e3272c0dfe09f4982c1ae99b538caa98c3bb8d697307b3377f9cd7b61fcfd9b11c7de11f1b215c</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -2227,8 +2594,8 @@
     
     <entry>
       <title>2020-4-14</title>
-      <link href="/2020/diary/2020-4/2020-4-14/"/>
-      <url>/2020/diary/2020-4/2020-4-14/</url>
+      <link href="/2020/diary/2020/2020-4/2020-4-14/"/>
+      <url>/2020/diary/2020/2020-4/2020-4-14/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="db8a17cef4aea8f315851d0d9397c00051592e50f22605aaf0f21b56ab467f72">e32c27e47419b87d293b9e8ce412adf84cdbdb8bb07d6caa7a92ea6f119080146d72a46a32c642ae16f609784cbb486209afbc147fd181d153eae38a8c1a070445f4c4c9bbd99d4e29de3645ad6ff2d73441cdcbd97c6aa3492fb397245f4bd3843b4887b5d3d1ebcd8d370bb6e84ed3961b94fd887b9bfed3957c6ee6875fd8964d8b02d1db14c67c00376d9f90963ac1cdd2df33bc3ac12e19f58c3fe49743c18fcd379b40c0ef078ce00bba5b5e92c5fad4dc4618dc230e18daa86271eaad7c94e4912ebcbd5c2544b5d282290ccb2d9f149c0d7e8411f2ecb92220c33a255f6d84f2cd00dfa435f9a73cf65453a74ce100072564008b8d183fb80b080a6eb29d6bf4fe83461ba54fd1bc31aa661deb45dacb6371db25e288579aa4b82f19696949ad8cdf37a74089e6df91a983c9e13dee9bc2033003f6aa47a99ccf7ba8f7de5b61a3620349655a0536873fca5a14abf72d8525dcd446dd6e69b4767cd7a5ab91d6fa2b6cd7aba39baeacc2ebfc8cc7c42939f90fdd82875b6c00d363f9dd6a21e94b02689b2855010954e2073e505a6493f512f1aafbdcf0088d10ae842c69ef6af4c0130f13ac4272b5a25766493cc9e31541ce4f75e448c138b3aec95898a926ddbee030119972df43b043a93abb8e781d04b1ae5472c40a6a78fa37741e471aee6b1c48ab9283bc0175136cc064a11ed557637b09f2a8cce6ce6727cbf9ddfdae4f70dc8e42d761e758c08de317e508d342c4cdd4bd4443ebfe41627bf796a6fd939d50088339865bb60c0a3cd6fcf67b01264e19d6720aff94a24e2f12d6bc34a908fcd7d8934fb392d7e330305f07062708aac02d0819639c934539432457aab20750556529ea98e81af475843724a93c01bdd6374c9ee6157034061be82949450a4a28450e22168103f0836eee3aa63c4556385c80568d4fe74186bfd34878b55e5524fcfbb537fa043c9caad8d92bcd35f2afc4218b636d6c47a0a04fed33763ca6cf3e6b405570cd71927b58e5118685d5d5dab7e00d8442a8b9e20b55cc9bb8dfb09a1109ebb29623280250fbe145993e8249ebf9e2a455acb1863f666ffa8c3b04d955fa7cdd1bb7</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -2252,8 +2619,8 @@
     
     <entry>
       <title>2020-4-13</title>
-      <link href="/2020/diary/2020-4/2020-4-13/"/>
-      <url>/2020/diary/2020-4/2020-4-13/</url>
+      <link href="/2020/diary/2020/2020-4/2020-4-13/"/>
+      <url>/2020/diary/2020/2020-4/2020-4-13/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="bad0e7b946a36aa18d1fdefb3f307d1eed3fe4100e01d82fb2286b480bf8a5c8">e32c27e47419b87d293b9e8ce412adf84cdbdb8bb07d6caa7a92ea6f11908014fb7ec7ca5571c0043d68c7ed0bd01a8d5ca4bc4c061383ae4202823da59f195fd86f4d7a33ee555bc6fa0946ca5e5bb5f4da03cc86bca778f95bafeeeefe83807ffa97f147ee79b89521d03a4be9e2e39b118e7567fbad248d9adf532e5f36f04dcc1ede89b493b3295b7cfd24ce724a4c63409c90a26318f0e845a302e79dba290b2d1150eb96acd6edb95d3c66078edf3996840c781322ec682aa37ad8c597e544f42b983ae55e4220b232b9299f0ee94e27c52b42c6134307e5ebfc0195ed4ec28e782c633afe59504e336378b7e8799d65119707f93220a3cfa22193cf915aedcfba938a250a969afba0f0ee7cd1106ae82af244e72eb1a83adbbf6a4c972b5f49a1afcdc16dc4cdf8dff829b57679d2a241b7ad2552540f917c5d4d2771d924ee6fe5efb0f2f709476ce44f9290f3fe141e9724c4f1c98cb8cb1f23766457529b5503a244640af547e1aaa5e1bfb33e35fcb675d76bba3d73f3b8f7762673484cd0d3e06aa7002b3579728c0f0cf523fe50ad3a499714c91768958df94a86ee7b96dbf73e02ad6316530066bc183bc24df634939074bc888ed32b9b931badb08be4f8fc4df06cc38f50a1eeaf7bc0da5dd8a8ffa16f6e9fb2281e2c0ef3105b686b5608e4043c3748ceac79295063bedf5a5cbdcf787ec7555555f7b415439674a5966ec4927b0c4a14504913d90897bbfe82fe194c9503224e70c96191607f4a447e20a4612348f3b24b087303ddcc8fac774d0e7aec66c2d3fc266fb4dff9346c7cf378d597ac1acc43aa703eeabbd844c34cf746457b27b24a98d394</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -2427,8 +2794,8 @@
     
     <entry>
       <title>2020-3-30</title>
-      <link href="/2020/diary/2020-3/2020-3-30/"/>
-      <url>/2020/diary/2020-3/2020-3-30/</url>
+      <link href="/2020/diary/2020/2020-3/2020-3-30/"/>
+      <url>/2020/diary/2020/2020-3/2020-3-30/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="b5aaa9af45f13bbb530c7df124ec7aecf261b6de956e7cbecfc6789e192dd15a">e32c27e47419b87d293b9e8ce412adf8d55d77683868e94d7b04248aac169e063f4ae2aaf2acd7649d51c8a79455fa620f16574b0af07917ebbb08bd3a04e1f89beba060979e4387769e3e041ae22d002d6782a1609bd1ed7623258ab9fcd49822aa93fb3f92e5f4cbf9b29d88edda27f5b24675ab99aaa71ee9fbc03252b7ce5810dea0d6792f25f1bd3511f52fce0c3007f8ea9a8177a5162c2b21efd896e6fa59423a456f836be7db4a1c2fc9cca7ee6ee7cea79517c7909f4057e3e9317fb13966cfabbb7ec945cef658800e9e9f3ca7ca76526ff3467fce580a6e7dcc3dd6540b5eb53a1c375b0dab24e7aa4475cf974f2ee98ab2369de39c536badeb35cb9b15cecb4d7d727d1dd22106325463af23597e225c3a8f6d0ee8aa42b93868e44fa766d231913a057764d032086c2b0759362d50fc958520332238365ce53cb6a9e2a2618cfa7a9f929609dbf7d75eded314a318f05e4f3386f26efc2d3ba1e9d8df59a5643184e4e677592514f2482612c17b04516c697cc83c2a65a40608d79c271d7c6a3d89033cedceff68d71673b8ae0d421d70ec1195a23c4b26b9ba47f7f0a269769b8bbd5406ba58fb71ccfab1c3e3adbfa51ed139ca8cae4559a40b3a4c04fbbd98b26875126e13ffde23df3ee6d92ccfeca7149553c7428b7c63913be7303a364eb528705cd281dd0abc0a4687634306b17fe8ab60996092055795d7aae4c6eb2340089f472a60d918362abcc7579116c1c5e43da92c9b5dfd4894acf54c5877f6da26f1457b6aede02948855a3fe87c986356a49d7e504c6f9ad2beee197f6db6dd94a28c0aee459e88bfc45bf7e9a875788c910f8d760287352afe536a62a4765aba0a789551de58a61c52fdb74b2ce3d1d18afa4c446baa68d53cdb454375aa602966906dc2df659b0c40c4bbe919fe2630abfbceed5005eb4fb283d62b1abd01138118260db7c03bc448c2ab391335282932622c5e3d3ce5cea8f52561bc0ca5fc419a2d9f7411b8b16e7e9ae98a92978c6e0c4f9df54df8ceb549849e23193f21224da3ec765579e379050d382279411dd89bb66536942eae3ebc4972ebfd180531ac2ecbb6fc04776798ab1b4bccfcad1847001a9d54ee310d1c6c238f96fc641c0eeb8cad032ab01f553728d49a5efed9cc383aa52aa3772d6fdd1d5e5252099946f22d8102cf32a741263577fe3659e31b99e74c488c693f0808e09b7c7e0ce23422679f688b</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -2452,8 +2819,8 @@
     
     <entry>
       <title>2020-3-29</title>
-      <link href="/2020/diary/2020-3/2020-3-29/"/>
-      <url>/2020/diary/2020-3/2020-3-29/</url>
+      <link href="/2020/diary/2020/2020-3/2020-3-29/"/>
+      <url>/2020/diary/2020/2020-3/2020-3-29/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="a85dcd67f0788e1aec15da8429e70f65c8070046288f1904469eecfb9a7c93b8">e32c27e47419b87d293b9e8ce412adf8d55d77683868e94d7b04248aac169e068054def8eff7acbc88a8f3526a35f4008a6f379c72676d4d73b6bfb04409408396e6e580439644d58ad8ad5cc61dcab34b9d63a6d224715f4fb065dab6e54bb246e9fce047e1c38762b614e5d7fff47ca414e43d30552a17f12f3eb9a7879d72614f011d8ca747349fece8799f591fe7b52974a7138f4195deeb2ce765aff272e3cc7f01b185611608093a4759395d4994e2f369566403508b94be528b97271163c95678fe40192cf683cedb09a9b7486248961dc5fb29e61ae5893a07ee201247309446250a53296dafbcc9988c62aec38c46e3fa74569bbbc324ac537e50067b9b706d1c524b703e9542033c3816c65869f55aaf55a646e84764b7dc04d271e32f1cef56520afd4d2b74a450f38ffa505b4440a08416cbde6fd99470c9db5c5cf8c648325170b0e02c6a1fa8e3ead82bce221bff770a546fb1cb3e3eb14bd132bc4b9b65ac06cda0028f2791bc2832536d3c826b8ee3906687b368b046d5913a503668a53666944bab151489698ecf9e6736a9c6327fe8d5277390a259f746d5c826c7dad6756e239253d8e5f4fc7e2529d61c0fd7da985fa862f0c48443b81f658b4132e8e0ef89b106f01cbfdd2522c9781c20360821b52699a5d8deade421170bd5ab952d4f00b018ac757e49da5e647533b8dc6d7457e9d7c866cf575b70187c61ba2f659b4691abe4b7a6e58a394e8ee7470dd3d0065d63def8964f2664f903313e22657238a3865cc64e39ffb08e4672f3761c8134dd5aa244a8169cac79b21615de30eed9f460b035021e70bf6e8a6bc1d3e0444acc055da6161045e82961df3320d9a144fdf4d56076770e9bf1c2d4ecc6d37b9617be7023f4737619ee0fb09053ac09b26ec4d5819f61051092a31edb63edf34a40e1fb9c8d3831e2dbf60e7db86ba2e420779edb4beee0ae7b19f7d525390a460084f5cc23800afa2fdd735f9a3e856fe5dfb8c0900b3702b3050da051b963aab55d0977a8bbcdacce7ba1a20df2824c271d4a7dfc8b37b4c8b4a5cab3fc06f258e8e96baba54e01f0320a266e7d4325a72877883738a8224f7c5593ac9ab44aae8703c12a79e4b83a6039d61095cd51f0e0064daba8635f8f9fb54d65042c87edf96804500c1e2978cf7827fee4f976bdca6ef368a887df6e1b1e4c9caeea76305dc230c2f189369e394319283c369aeb1313ef7bffe878826a435968c84ac15b25e9fcc555f67e365db2de6a06b3bc8121dea98164dfaaa1a6ab656bca7fc9e00d4d53253f4b3f184ed62e6ea838041103036bf1f0d5e648d6a8393bec8180f16cee02ff72056ccd0e45a27bcef211325a7c7d78065560933ea22d040e52350893a27ecec37a08296e2d8de534fab52402cc499e280e8cd0f8bdcbd38500c027bd73290d6bd990faf01eef742ef95ed76ae8677650fb3a32cc5301e7c05eb0e5b54981f885d802f031ba22c484405725408e37acf70d68877756351f9d850ae68864246aeb3654b301d61f4484c517237fb231d127907693b0e9355b1b5730853ba7550964fea2e1f0358f062bbb206689cdda25e5be4c86d4abb834c06baf5da84744bdfffa9a6cd01c3913d446a410db3f435b3646a4f53f860ed559c43d51c337343e6090a7902b70bde7a67167dfd7f34eaa8e6f</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -2477,8 +2844,8 @@
     
     <entry>
       <title>2020-3-28</title>
-      <link href="/2020/diary/2020-3/2020-3-28/"/>
-      <url>/2020/diary/2020-3/2020-3-28/</url>
+      <link href="/2020/diary/2020/2020-3/2020-3-28/"/>
+      <url>/2020/diary/2020/2020-3/2020-3-28/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="06e3790adc44e67054e7b9d8b2af22e9dbb3c7603346a71a14021e7af59ae836">e32c27e47419b87d293b9e8ce412adf8d55d77683868e94d7b04248aac169e0601437573c52abf4bb9dda1e77cdb22bd3eccf8e380102401ed92a84a6212f1f233c8e86a20a416ff285bc6eec30424474abf7f66e3c06def533cf0a21605a8ae01dbe970e2251f9fdfeb9eb303468ce00288115e8f147e7a2cf93b681ac9ae41050fa03296dc6a0b2e033f3200146964c0bb29ccc0230dc0664de8d4e8a777a3e1ab03b56d26dab2081252d7e35dbcc6f555507c72458b1415e70ec9b3e57ebc3deb2ccf6dacf00db3ec2943ba59c8c1ab84567f07ab1a0a91ec603078d8df4cf93f4b8b0524dc33acbf4323d4ff846a244a61ccf16475c318b06cb74d7d0fcf264ce80c166b9bfd8afeeb650a8f8cfde823cabb3417f31a95f2abfbc7113a3ace693d066bd6bf8c146842cc2cc56697ec27b95afd85b90fb97d82eb695a1922525c22fb1175f1565285c58025937a1252034d6495ba6b4ce64acd45bf3832faf1bd80e372a46fd339d784ef0e72b6c071e1bbd0b068efd2f40ecee8f35aa991edb1de10211f9f72f7800989ccb7462381d5c3484f28d3b49a514a1415992f9563fcd712f14766cab4d4f4cb9d824b011cb28d29261419d51e7d9ac4a0e52937b55adadf3e5354449e7889664b8d3bc2198bc430aae5bfda5aee29dcb7a25ad3585ef544c7d3de0a4e909ac9a861f2bbc542077ded9a73d34d3e33450fdb86ab88e0fd2ff1860cb9e589d2bf0ab0f7a8f7570edb2e4adad1be83b2b2af2f15235f4e8ad0620f10ef82058015c2566dfe2baa42f0e6d7a17dc18f88cfce06258cac777ac79bc057dc30e0ba041a84deef40402df92d010f0ec522075c1ba82711f80f846db53eaa5c91b9b998d0bebbc7d235282bb00044c70d4f4cf12ebce95000b0cdf005f061b43f8efcef1bcbc37210aa45f315cba872988a08f1c500f0ba5289fc157bce5436ae628cb8b159c94e07cdfb8fd0c752a0263a880e1ad69d2c5fab361a43ecacf9f43aa753ae5bc2e6221d49e8144205eb8863953dec8dcc33ddce5465e30f987e3cd6bb7fc7885e0bea49afab2a6c5766ceb6fecfe8b40b187340be6f92c307b396b6964fc7a8d7f52205f82d3272977e9a4fc18a240c255369deab2f70aba74bba4457ed912c38bb069eed47c40ed2df7765ffb4cd9689e3a7fea139cd3af92c67e9501ae67f21e9bbb6b872d333dad6aa8a979e66e24bcc994e0c3276f5dbdcb23bd840953b58918ea233db38733414cfdb079353f427c7790f7ed6962fec6d5856b408c959584c486243d08d7022280bbc459886365361b9673f1963ff4765ff36f6a550acd0d85b091a3eb464d5aaf690a4f294b0859c74c50e151a6d1adf32534eb93815833f8f4c18b428e345259981779bf109b1f80435fccbe2e8929d6027a5d290c56dce8c2c96c657ea7bd5deead505d7d5a35363a32aecd73ffcf0d48aecf677b6ed16bc3bfce6980bd910f7e6bcb2a7392f501bf6a3c47b7f411fc329b242bbf5e8ef840fa5ea22ed3f7ef2769966e4850fe543a4481c17f79b92615663bd9756f0082dee49aeda3f073c457aea6bdc1128a93adfad16b10c10425d79ae92205e4a80d6fc858006b907382e5020fd8f296748670c6c73147d3513280326efac0e4d50ef6e527eea3d9e0c2e4c67542c4f39c80fe1aed301f4d19d5b21e0df0accea87</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -2502,8 +2869,8 @@
     
     <entry>
       <title>2020-3-27</title>
-      <link href="/2020/diary/2020-3/2020-3-27/"/>
-      <url>/2020/diary/2020-3/2020-3-27/</url>
+      <link href="/2020/diary/2020/2020-3/2020-3-27/"/>
+      <url>/2020/diary/2020/2020-3/2020-3-27/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="872da1b8e2f6ab47e8f7b938e0588c7c5c96beda9e40b02c525e3361e10d292d">e32c27e47419b87d293b9e8ce412adf8d55d77683868e94d7b04248aac169e06640ad451041a729b829ababe2688ffd244829a653248f0e2dcce8423500c1eff428109ceb1e97925b96df1a5a6d31fb0bea99787af0357a289af4d3b8bfd670eaeb127f8898b979302cfeb86f0160705afe07b3d6270b5b29a0ceda8e25a253df59cf2a7a67dbd0e17ed8f7aa74953f55a8676bae41ea2120e27e48184b66c327df4e2f31dd31585a809138c9fcae2594210d81c93558253228c843f5a747c3c22fb2bce40496ec0c35cb68c344728547ff93a4e7924203668d7a4f0b3f98e9518660dd88cd4d737d4fcf8b6394354925ae85069c05d75a6cfbfed10b394e5e73baf3b6a38e1a9c8ffdc27b7d4a676317318e85f584750593de0c43053842be380124188a96c5bfd4992f9bc33d0699800bde6d5382b90f84f287aaf49bbeb4941ac2735d73a39c6d523c0e234334e2cd679adabf898a6279adcd0b7053682a6630e98cf2138ae5879a3fed82af422128449eff3b15e95c2f168b0275690d7c63a67d15d1c99f14b708ea35347ece88d0e5ca4cb014ad345cddc79010bd4dfb090943dff6ec550535dac9d175c6470ff3db7b029479822bd6737a1ce94cbaa182cfe85c0fa471a0abfe564a569f1da4894482b2c99b126ee69bdb17406e28c594df2cfeb562f27c7eaf0479149a0c63df4e537dd334db29f580bc6500c24deb51fdf9ab293742bddbe0b7ec11f5111793d64e7b25f9f138b2d522665d980de09ee57c7f3bcb38d35b03fcf3489cd8d2a9573c1de64b65144a1f498b2b27ab3f4e6513b38d3e0d3d706037d664f001de29e454733835b489c49dafb6b7c8774bf2a73ff1c120747f92bc87d4c0b604656f372d91233a88d081379ad60b7efc5431eddad3eaa21a287e8d4763add56294b0aa01afffd7069d15ffb75d38d2665d8b29a0a9d38f6e16f74f89006bd9e42fc3e119e5123ef3bd2a3bc5ee341a7872b0bac3359050c4e44f961a60a540e2825340f7df35ba19d0e81bd22ee2c9c661f9e71a27ae4c03f3ec76a520fcf008eb35f13a1268096c54211f86f0c61a772a20f7dd55dbec117120e5d58c662cdc305bd9372363854a93dbbdbd606776a5d7599d435248b60ca7abe04edbee9534d687e7607658a4b7c30ab561b36f4210bfead63e7adb3931b9e253e382299cc077dac677072ce15b70b2bf6e6aaee62a709c394ef5012236683157eb03a80738f20d12d09b3de471bfd3957248d0d8d884cab297e0d94bf7f2ecd945b6cc89679543feb276c0f2c7bb6c728d7c8ca0893eee602eff7a95caab172a3ba93e9916c2ae82c57dcea14b5f8e321c84b4a861adf8da4cb586e26edb186d749036cf83ff15b7cd44e6302d0529bfa415a3513ed355316f5bdf234466f84718fc1d2e8d301c7ea9d024a724a64b8214ad152b476859983e54bac2ff0cacd601437bdf30c86f7de8dd3020d2d96f547905da2752a4d84d2bd1320e35cde2d016cea5f575f0e21844fc45cabcda8fd2f9507d237c5c6c0fafee02707a26dd0b6ca2d198cb17ba74e39560f217166faad105e65c2094c26166baf529f5fc9924fa4fb00786b39df09adbaa4660dab4094cc69c2234b1eaa88ce703c1c17efbcdbb58c4bc7fa81e54985fe5e0ea01d30afc156175b374f</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
@@ -2552,8 +2919,8 @@
     
     <entry>
       <title>2020-3-25</title>
-      <link href="/2020/diary/2020-3/2020-3-25/"/>
-      <url>/2020/diary/2020-3/2020-3-25/</url>
+      <link href="/2020/diary/2020/2020-3/2020-3-25/"/>
+      <url>/2020/diary/2020/2020-3/2020-3-25/</url>
       
         <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="密码错误！" data-whm="文章校验失败！"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="请输入密码：" /><label>请输入密码：</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="c568c5231f99a1d2abbb0e6de1e0532ecec530743405ca0aeeeb3c2fe0e04e53">e32c27e47419b87d293b9e8ce412adf8d55d77683868e94d7b04248aac169e06b23583b1ba6371e274b212691b602d4a2b9a09e0b2e26f4ecec23e5ad483f6b920d0ecc497b730159eed96e4d66218cc0eec0099b491c62354658ec464c121507005ea43a04bdf4b95a68ca353f57ad006d46b70876942e5400b474f0eb8e8a5a4aba8bc62001905b51963a66c0bc4122fa18d16086d53aa99da6409351ca101529b1930d320e76f04befedb5a6956f143847f7f644d70309c8a96bf5ee9c9e84ffceebd2cd55818eee2115e59568dd488a11dcbeb6c16c751a6fb5d203cff04dd1dddbf2d590bea88c5d8f5976d20f9c220c4a0910e00823e1cb934f572d193eb9a7a86410e5551406295c2cadff4d4d143b9edeeb2779fd4bfd553bf0888181e56abdba3c3521d859c80e0e4fad4cd0e3f58f0493f28fa2a6655a811c78ec7e4d0f4e42c4bdeaa34794ec933b58bc81b8727f971449cfa63e9d9f44de2638b6adcc8c92736610cc61c636d54e2aec8759f526e00516e39e56e64016720f8794b040ac5f329e99b1b8959a10ae8f8173c210447fe942ee63a1334714ea61a5f9624b25b7e30736869205cdb1eef2cb147805079e3e9986bfa14cf478306ae4d37cbca01e416ef73ec98c819f3ad926c60091c3acd41af644d6afd44692be77397b53513ad4c54e677a05686888064d08e7da8677a484f02103160309d22196ea5b5484af001d5c8c3e3d36a43aa11e5cc1fdc149188ab59a87ea11e15557ebf74a7b4ac42137e76b5214daa2ce90e98fbe98a9a86815ae5e0fe1e1e8f71ae9c485f12626dbef58a8f6d671f6f087557624248b7b6628c6c76650e37a8622901907e8e4fa5198d39ebe2ef9a7ccb9d1d0c7bcb03fc05b0298b82f7fec51f48d5d97f6f61ab1550d8a7dd3f6de073e9b80373129bfa17d916a157773b3b45d0371551f0ede62ecb5427949957f2a624229a123497f54c4437b2642745d8a553714a39279e57236071889471b417a20a743d429a9dfd0ba36d056747e39202356c0aa56389cf31ab88312354f3486153ae740243ec9165955e04ab50501257a28e6f30b2023fa3b025500345b50ceffa0744b9002f9dc2a5b70fd44492c65e0ef498aadd963ab906800d02ec3c48623e0d71a689077c3600b8e72aa68381de0e4381a3b31303446a061ba48520ba13bf3f613bb11f7350b3f95c75244c3fb9e1cdc800ecdc113aba79ead42b7878b0ac562bac070078d1ad85917a35d1cc5a6f75bd9818b7705da6acd8346515ee59526144093779a4e65a7bd5f9ffdd06cb989f48886076f51340ba547329034d80507af7d42e99296040a79ae3e51ab0fb05553f7094df76d04a4da57b28e1a050f7910196727e0dea043c44f59ba99d0e38ec34ba3d1f91fd4a99196e5aced76b30d05db2d006c222b3622636144fe821a5cc21235fae609fc1239c9655897b8d11c59ea10a01072e784cec027e5697023bae920d6532b2544e910f141fe2a51494e28f27d4b4abac0beb6bea3bc7e428d4e05a2773057565f777a244b264e5835ae8</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       

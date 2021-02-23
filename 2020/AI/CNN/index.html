@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="SAIN"><meta name="copyright" content="SAIN"><meta name="generator" content="Hexo 4.2.1"><meta name="theme" content="hexo-theme-yun"><title>CNN-卷积神经网络 | SAIN</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="none" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.8/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1906232_s69jdalisd.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link rel="shortcut icon" type="image/svg+xml" href="/dog.png"><link rel="mask-icon" href="/dog.png" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"root":"/","title":"云游君的小站","version":"0.9.2","anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","local_search":{"path":"/search.xml"},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><meta name="description" content="CNN卷积神经网络(Convolutional Neural Networks，CNN)，CNN可以有效的降低反馈神经网络(传统神经网络)的复杂性，常见的CNN结构有LeNet-5、AlexNet、ZFNet、VGGNet、GoogleNet、ResNet等等，其中在LVSVRC2015冠军ResNet是AlexNet的20多倍，是VGGNet的8倍；从这些结构来讲CNN发展的一个方向就是层次">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CNN-卷积神经网络">
+<meta property="og:url" content="http://sainfufu.github.io/2020/AI/CNN/index.html">
+<meta property="og:site_name" content="SAIN">
+<meta property="og:description" content="CNN卷积神经网络(Convolutional Neural Networks，CNN)，CNN可以有效的降低反馈神经网络(传统神经网络)的复杂性，常见的CNN结构有LeNet-5、AlexNet、ZFNet、VGGNet、GoogleNet、ResNet等等，其中在LVSVRC2015冠军ResNet是AlexNet的20多倍，是VGGNet的8倍；从这些结构来讲CNN发展的一个方向就是层次">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-31T05:34:53.000Z">
+<meta property="article:modified_time" content="2020-10-09T09:37:19.493Z">
+<meta property="article:author" content="SAIN">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary"><script src="/js/ui/mode.js"></script><link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="Table of Contents"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="Overview"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="SAIN"><img width="96" loading="lazy" src="/avatar.jpg" alt="SAIN"></a><div class="site-author-name"><a href="/about/">SAIN</a></div><a class="site-name" href="/about/site.html">SAIN</a><sub class="site-subtitle">记录怪异</sub><div class="site-desciption"></div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="Home"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-shouye"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="Archives"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archives_4px"></use></svg></span><span class="site-state-item-count">140</span></a></div><div class="site-state-item"><a href="/categories/" title="Categories"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-category"></use></svg></span><span class="site-state-item-count">11</span></a></div><div class="site-state-item"><a href="/tags/" title="Tags"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-06Tags"></use></svg></span><span class="site-state-item-count">47</span></a></div><a class="site-state-item hty-icon-button" href="/albums/" title="相册"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-tupianbizhi"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/categories/%E5%AD%A6%E4%B9%A0/" title="学习" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-xuexi"></use></svg></a><a class="links-item hty-icon-button" href="/categories/Eng/" title="英语笔记" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-english"></use></svg></a><a class="links-item hty-icon-button" href="/categories/CS/" title="CS" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-technology_computer-"></use></svg></a><a class="links-item hty-icon-button" href="/categories/CTF/" title="CTF" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hacker"></use></svg></a><a class="links-item hty-icon-button" href="/categories/%E6%9D%82%E6%80%9D/" title="杂思" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rijibendiary"></use></svg></a><a class="links-item hty-icon-button" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-dushu"></use></svg></a><a class="links-item hty-icon-button" href="/categories/%E8%A7%82%E5%BD%B1%E7%AC%94%E8%AE%B0/" title="观影笔记" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-dianying"></use></svg></a><a class="links-item hty-icon-button" href="/slides/" title="ppt" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-ppt"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CNN"><span class="toc-number">1.</span> <span class="toc-text">CNN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结构"><span class="toc-number">2.</span> <span class="toc-text">结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#主要层次"><span class="toc-number">3.</span> <span class="toc-text">主要层次</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据输入层：Input-Layer"><span class="toc-number">3.1.</span> <span class="toc-text">数据输入层：Input Layer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#卷积计算层：CONV-Layer"><span class="toc-number">3.2.</span> <span class="toc-text">卷积计算层：CONV Layer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReLU激励层：ReLU-Incentive-Layer"><span class="toc-number">3.3.</span> <span class="toc-text">ReLU激励层：ReLU Incentive Layer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#池化层：Pooling-Layer"><span class="toc-number">3.4.</span> <span class="toc-text">池化层：Pooling Layer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#全连接层：FC-Layer"><span class="toc-number">3.5.</span> <span class="toc-text">全连接层：FC Layer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Batch-Normalization-Layer"><span class="toc-number">3.6.</span> <span class="toc-text">Batch Normalization Layer</span></a></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://sainfufu.github.io/2020/AI/CNN/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="SAIN"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="SAIN"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">CNN-卷积神经网络</h1><div class="post-meta"><div class="post-time" style="display:inline-block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="Created: 2020-08-31 13:34:53" itemprop="dateCreated datePublished" datetime="2020-08-31T13:34:53+08:00">2020-08-31</time></div><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/CS/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">CS</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/AI/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">AI</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><a id="more"></a>
+
+<h2 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h2><p>卷积神经网络(Convolutional Neural Networks，CNN)，CNN可以有效的降低反馈神经网络(传统神经网络)的复杂性，常见的CNN结构有LeNet-5、AlexNet、ZFNet、VGGNet、GoogleNet、ResNet等等，其中在LVSVRC2015冠军ResNet是AlexNet的20多倍，是VGGNet的8倍；从这些结构来讲CNN发展的一个方向就是层次的增加，通过这种方式可以利用增加的非线性得出目标函数的近似结构，同时得出更好的特征表达，但是这种方式导致了网络整体复杂性的增加，使网络更加难以优化，很容易过拟合。</p>
+<p>CNN的应用主要是在<strong>图像分类</strong>和<strong>物品识别</strong>等应用场景应用比较多</p>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>保持了层级网络结构<br>不同层次使用不同的形式(运算)与功能</p>
+<h2 id="主要层次"><a href="#主要层次" class="headerlink" title="主要层次"></a>主要层次</h2><h3 id="数据输入层：Input-Layer"><a href="#数据输入层：Input-Layer" class="headerlink" title="数据输入层：Input Layer"></a>数据输入层：Input Layer</h3><p>和神经网络/机器学习一样，需要对输入的数据需要进行预处理操作，需要进行预处理的主要<strong>原因</strong>是：</p>
+<ol>
+<li><strong>输入数据单位</strong>不一样，可能会导致神经网络收敛速度慢，训练时间长</li>
+<li><strong>数据范围大</strong>的输入在模式分类中的作用可能偏大，而数据范围小的作用就有可能偏小</li>
+<li>由于神经网络中存在的<strong>激活函数是有值域限制</strong>的，因此需要将网络训练的目标数据映射到激活函数的值域</li>
+<li>S形激活函数在(0,1)区间以外区域很<strong>平缓</strong>，<strong>区分度太小</strong>。例如S形函数f(X)，f(100)与f(5)只相差0.0067</li>
+</ol>
+<p>常见3种数据预处理方式</p>
+<ol>
+<li>去均值<br>将输入数据的各个维度中心化到0</li>
+<li>归一化<br>将输入数据的各个维度的幅度归一化到同样的范围</li>
+<li>PCA/白化<br>用PCA降维（去掉特征与特征之间的相关性）<br>白化是在PCA的基础上，对转换后的数据每个特征轴上的幅度进行归一化</li>
+</ol>
+<h3 id="卷积计算层：CONV-Layer"><a href="#卷积计算层：CONV-Layer" class="headerlink" title="卷积计算层：CONV Layer"></a>卷积计算层：CONV Layer</h3><ol>
+<li>局部关联：每个神经元看做一个filter</li>
+<li>窗口(receptive field)滑动，filter对局部数据进行计算</li>
+<li>相关概念<br>深度：depth<br>步长：stride<br>填充值：zero-padding</li>
+</ol>
+<p>局部感知： 在进行计算的时候，将图片划分为一个个的区域进行计算/考虑；<br>参数共享机制：假设每个神经元连接数据窗的权重是固定的<br>滑动窗口重叠：降低窗口与窗口之间的边缘不平滑的特性。<br>固定每个神经元的连接权重，可以将神经元看成一个模板；也就是每个神经元只关注一个特性<br>需要计算的权重个数会大大的减少<br>备注：一组固定的权重和不同窗口内数据做矩阵内积后求和的过程叫做卷积</p>
+<h3 id="ReLU激励层：ReLU-Incentive-Layer"><a href="#ReLU激励层：ReLU-Incentive-Layer" class="headerlink" title="ReLU激励层：ReLU Incentive Layer"></a>ReLU激励层：ReLU Incentive Layer</h3><p>将卷积层的输出结果做一次非线性的映射， 也就是做一次“激活”<br>常用非线性映射函数<br>  Sigmoid(S形函数)<br>  Tanh(双曲正切,双S形函数)<br>  ReLU<br>  Leaky ReLU<br>  ELU<br>  Maxout</p>
+<p>建议<br>CNN尽量不要使用sigmoid，如果要使用，建议只在全连接层使用<br>首先使用ReLU，因为迭代速度快，但是有可能效果不佳<br>如果使用ReLU失效的情况下，考虑使用Leaky ReLu或者Maxout，此时一般情况都可以解决啦<br>tanh激活函数在某些情况下有比较好的效果，但是应用场景比较少</p>
+<h3 id="池化层：Pooling-Layer"><a href="#池化层：Pooling-Layer" class="headerlink" title="池化层：Pooling Layer"></a>池化层：Pooling Layer</h3><p>在连续的卷积层中间存在的就是池化层，主要功能是：通过逐步<strong>减小表征的空间尺寸</strong>来减小参数量和网络中的计算；池化层在每个特征图上独立操作。使用池化层可以压缩数据和参数的量，减小过拟合。</p>
+<p>在池化层中，进行压缩减少特征数量的时候一般采用两种策略：</p>
+<ol>
+<li>Max Pooling：最大池化，一般采用该方式</li>
+<li>Average Pooling：平均池化</li>
+</ol>
+<h3 id="全连接层：FC-Layer"><a href="#全连接层：FC-Layer" class="headerlink" title="全连接层：FC Layer"></a>全连接层：FC Layer</h3><p>类似传统神经网络中的结构，FC层中的神经元连接着之前层次的所有激活输出；换一句话来讲的话，就是两层之间所有神经元都有权重连接；通常情况下，在CNN中，FC层只会在尾部出现</p>
+<p>一般的CNN结构依次为：</p>
+<ol>
+<li>INPUT</li>
+<li>[[CONV -&gt; RELU] * N -&gt; POOL?]*M</li>
+<li>[FC -&gt; RELU] * K</li>
+<li>FC</li>
+</ol>
+<h3 id="Batch-Normalization-Layer"><a href="#Batch-Normalization-Layer" class="headerlink" title="Batch Normalization Layer"></a>Batch Normalization Layer</h3><p>Batch Normalization Layer(BN Layer)是期望我们的结果是服从高斯分布的，所以对神经元的输出进行一下修正，一般放到卷积层后，池化层前。<br>论文：Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift；<br>论文链接：<a href="https://arxiv.org/pdf/1502.03167v3.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1502.03167v3.pdf</a></p>
+<p>如果输出的是N*D的结果，对D个维度每个维度求解均值和方差。<br>根据均值和方差做归一化。</p>
+<p>Batch Normalization优点：<br>梯度传递(计算)更加顺畅，不容易导致神经元饱和（防止梯度消失(梯度弥散)/梯度爆炸）<br>学习率可以设置的大一点<br>对于初始值的依赖减少<br>Batch Normalization缺点：<br>如果网络层次比较深，加BN层的话，可能会导致模型训练速度很慢。</p>
+</div></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2020/AI/9-1%E4%BB%BB%E5%8A%A1/" rel="prev" title="9-1任务"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">9-1任务</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2020/learning/%E6%9A%91%E6%9C%9F%E5%AD%A6%E4%B9%A0/" rel="next" title="暑期学习"><span class="post-nav-text">暑期学习</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2019 – 2021 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> SAIN</span></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="Search"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="Searching..." value=""></div><div id="local-search-result"></div></div></div><script defer src="/js/utils.js"></script><script defer src="/js/hexo-theme-yun.js"></script></body></html>

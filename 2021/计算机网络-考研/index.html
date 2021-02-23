@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="SAIN"><meta name="copyright" content="SAIN"><meta name="generator" content="Hexo 4.2.1"><meta name="theme" content="hexo-theme-yun"><title>计算机网络-考研 | SAIN</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="none" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.8/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1906232_s69jdalisd.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link rel="shortcut icon" type="image/svg+xml" href="/dog.png"><link rel="mask-icon" href="/dog.png" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"root":"/","title":"云游君的小站","version":"0.9.2","anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","local_search":{"path":"/search.xml"},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><meta name="description" content="第一章 计算机网络体系结构概念网络包含计算机网络计算机网络：是一个将分散的、具有独立功能的计算机系统，通过通信设备与线路连接起来，由功能完善的软件实现资源共享和信息传递。 计算机网络是互联的、自治的计算机集合互联：互联互通 通信链路自治：无主从关系 功能 数据通信（连通性） 资源共享 硬件 软件 数据   分布式处理：多台计算机各自承担同一工作 提高可靠性 死机的电脑由替代机 负载均衡  组成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络-考研">
+<meta property="og:url" content="http://sainfufu.github.io/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%80%83%E7%A0%94/index.html">
+<meta property="og:site_name" content="SAIN">
+<meta property="og:description" content="第一章 计算机网络体系结构概念网络包含计算机网络计算机网络：是一个将分散的、具有独立功能的计算机系统，通过通信设备与线路连接起来，由功能完善的软件实现资源共享和信息传递。 计算机网络是互联的、自治的计算机集合互联：互联互通 通信链路自治：无主从关系 功能 数据通信（连通性） 资源共享 硬件 软件 数据   分布式处理：多台计算机各自承担同一工作 提高可靠性 死机的电脑由替代机 负载均衡  组成">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://sainfufu.github.io/images/2021-02-14-19-42-08.png">
+<meta property="og:image" content="http://sainfufu.github.io/images/2021-02-14-20-12-00.png">
+<meta property="og:image" content="http://sainfufu.github.io/images/2021-02-14-20-27-32.png">
+<meta property="og:image" content="http://sainfufu.github.io/images/2021-02-14-20-30-15.png">
+<meta property="og:image" content="http://sainfufu.github.io/images/2021-02-14-20-35-42.png">
+<meta property="og:image" content="http://sainfufu.github.io/images/2021-02-14-20-39-32.png">
+<meta property="og:image" content="http://sainfufu.github.io/images/2021-02-14-20-41-32.png">
+<meta property="article:published_time" content="2021-02-14T11:29:02.000Z">
+<meta property="article:modified_time" content="2021-02-20T01:58:56.422Z">
+<meta property="article:author" content="SAIN">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sainfufu.github.io/images/2021-02-14-19-42-08.png"><script src="/js/ui/mode.js"></script><link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="Table of Contents"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="Overview"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="SAIN"><img width="96" loading="lazy" src="/avatar.jpg" alt="SAIN"></a><div class="site-author-name"><a href="/about/">SAIN</a></div><a class="site-name" href="/about/site.html">SAIN</a><sub class="site-subtitle">记录怪异</sub><div class="site-desciption"></div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="Home"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-shouye"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="Archives"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archives_4px"></use></svg></span><span class="site-state-item-count">140</span></a></div><div class="site-state-item"><a href="/categories/" title="Categories"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-category"></use></svg></span><span class="site-state-item-count">11</span></a></div><div class="site-state-item"><a href="/tags/" title="Tags"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-06Tags"></use></svg></span><span class="site-state-item-count">47</span></a></div><a class="site-state-item hty-icon-button" href="/albums/" title="相册"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-tupianbizhi"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/categories/%E5%AD%A6%E4%B9%A0/" title="学习" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-xuexi"></use></svg></a><a class="links-item hty-icon-button" href="/categories/Eng/" title="英语笔记" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-english"></use></svg></a><a class="links-item hty-icon-button" href="/categories/CS/" title="CS" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-technology_computer-"></use></svg></a><a class="links-item hty-icon-button" href="/categories/CTF/" title="CTF" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hacker"></use></svg></a><a class="links-item hty-icon-button" href="/categories/%E6%9D%82%E6%80%9D/" title="杂思" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rijibendiary"></use></svg></a><a class="links-item hty-icon-button" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-dushu"></use></svg></a><a class="links-item hty-icon-button" href="/categories/%E8%A7%82%E5%BD%B1%E7%AC%94%E8%AE%B0/" title="观影笔记" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-dianying"></use></svg></a><a class="links-item hty-icon-button" href="/slides/" title="ppt" style="color:doodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-ppt"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一章-计算机网络体系结构"><span class="toc-number">1.</span> <span class="toc-text">第一章 计算机网络体系结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念"><span class="toc-number">1.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#功能"><span class="toc-number">1.2.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组成"><span class="toc-number">1.3.</span> <span class="toc-text">组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">1.4.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标准化工作及相关组织"><span class="toc-number">1.5.</span> <span class="toc-text">标准化工作及相关组织</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#性能指标"><span class="toc-number">1.6.</span> <span class="toc-text">性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#速率"><span class="toc-number">1.6.1.</span> <span class="toc-text">速率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#带宽"><span class="toc-number">1.6.2.</span> <span class="toc-text">带宽</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#吞吐量"><span class="toc-number">1.6.3.</span> <span class="toc-text">吞吐量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#时延"><span class="toc-number">1.6.4.</span> <span class="toc-text">时延</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#时延带宽积"><span class="toc-number">1.6.5.</span> <span class="toc-text">时延带宽积</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#往返时延RTT"><span class="toc-number">1.6.6.</span> <span class="toc-text">往返时延RTT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#利用率"><span class="toc-number">1.6.7.</span> <span class="toc-text">利用率</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分层结构"><span class="toc-number">1.7.</span> <span class="toc-text">分层结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#OSI参考模型（法定标准）"><span class="toc-number">1.7.1.</span> <span class="toc-text">OSI参考模型（法定标准）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-IP参考模型（事实标准）"><span class="toc-number">1.7.2.</span> <span class="toc-text">TCP&#x2F;IP参考模型（事实标准）</span></a></li></ol></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://sainfufu.github.io/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%80%83%E7%A0%94/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="SAIN"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="SAIN"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">计算机网络-考研</h1><div class="post-meta"><div class="post-time" style="display:inline-block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="Created: 2021-02-14 19:29:02" itemprop="dateCreated datePublished" datetime="2021-02-14T19:29:02+08:00">2021-02-14</time></div><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/CS/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">CS</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">计算机网络</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><a id="more"></a>
+<h2 id="第一章-计算机网络体系结构"><a href="#第一章-计算机网络体系结构" class="headerlink" title="第一章 计算机网络体系结构"></a>第一章 计算机网络体系结构</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>网络包含计算机网络<br>计算机网络：是一个将分散的、具有独立功能的<strong>计算机系统</strong>，通过<strong>通信设备</strong>与<strong>线路</strong>连接起来，由功能完善的<strong>软件</strong>实现<strong>资源共享</strong>和<strong>信息传递</strong>。</p>
+<p>计算机网络是<strong>互联</strong>的、<strong>自治</strong>的计算机集合<br>互联：互联互通 通信链路<br>自治：无主从关系</p>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><ol>
+<li><strong>数据通信</strong>（连通性）</li>
+<li><strong>资源共享</strong><ol>
+<li>硬件</li>
+<li>软件</li>
+<li>数据</li>
+</ol>
+</li>
+<li>分布式处理：多台计算机各自承担同一工作</li>
+<li>提高可靠性 死机的电脑由替代机</li>
+<li>负载均衡</li>
+</ol>
+<h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><ol>
+<li>组成部分<ol>
+<li>硬件</li>
+<li>软件</li>
+<li>协议</li>
+</ol>
+</li>
+<li>工作方式：<ol>
+<li>边缘部分：用户直接使用 C/S方式 P2P方式</li>
+<li>核心部分 为边缘部分服务</li>
+</ol>
+</li>
+<li>功能组成：<ol>
+<li>通信子网 实现数据通信</li>
+<li>资源子网 实现资源共享、数据处理</li>
+</ol>
+</li>
+</ol>
+<p><img src="/images/2021-02-14-19-42-08.png" alt="通信子网与资源子网" loading="lazy"></p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ol>
+<li>按分布范围 广域网WAN、城域网MAN、局域网LAN、个人区域网PAN</li>
+<li>按使用者份 公用网、专用网</li>
+<li>按交换技术 电路交换、报文交换、分组交换</li>
+<li>按拓扑结构分 总线型、星型、环型、网状型（常用于广域网）</li>
+<li>按传输技术份 <ol>
+<li>广播室网络 共享公共通信信道 </li>
+<li>点对点网络 使用分组存储转发和路由选择机制</li>
+</ol>
+</li>
+</ol>
+<h3 id="标准化工作及相关组织"><a href="#标准化工作及相关组织" class="headerlink" title="标准化工作及相关组织"></a>标准化工作及相关组织</h3><p>标准分类：</p>
+<ol>
+<li>法定标准 由权威机构制定的正式的、合法的标准 OSI</li>
+<li>事实标准 某些公司的产品在竞争中占据了主流 TCP/IP标准</li>
+</ol>
+<p>RFC（请求评论）：因特网标准的形式<br>RFC上升为因特网正式标准的四个阶段：</p>
+<ol>
+<li>因特网草案</li>
+<li>建议标准 开始成为</li>
+<li>草案标准x已经取消</li>
+<li>因特网标准</li>
+</ol>
+<p>相关组织<br>ISO 国际标准化组织<br>ITU 国际电信联盟<br>IEEE 国际电气电子工程师协会<br>IETF Internet工程任务组</p>
+<h3 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h3><h4 id="速率"><a href="#速率" class="headerlink" title="速率"></a>速率</h4><p>速率：数据率、数据传输率、比特率<br>比特：1/0 位<br>连接在计算机网络上的主机在数字信道上传输数据<strong>位数</strong>的速率<br>K/M/G/T</p>
+<h4 id="带宽"><a href="#带宽" class="headerlink" title="带宽"></a>带宽</h4><p>（理想情况下）<br>网络的通信线路传送数据的能力，通常是指单位时间内从网络中的某一点到另一点所能通过的最高数据率。单位：比特每秒</p>
+<h4 id="吞吐量"><a href="#吞吐量" class="headerlink" title="吞吐量"></a>吞吐量</h4><p>在单位时间内通过某个网络（信道、接口）的数据量 单位b/s<br>吞吐量受网络的带宽或网络的额定速率的限制</p>
+<h4 id="时延"><a href="#时延" class="headerlink" title="时延"></a>时延</h4><p>至数据从网络的一端传送到另一端所需的时间 单位：s</p>
+<ol>
+<li>发送时延（传输时延） 从发送分组的第一个比特算起<br>= 数据长度/信道带宽（发送速率）</li>
+<li>传播时延 取决于电磁波传播速度和链路长度<br>= 信道长度/电磁波在信道上的传播速率</li>
+<li>排队时延 等待输出/输入链路可用（如安检等待时间）</li>
+<li>处理时延 检错、找出口</li>
+</ol>
+<h4 id="时延带宽积"><a href="#时延带宽积" class="headerlink" title="时延带宽积"></a>时延带宽积</h4><p>= 传播时延*带宽<br>以比特为单位的链路长度 = 某段链路现在有多少比特<br><img src="/images/2021-02-14-20-12-00.png" alt="时延带宽积" loading="lazy"></p>
+<h4 id="往返时延RTT"><a href="#往返时延RTT" class="headerlink" title="往返时延RTT"></a>往返时延RTT</h4><p>从发送方发送数据开始，到发送方收到接收方的确认，总共经历的时延。</p>
+<p>RTT越大，在收到确认之前，可以发送的数据越多</p>
+<p>RTT包括：</p>
+<ol>
+<li>往返传播时延 = 传播时延*2</li>
+<li>末端处理时间</li>
+</ol>
+<h4 id="利用率"><a href="#利用率" class="headerlink" title="利用率"></a>利用率</h4><ol>
+<li>信道利用率 = 有数据通过的时间/（有+无）数据通过时间</li>
+<li>网络利用率 = 信道利用率加权平均值</li>
+</ol>
+<h3 id="分层结构"><a href="#分层结构" class="headerlink" title="分层结构"></a>分层结构</h3><p>为什么要分层？</p>
+<p>发送文件前需要完成：</p>
+<ol>
+<li>发起通信的计算机必须将数据通信的通路激活</li>
+<li>告诉网络如何识别目的主机</li>
+<li>发起通信的计算机要查明目的主机是否开机，并且与网络连接正常</li>
+<li>发起通信的计算机要弄清楚，对方计算机中文件管理程序是否已经做好准备工作</li>
+<li>确保差错和意外可以解决</li>
+</ol>
+<p>基本原则：</p>
+<ol>
+<li>各层之间相互独立，每层只实现一种相对独立的功能</li>
+<li>每层之间界面自然清晰，易于理解，相互交流尽可能少</li>
+<li>结构上可分割开，每层都采用最合适的技术来实现。</li>
+<li>保持下层对上层的独立性，上层单向使用下层提供的服务</li>
+<li>整个分层结构应该能促进标准化工作</li>
+</ol>
+<p>分层结构：-&gt; 为了解决计算机网络复杂的大问题</p>
+<ol>
+<li>实体 同一层的实体叫对等实体</li>
+<li>协议 为进行网络中的对等实体数据交换而建立的规则、标准或约定<ol>
+<li>语法：规定传输数据的格式</li>
+<li>语义：规定所要完成的功能</li>
+<li>同步：规定各种操作的顺序</li>
+</ol>
+</li>
+<li>接口：上层使用下层服务的入口</li>
+<li>服务：下层为相邻上层提供的功能调用（垂直）</li>
+</ol>
+<p><img src="/images/2021-02-14-20-27-32.png" alt="" loading="lazy"><br><img src="/images/2021-02-14-20-30-15.png" alt="" loading="lazy"></p>
+<h4 id="OSI参考模型（法定标准）"><a href="#OSI参考模型（法定标准）" class="headerlink" title="OSI参考模型（法定标准）"></a>OSI参考模型（法定标准）</h4><p>目的：支持异构网络系统的互联互通<br>理论成功，市场失败</p>
+<p><img src="/images/2021-02-14-20-35-42.png" alt="" loading="lazy"></p>
+<p>通信过程<br><img src="/images/2021-02-14-20-39-32.png" alt="" loading="lazy"><br><img src="/images/2021-02-14-20-41-32.png" alt="" loading="lazy"></p>
+<h4 id="TCP-IP参考模型（事实标准）"><a href="#TCP-IP参考模型（事实标准）" class="headerlink" title="TCP/IP参考模型（事实标准）"></a>TCP/IP参考模型（事实标准）</h4></div></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2021/diary/2021/2021-02/2021-2-16/" rel="prev" title="2021-2-16"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">2021-2-16</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2021/diary/2021/2021-02/2021-2-14/" rel="next" title="2021-2-14"><span class="post-nav-text">2021-2-14</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2019 – 2021 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> SAIN</span></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="Search"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="Searching..." value=""></div><div id="local-search-result"></div></div></div><script defer src="/js/utils.js"></script><script defer src="/js/hexo-theme-yun.js"></script></body></html>
